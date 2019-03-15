@@ -14,7 +14,7 @@ npm install knx-ip
 ```javascript
 "use strict";
 
-const {KNXClient, KNXTunnelSocket, KNXProtocol} = require("./index");
+const {KNXClient, KNXTunnelSocket, KNXProtocol} = require("knx-ip");
 
 const knxClient = new KNXClient();
 
@@ -33,6 +33,7 @@ knxClient.on("ready", () => {
     console.log("Ready. Starting discovery");
 });
 
+// start auto discovery
 knxClient.startDiscovery("192.168.1.99");
 
 const wait = (t=3000) => {
