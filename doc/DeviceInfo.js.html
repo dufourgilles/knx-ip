@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Documentation Source: DeviceInfo.js</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.dark.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.slate.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top ">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">Documentation</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="HPAI.html">HPAI</a></li><li><a href="KNXHeader.html">KNXHeader</a></li><li><a href="KNXSearchRequest.html">KNXSearchRequest</a></li><li><a href="KNXSearchResponse.html">KNXSearchResponse</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-12">
+	
+		<div id="main">
+			
+
+		<h1 class="page-title">Source: DeviceInfo.js</h1>
+    
+<section>
+    <article>
+        <pre
+            class="sunlight-highlight-javascript linenums">"use strict";
+const DIB = require("./DIB");
+const KNX_CONSTANTS = require("./KNXConstants");
+
+const DEVICE_INFO_LENGTH = 0x36;
+const SERIALNUMBER_LENGTH = 6;
+const MACADDRESS_LENGTH = 6;
+const NAME_LENGTH = 30;
+
+const validArray = function(a, length) {
+    if ((!Array.isArray(a)) || a.length !== length) {
+        throw new Error("Invalid array format");
+    }
+    const validA = [0,0,0,0,0,0];
+    for(let i = 0; i &lt; a.length; i++) {
+        validA[i] = Number(a[i]);
+        if (isNaN(validA[i]) || validA[i] &lt; 0 || validA[i] > 255) {
+            throw new Error(`Invalid byte at pos ${i}`);
+        }
+    }
+    return validA;
+};
+
+class DeviceInfo extends DIB {
+    constructor(medium, status, address, projectID, serialNumber, ip, macAddress, name) {
+        super(KNX_CONSTANTS.DEVICE_INFO);
+        this.medium = medium;
+        this.status = status &amp; 1;
+        this.address = address;
+        this.projectID = projectID;
+        this.serialNumber = serialNumber;
+        this.ip = ip;
+        this.macAddress = macAddress;
+        this.name = name;
+    }
+
+    /**
+     *
+     * @param {string} ip
+     */
+    set ip(ip) {
+        if (ip == null) {
+            throw new Error("IP undefined");
+        }
+        const m = ip.match(/(\d+)\.(\d+)\.(\d+)\.(\d+)/);
+        if (m === null) {
+            throw new Error(`Invalid ip format - ${ip}`);
+        }
+        this._ip = ip;
+        this._splitIP = m;
+    }
+
+    get ip() {
+        return this._ip;
+    }
+
+    /**
+     *
+     * @param {string} name
+     */
+    set name(name) {
+        if (typeof(name) !== "string" || name.length > NAME_LENGTH) {
+            throw new Error(`Invalid name format or too long - ${name}(${name.length}`);
+        }
+        this._name = name;
+    }
+
+    /**
+     *
+     * @returns {string}
+     */
+    get name() {
+        return this._name;
+    }
+
+    /**
+     *
+     * @param {string|number} id
+     */
+    set projectID(id) {
+        const _id = Number(id);
+        if (isNaN(_id) || _id > 0xFFFF) {
+            throw new Error("Invalid project id");
+        }
+        this._projectID = _id;
+    }
+
+    /**
+     *
+     * @returns {number}
+     */
+    get projectID() {
+        return this._projectID;
+    }
+    /**
+     *
+     * @param {number[]}serialNumber
+     */
+    set serialNumber(serialNumber) {
+        this._serialNumber = validArray(serialNumber, SERIALNUMBER_LENGTH);
+    }
+
+    /**
+     *
+     * @returns {number[]}
+     */
+    get serialNumber() {
+        return this._serialNumber;
+    }
+
+    /**
+     *
+     * @param {number[]} macAddress
+     */
+    set macAddress(macAddress) {
+        this._macAddress = validArray(macAddress, MACADDRESS_LENGTH);
+    }
+
+    /**
+     *
+     * @returns {number[]}
+     */
+    get macAddress() {
+        return this._macAddress;
+    }
+
+    /**
+     *
+     * @param {string|number} medium
+     */
+    set medium(medium) {
+        if (typeof(medium) === "string") {
+            switch(medium) {
+                case "TP1":
+                    this._medium = KNX_CONSTANTS.TP1;
+                    break;
+                case "PL110":
+                    this._medium = KNX_CONSTANTS.PL110;
+                    break;
+                case "RF":
+                    this._medium = KNX_CONSTANTS.RF;
+                    break;
+                case "IP":
+                    this._medium = KNX_CONSTANTS.IP;
+                    break;
+                default:
+                    throw new Error(`Invalid medium ${medium}`);
+            }
+        }
+        else {
+            const _medium = Number(medium);
+            if (_medium !== KNX_CONSTANTS.TP1 &amp;&amp;
+                _medium !== KNX_CONSTANTS.PL110 &amp;&amp;
+                _medium !== KNX_CONSTANTS.RF &amp;&amp;
+                _medium !== KNX_CONSTANTS.IP) {
+                throw new Error(`Unknown medium ${medium}`);
+            }
+            this._medium = _medium;
+        }
+    }
+
+    /**
+     *
+     * @returns {number}
+     */
+    get medium() {
+        return this._medium;
+    }
+
+    /**
+     *
+     * @returns {string}
+     */
+    get formattedMedium() {
+        switch(this._medium) {
+            case KNX_CONSTANTS.TP1:
+                return "TP1";
+            case KNX_CONSTANTS.PL110:
+                return "PL110";
+            case KNX_CONSTANTS.RF:
+                return "RF";
+            case KNX_CONSTANTS.IP:
+                return "IP";
+        }
+    }
+
+    /**
+     *
+     * @param {string|number} address
+     */
+    set address(address) {
+        if (typeof(address) === "string"){
+            const digits = address.split(".");
+            if (digits.length &lt; 2 || digits.length > 3) {
+                throw new Error(`Invalid address format: ${address}`);
+            }
+            let count = 0;
+            let newAddress = 0;
+            for (let i = digits.length - 1; i >= 0; i--, count++) {
+                if (isNaN(digits[i]) || (count > 1 &amp;&amp; digits[i] > 15) || (count === 0 &amp;&amp; digits[i] > 255)) {
+                    throw new Error(`Invalid digit at pos ${i} inside address: ${address}`);
+                }
+                if (count === 0) {
+                    newAddress = Number(digits[i]);
+                }
+                else if (count === 1) {
+                    newAddress = newAddress + (Number(digits[i]) &lt;&lt; 8);
+                }
+                else {
+                    newAddress = newAddress + (Number(digits[i]) &lt;&lt; 12);
+                }
+            }
+            this._address = newAddress;
+        }
+        else {
+            this._address = address;
+        }
+    }
+
+    /**
+     *
+     * @returns {number}
+     */
+    get address() {
+        return this._address;
+    }
+
+    /**
+     *
+     * @returns {string}
+     */
+    get formattedAddress() {
+        let address = "";
+        if (this._address > 0xFFF) {
+            address = `${(this._address &amp; 0xF000) >> 12}.`;
+        }
+        address += `${(this._address &amp; 0x0F00) >> 8}.${this._address &amp; 0xFF}`;
+        return address;
+    }
+
+    toBuffer() {
+        const buffer = Buffer.alloc(DEVICE_INFO_LENGTH);
+        let offset = 0;
+        buffer.writeUInt8(DEVICE_INFO_LENGTH, offset++);
+        buffer.writeUInt8(KNX_CONSTANTS.DEVICE_INFO, offset++);
+        buffer.writeUInt8(this.medium, offset++);
+        buffer.writeUInt8(this.status, offset++);
+        buffer.writeUInt16BE(this.address, offset);
+        offset += 2;
+        buffer.writeUInt16BE(this.projectID, offset);
+        offset += 2;
+        for(let i = 0; i &lt; this.serialNumber.length; i++) {
+            buffer.writeUInt8(this.serialNumber[i], offset++);
+        }
+        for(let i = 1; i &lt;= this._splitIP.length; i++) {
+            buffer.writeUInt8(this._splitIP[i], offset++);
+        }
+        for(let i = 0; i &lt; this.macAddress.length; i++) {
+            buffer.writeUInt8(this.macAddress[i], offset++);
+        }
+        for(let i = 0; i &lt; NAME_LENGTH; i++) {
+            buffer.writeUInt8(i >= this.name.length ? 0 : this.name[i], offset++);
+        }
+    }
+
+    /**
+     *
+     * @param {Buffer} buffer
+     * @param {number} offset
+     */
+    static fromBuffer(buffer, offset = 0) {
+        if (offset + this.length >= buffer.length) {
+            throw new Error(`offset ${offset} out of buffer range ${buffer.length}`);
+        }
+        const structureLength = buffer.readUInt8(offset);
+        if (offset + structureLength > buffer.length) {
+            throw new Error(`offset ${offset} block length: ${structureLength} out of buffer range ${buffer.length}`);
+        }
+        offset++;
+        const type = buffer.readUInt8(offset++);
+        if (type != KNX_CONSTANTS.DEVICE_INFO) {
+            throw new Error(`Invalid DeviceInfo type ${type}`);
+        }
+        const medium = buffer.readUInt8(offset++);
+        const status = buffer.readUInt8(offset++);
+        const address = buffer.readUInt16BE(offset);
+        offset += 2;
+        const projectID = buffer.readUInt16BE(offset);
+        offset += 2;
+        const serialNumber = [0,0,0,0,0,0];
+        for(let i =0; i &lt; SERIALNUMBER_LENGTH; i++) {
+            serialNumber[i] = buffer.readUInt8(offset++);
+        }
+        const ip = [];
+        for(let i = 1; i &lt;= 4; i++) {
+            ip.push(buffer.readUInt8(offset++));
+        }
+        const textIP = ip.join(".");
+        const macAddress = [0,0,0,0,0,0];
+        for(let i = 0; i &lt; MACADDRESS_LENGTH; i++) {
+            macAddress[i] = buffer.readUInt8(offset++);
+        }
+        let name = "";
+        for(let i = 0; i &lt; NAME_LENGTH; i++) {
+            const char = buffer.readUInt8(offset++);
+            if (char !== 0) {
+                name += String.fromCharCode(char);
+            }
+            else {
+                break;
+            }
+        }
+        return new DeviceInfo(medium, status, address, projectID, serialNumber, textIP, macAddress, name);
+    }
+
+    static get length() {
+        return DEVICE_INFO_LENGTH;
+    }
+}
+
+module.exports = DeviceInfo;
+</pre>
+    </article>
+</section>
+
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+
+	<span class="copyright">
+	GDNet s.p.r.l.
+	</span>
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : true,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+</body>
+</html>

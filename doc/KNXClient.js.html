@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Documentation Source: KNXClient.js</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.dark.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.slate.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top ">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">Documentation</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="AdditionalInfo.html">AdditionalInfo</a></li><li><a href="CEMIMessage.html">CEMIMessage</a></li><li><a href="ControlField.html">ControlField</a></li><li><a href="ControlField.TYPE_GROUP.html">ControlField.TYPE_GROUP</a></li><li><a href="ControlField.TYPE_INDIVIDUAL.html">ControlField.TYPE_INDIVIDUAL</a></li><li><a href="CRD.html">CRD</a></li><li><a href="CRI.html">CRI</a></li><li><a href="DeviceInfo.html">DeviceInfo</a></li><li><a href="HPAI.html">HPAI</a></li><li><a href="IPConfig.html">IPConfig</a></li><li><a href="IPCurrentConfig.html">IPCurrentConfig</a></li><li><a href="KNXAddress.html">KNXAddress</a></li><li><a href="KNXAddress.LEVEL_THREE.html">KNXAddress.LEVEL_THREE</a></li><li><a href="KNXAddress.LEVEL_TWO.html">KNXAddress.LEVEL_TWO</a></li><li><a href="KNXAddress.TYPE_GROUP.html">KNXAddress.TYPE_GROUP</a></li><li><a href="KNXAddress.TYPE_INDIVIDUAL.html">KNXAddress.TYPE_INDIVIDUAL</a></li><li><a href="KNXAddresses.html">KNXAddresses</a></li><li><a href="KNXClient.html">KNXClient</a></li><li><a href="KNXConnectionStateRequest.html">KNXConnectionStateRequest</a></li><li><a href="KNXConnectionStateResponse.html">KNXConnectionStateResponse</a></li><li><a href="KNXConnectRequest.html">KNXConnectRequest</a></li><li><a href="KNXConnectResponse.html">KNXConnectResponse</a></li><li><a href="KNXDescriptionRequest.html">KNXDescriptionRequest</a></li><li><a href="KNXDescriptionResponse.html">KNXDescriptionResponse</a></li><li><a href="KNXDisconnectRequest.html">KNXDisconnectRequest</a></li><li><a href="KNXDisconnectResponse.html">KNXDisconnectResponse</a></li><li><a href="KNXHeader.html">KNXHeader</a></li><li><a href="KNXPacket.html">KNXPacket</a></li><li><a href="KNXProtocol.html">KNXProtocol</a></li><li><a href="KNXProtocol.CEMIFactory.html">KNXProtocol.CEMIFactory</a></li><li><a href="KNXProtocol.CRD.html">KNXProtocol.CRD</a></li><li><a href="KNXProtocol.CRI.html">KNXProtocol.CRI</a></li><li><a href="KNXProtocol.DeviceInfo.html">KNXProtocol.DeviceInfo</a></li><li><a href="KNXProtocol.DIB.html">KNXProtocol.DIB</a></li><li><a href="KNXProtocol.HPAI.html">KNXProtocol.HPAI</a></li><li><a href="KNXProtocol.IPConfig.html">KNXProtocol.IPConfig</a></li><li><a href="KNXProtocol.IPCurrentConfig.html">KNXProtocol.IPCurrentConfig</a></li><li><a href="KNXProtocol.KNX_CONSTANTS.html">KNXProtocol.KNX_CONSTANTS</a></li><li><a href="KNXProtocol.KNXAddress.html">KNXProtocol.KNXAddress</a></li><li><a href="KNXProtocol.KNXConnectionStateRequest.html">KNXProtocol.KNXConnectionStateRequest</a></li><li><a href="KNXProtocol.KNXConnectionStateResponse.html">KNXProtocol.KNXConnectionStateResponse</a></li><li><a href="KNXProtocol.KNXConnectRequest.html">KNXProtocol.KNXConnectRequest</a></li><li><a href="KNXProtocol.KNXConnectResponse.html">KNXProtocol.KNXConnectResponse</a></li><li><a href="KNXProtocol.KNXDescriptionRequest.html">KNXProtocol.KNXDescriptionRequest</a></li><li><a href="KNXProtocol.KNXDescriptionResponse.html">KNXProtocol.KNXDescriptionResponse</a></li><li><a href="KNXProtocol.KNXDisconnectRequest.html">KNXProtocol.KNXDisconnectRequest</a></li><li><a href="KNXProtocol.KNXDisconnectResponse.html">KNXProtocol.KNXDisconnectResponse</a></li><li><a href="KNXProtocol.KNXHeader.html">KNXProtocol.KNXHeader</a></li><li><a href="KNXProtocol.KNXSearchRequest.html">KNXProtocol.KNXSearchRequest</a></li><li><a href="KNXProtocol.KNXSearchResponse.html">KNXProtocol.KNXSearchResponse</a></li><li><a href="KNXProtocol.KNXTunnelingAck.html">KNXProtocol.KNXTunnelingAck</a></li><li><a href="KNXProtocol.KNXTunnelingRequest.html">KNXProtocol.KNXTunnelingRequest</a></li><li><a href="KNXProtocol.LDataCon.html">KNXProtocol.LDataCon</a></li><li><a href="KNXProtocol.LDataInd.html">KNXProtocol.LDataInd</a></li><li><a href="KNXProtocol.LDataReq.html">KNXProtocol.LDataReq</a></li><li><a href="KNXProtocol.ServiceFamilies.html">KNXProtocol.ServiceFamilies</a></li><li><a href="KNXProtocol.TunnelCRI.html">KNXProtocol.TunnelCRI</a></li><li><a href="KNXSearchRequest.html">KNXSearchRequest</a></li><li><a href="KNXSearchResponse.html">KNXSearchResponse</a></li><li><a href="KNXTunnelingAck.html">KNXTunnelingAck</a></li><li><a href="KNXTunnelingRequest.html">KNXTunnelingRequest</a></li><li><a href="KNXTunnelSocket.html">KNXTunnelSocket</a></li><li><a href="KNXUtils.html">KNXUtils</a></li><li><a href="LDataCon.html">LDataCon</a></li><li><a href="LDataInd.html">LDataInd</a></li><li><a href="LDataReq.html">LDataReq</a></li><li><a href="NPDU.html">NPDU</a></li><li><a href="NPDU.GROUP_READ.html">NPDU.GROUP_READ</a></li><li><a href="NPDU.GROUP_RESPONSE.html">NPDU.GROUP_RESPONSE</a></li><li><a href="NPDU.GROUP_WRITE.html">NPDU.GROUP_WRITE</a></li><li><a href="NPDU.INDIVIDUAL_READ.html">NPDU.INDIVIDUAL_READ</a></li><li><a href="NPDU.INDIVIDUAL_RESPONSE.html">NPDU.INDIVIDUAL_RESPONSE</a></li><li><a href="NPDU.INDIVIDUAL_WRITE.html">NPDU.INDIVIDUAL_WRITE</a></li><li><a href="ServiceFamilies.html">ServiceFamilies</a></li><li><a href="TLVInfo.html">TLVInfo</a></li><li><a href="TunnelCRI.html">TunnelCRI</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-12">
+	
+		<div id="main">
+			
+
+		<h1 class="page-title">Source: KNXClient.js</h1>
+    
+<section>
+    <article>
+        <pre
+            class="sunlight-highlight-javascript linenums">"use strict";
+const EventEmitter = require('events').EventEmitter;
+const dgram = require('dgram');
+const KNXConstants = require("./protocol/KNXConstants");
+const CEMIConstants = require("./protocol/cEMI/CEMIConstants");
+const KNXProtocol = require("./protocol/KNXProtocol");
+const CEMIFactory = require("./protocol/cEMI/CEMIFactory");
+
+const STATE = {
+    STARTED: 0,
+    CONNECTING: 3,
+    CONNECTED: 4,
+    DISCONNECTING: 5
+};
+
+const TUNNELSTATE = {
+    READY: 0,
+};
+
+class KNXClient extends EventEmitter{
+    /**
+     *
+     */
+    constructor() {
+        super();
+        this._host = null;
+        this._port = null;
+        this._peerHost = null;
+        this._peerPort = null;
+        this._timer = null;
+        this._discovery_timer = null;
+        this._awaitingResponseType = null;
+        this._discoverySocket = null;
+        this._clientSocket = dgram.createSocket('udp4');
+        this._clientTunnelSeqNumber = 0;
+        this._channelID = null;
+        this._connectionState = STATE.STARTED;
+        this._tunnelState = TUNNELSTATE.READY;
+        this._tunnelReqTimer = new Map();
+        this._pendingTunnelAnswer = new Map();
+        this._processInboundMessage = this._processInboundMessage.bind(this);
+
+
+        this._clientSocket.on("message", this._processInboundMessage);
+    }
+
+
+    /**
+     *
+     * @returns {null|number}
+     */
+    get channelID() {
+        return this._channelID;
+    }
+
+    /**
+     *
+     * @private
+     */
+    _initDiscoverySocket() {
+        if (this._discoverySocket == null) {
+            throw new Error("No server socket defined");
+        }
+        this._discoverySocket.on("error", err => {
+            this.emit("error", err)
+        });
+        this._discoverySocket.on("message", this._processInboundMessage);
+    }
+
+    /**
+     *
+     * @param {KNXTunnelingRequest} knxTunnelingResponse
+     * @private
+     */
+    _handleResponse(knxTunnelingResponse) {
+        /** @type {LDataInd} */
+        const ind = knxTunnelingResponse.cEMIMessage;
+        const key = this._keyFromCEMIMessage(ind);
+        if (this._pendingTunnelAnswer.has(key)) {
+            const {cb, timer, req} = this._pendingTunnelAnswer.get(key);
+            if (ind.msgCode === CEMIConstants.L_DATA_CON &amp;&amp;
+                req.cEMIMessage.npdu.action === CEMIConstants.GROUP_READ) {
+                // do not clear the timer if only a confirmation of read request.
+                return;
+            }
+            if (timer) {
+                clearTimeout(timer);
+            }
+            if (cb) {
+                cb(null, ind.npdu.dataValue);
+            }
+            this._pendingTunnelAnswer.delete(key);
+        }
+    }
+
+    /**
+     *
+     * @param {LDataReq} cEMIMessage
+     * @returns {string}
+     * @private
+     */
+    _keyFromCEMIMessage(cEMIMessage) {
+        return cEMIMessage.dstAddress.toString();
+    }
+
+    /**
+     *
+     * @param {KNXTunnelingRequest} knxTunnelingRequest
+     * @param {function} cb
+     * @private
+     */
+    _setTimerAndCallback(knxTunnelingRequest, cb) {
+        const key = this._keyFromCEMIMessage(knxTunnelingRequest.cEMIMessage);
+        this._pendingTunnelAnswer.set(
+            key,
+            {
+                cb,
+                timer: setTimeout(() => {
+                    this._pendingTunnelAnswer.delete(key);
+                    const err = new Error(`Request ${knxTunnelingRequest.seqCounter} timed out`);
+                    if (cb) {
+                        cb(err)
+                    }
+                    else {
+                        this.emit("error", err);
+                    }
+                }, KNXConstants.TUNNELING_REQUEST_TIMEOUT * 2000),
+                req: knxTunnelingRequest
+            }
+        );
+        this._tunnelReqTimer.set(knxTunnelingRequest.seqCounter, setTimeout(() => {
+            this._tunnelReqTimer.delete(knxTunnelingRequest.seqCounter);
+            this._pendingTunnelAnswer.delete(key);
+            const err = new Error(`Request ${knxTunnelingRequest.seqCounter} timed out`);
+            if (cb) {
+                cb(err)
+            }
+            else {
+                this.emit("error", err);
+            }
+        }, KNXConstants.TUNNELING_REQUEST_TIMEOUT * 1000));
+    }
+
+    /**
+     *
+     * @param {Buffer} msg
+     * @param {Object} rinfo
+     * @param {string} rinfo.address
+     * @param {string} rinfo.family
+     * @param {number} rinfo.port
+     * @param {number} rinfo.size
+     * @private
+     */
+    _processInboundMessage(msg, rinfo) {
+        try {
+            const {knxHeader, knxMessage} = KNXProtocol.parseMessage(msg);
+            if (knxHeader.service_type === KNXConstants.SEARCH_RESPONSE) {
+                if (this._discovery_timer == null) {
+                    return;
+                }
+                this.emit("discover", `${rinfo.address}:${rinfo.port}`, knxHeader, knxMessage);
+            }
+            else if (knxHeader.service_type === KNXConstants.CONNECT_RESPONSE) {
+                if (this._connectionState === STATE.CONNECTING) {
+                    clearTimeout(this._timer);
+                    this._timer = null;
+                    this._connectionState = STATE.CONNECTED;
+                    /** @type {KNXConnectResponse } */
+                    const knxConnectResponse = knxMessage;
+                    this._channelID = knxConnectResponse.channelID;
+                    this.emit("connected", `${rinfo.address}:${rinfo.port}`,this._channelID);
+                }
+            }
+            else if (knxHeader.service_type === KNXConstants.DISCONNECT_RESPONSE) {
+                if (this._connectionState === STATE.DISCONNECTING) {
+                    this._connectionState = STATE.STARTED;
+                    this._channelID = null;
+                    this.emit("disconnected", `${rinfo.address}:${rinfo.port}`, knxHeader, knxMessage);
+                }
+            }
+            else if (knxHeader.service_type === KNXConstants.DISCONNECT_REQUEST) {
+                this._connectionState = STATE.STARTED;
+                /** @type { KNXDisconnectRequest } */
+                const knxDisconnectRequest = knxMessage;
+                this._sendDisconnectResponseMessage(rinfo.address, rinfo.port, knxDisconnectRequest.channelID);
+                this.emit("disconnected", `${rinfo.address}:${rinfo.port}`, knxHeader, knxDisconnectRequest);
+            }
+            else if (knxHeader.service_type === KNXConstants.TUNNELING_REQUEST) {
+                /** @type {KNXTunnelingRequest} */
+                const knxTunnelingRequest = knxMessage;
+                if (knxTunnelingRequest.cEMIMessage.msgCode === CEMIConstants.L_DATA_IND) {
+                    /** @type {LDataInd} */
+                    const ind = knxTunnelingRequest.cEMIMessage;
+                    if (ind.npdu.action === CEMIConstants.GROUP_RESPONSE) {
+                        this._handleResponse(knxTunnelingRequest);
+                    }
+                    else {
+                        this.emit("indication",
+                            knxTunnelingRequest.cEMIMessage.srcAddress.toString(),
+                            knxTunnelingRequest.cEMIMessage.dstAddress.toString(),
+                            knxTunnelingRequest.cEMIMessage.npdu
+                        );
+                    }
+                }
+                else if (knxTunnelingRequest.cEMIMessage.msgCode === CEMIConstants.L_DATA_CON) {
+                    this._handleResponse(knxTunnelingRequest);
+                }
+                const knxTunnelAck = KNXProtocol.newKNXTunnelingACK(
+                    knxTunnelingRequest.channelID,
+                    knxTunnelingRequest.seqCounter,
+                    KNXProtocol.KNX_CONSTANTS.E_NO_ERROR
+                );
+                this.send(knxTunnelAck);
+            }
+            else if (knxHeader.service_type === KNXConstants.TUNNELING_ACK) {
+                /** @type {KNXTunnelingAck} */
+                const knxTunnelingAck = knxMessage;
+                if (this._tunnelReqTimer.has(knxTunnelingAck.seqCounter)) {
+                    clearTimeout(this._tunnelReqTimer.get(knxTunnelingAck.seqCounter));
+                    this._tunnelReqTimer.delete(knxTunnelingAck.seqCounter);
+                }
+            }
+            else {
+                if (knxHeader.service_type === this._awaitingResponseType) {
+                    clearTimeout(this._timer);
+                }
+                this.emit("response", `${rinfo.address}:${rinfo.port}`, knxHeader, knxMessage);
+            }
+        }
+        catch(e) {
+            this.emit("error", e);
+        }
+    }
+
+    /**
+     *
+     * @param {string }host
+     * @param {number} port
+     * @private
+     */
+    _sendDescriptionRequestMessage(host, port) {
+        this._clientSocket.send(
+            KNXProtocol.newKNXDescriptionRequest(new KNXProtocol.HPAI(this._host)).toBuffer(),
+            port,
+            host,
+            err => this.emit("error", err)
+        );
+    }
+
+    _sendSearchRequestMessage() {
+        this._discoverySocket.send(
+            KNXProtocol.newKNXSearchRequest(new KNXProtocol.HPAI(this._host, this._port)).toBuffer(),
+            KNXConstants.KNX_PORT,
+            KNXConstants.KNX_IP,
+            err => this.emit("error", err)
+        );
+    }
+
+    /**
+     *
+     * @param {string }host
+     * @param {number} port
+     * @param {CRI} cri
+     * @private
+     */
+    _sendConnectRequestMessage(host, port, cri) {
+        this._peerHost = host;
+        this._peerPort = port;
+        this._connectionState = STATE.CONNECTING;
+        this._clientSocket.send(
+            KNXProtocol.newKNXConnectRequest(cri).toBuffer(),
+            port,
+            host,
+            null
+        );
+    }
+
+    /**
+     *
+     * @param {string }host
+     * @param {number} port
+     * @param {number} channelID
+     * @private
+     */
+    _sendConnectionStateRequestMessage(host, port, channelID) {
+        this._clientSocket.send(
+            KNXProtocol.newKNXConnectionStateRequest(channelID),
+            port,
+            host,
+            err => this.emit("error", err)
+        );
+    }
+
+    /**
+     *
+     * @param {string }host
+     * @param {number} port
+     * @param {number} channelID
+     * @private
+     */
+    _sendDisconnectRequestMessage(host, port, channelID) {
+        this._connectionState = STATE.DISCONNECTING;
+        this._clientSocket.send(
+            KNXProtocol.newKNXDisconnectRequest(channelID),
+            port,
+            host,
+            err => this.emit("error", err)
+        );
+    }
+
+    /**
+     *
+     * @param {string }host
+     * @param {number} port
+     * @param {number} channelID
+     * @param {number} status
+     * @private
+     */
+    _sendDisconnectResponseMessage(host, port, channelID, status = KNXConstants.E_NO_ERROR) {
+        this._clientSocket.send(
+            KNXProtocol.newKNXDisconnectResponse(channelID, status),
+            port,
+            host,
+            err => this.emit("error", err)
+        );
+    }
+
+    /**
+     *
+     * @param {string} host
+     * @param {number} port
+     */
+    _bindDiscoverySocket(host, port) {
+        if (this._discoverySocket != null) {
+            throw new Error("Discovery socket already binded");
+        }
+        this._discoverySocket = dgram.createSocket('udp4');
+        this._initDiscoverySocket();
+        this._discoverySocket.bind(port, host, () => {
+            this._discoverySocket.setMulticastInterface(host);
+            this._discoverySocket.setMulticastTTL(16);
+            this._host = host;
+            this.emit("ready");
+        });
+    }
+
+    /**
+     *
+     * @param {KNXPacket} knxPacket
+     * @param {string} host=null
+     * @param {number} port=null
+     */
+    send(knxPacket, host = null, port = null) {
+        const peerHost = host == null ? this._peerHost : host;
+        const peerPort = port == null ? this._peerPort : port;
+        this._clientSocket.send(
+            knxPacket.toBuffer(),
+            peerPort,
+            peerHost,
+                err => {
+                    if (err) {
+                        this.emit("error", err);
+                    }
+                });
+    }
+
+    /**
+     *
+     * @param {KNXAddress} srcAddress
+     * @param {KNXAddress} dstAddress
+     * @param {Buffer} data
+     * @param {string} host
+     * @param {number} port
+     */
+    sendWriteRequest(srcAddress, dstAddress, data, cb = null, host = null, port = null) {
+        const key = dstAddress.toString();
+        if (this._pendingTunnelAnswer.has(key)) {
+            const err = new Error(`Requested already pending for ${key}`);
+            if (cb) {
+                cb(err);
+            }
+            this.emit("error", err);
+            return;
+        }
+        const peerHost = host == null ? this._peerHost : host;
+        const peerPort = port == null ? this._peerPort : port;
+        const cEMIMessage = CEMIFactory.newLDataRequestMessage(
+            true,
+            true,
+            srcAddress,
+            dstAddress,
+            data
+        );
+        cEMIMessage.control.ack = 1;
+        cEMIMessage.control.broadcast = 1;
+        cEMIMessage.control.priority = 3;
+        cEMIMessage.control.addressType = 1;
+        cEMIMessage.control.hopCount = 6;
+        const seqNum = this._clientTunnelSeqNumber++;
+        const knxTunnelingRequest = KNXProtocol.newKNXTunnelingRequest(
+            this._channelID,
+            seqNum,
+            cEMIMessage
+        );
+        this._setTimerAndCallback(knxTunnelingRequest, cb);
+        this.send(knxTunnelingRequest, peerHost, peerPort);
+    }
+
+    /**
+     *
+     * @param srcAddress
+     * @param dstAddress
+     * @param cb
+     * @param host
+     * @param port
+     */
+    sendReadRequest(srcAddress, dstAddress, cb = null, host = null, port = null) {
+        const key = dstAddress.toString();
+        if (this._pendingTunnelAnswer.has(key)) {
+            const err = new Error(`Requested already pending for ${key}`);
+            if (cb) {
+                cb(err);
+            }
+            this.emit("error", err);
+            return;
+        }
+        const peerHost = host == null ? this._peerHost : host;
+        const peerPort = port == null ? this._peerPort : port;
+        const cEMIMessage = CEMIFactory.newLDataRequestMessage(
+            false,
+            true,
+            srcAddress,
+            dstAddress,
+            null
+        );
+        cEMIMessage.control.ack = 1;
+        cEMIMessage.control.broadcast = 1;
+        cEMIMessage.control.priority = 3;
+        cEMIMessage.control.addressType = 1;
+        cEMIMessage.control.hopCount = 6;
+        const seqNum = this._clientTunnelSeqNumber++;
+        const knxTunnelingRequest = KNXProtocol.newKNXTunnelingRequest(
+            this._channelID,
+            seqNum,
+            cEMIMessage
+        );
+        this._setTimerAndCallback(knxTunnelingRequest, cb);
+        this.send(knxTunnelingRequest, peerHost, peerPort);
+    }
+    /**
+     *
+     * @param {string} host - listening interface ip address
+     * @param {number} port=Default_KNX_port - listening port
+     */
+    startDiscovery(host ,port = KNXConstants.KNX_PORT) {
+        this._host = host;
+        this._port = port;
+        this._bindDiscoverySocket(host, port);
+        this._discovery_timer = setTimeout(() => {
+            this._discovery_timer = null;
+        }, 1000 * KNXConstants.SEARCH_TIMEOUT);
+        this._sendSearchRequestMessage();
+    }
+
+    /**
+     *
+     */
+    stopDiscovery() {
+        if (this._discoverySocket == null || this._host == null) {
+            return;
+        }
+        if (this._discovery_timer != null) {
+            clearTimeout(this._discovery_timer);
+            this._discovery_timer = 0;
+        }
+        this._discoverySocket.close();
+        this._discoverySocket = null;
+    }
+
+    /**
+     *
+     * @param {string} host
+     * @param {number} port
+     */
+    getDescription(host, port) {
+        if (this._clientSocket == null) {
+            throw new Error("No client socket defined");
+        }
+        this._timer = setTimeout(() => {
+            this._timer = null;
+        }, 1000 * KNXConstants.DEVICE_CONFIGURATION_REQUEST_TIMEOUT);
+        this._awaitingResponseType = KNXConstants.DESCRIPTION_RESPONSE;
+        this._sendDescriptionRequestMessage(host, port);
+    }
+
+    /**
+     *
+     * @param {string} host
+     * @param {number} port
+     * @param {number|string} knxLayer
+     */
+    openTunnelConnection(host, port, knxLayer = "TUNNEL_LINKLAYER") {
+        if (this._clientSocket == null) {
+            throw new Error("No client socket defined");
+        }
+        this._timer = setTimeout(() => {
+            this._timer = null;
+            this.emit("error", new Error("Connection timeout"));
+        }, 1000 * KNXConstants.CONNECT_REQUEST_TIMEOUT);
+        this._awaitingResponseType = KNXConstants.CONNECT_RESPONSE;
+        this._sendConnectRequestMessage(host, port, new KNXProtocol.TunnelCRI(knxLayer));
+    }
+
+    /**
+     *
+     * @param {string} host
+     * @param {number} port
+     * @param {number} [channelID]
+     */
+    getConnectionStatus(host, port, channelID = null) {
+        if (this._clientSocket == null) {
+            throw new Error("No client socket defined");
+        }
+        this._timer = setTimeout(() => {
+            this._timer = null;
+        }, 1000 * KNXConstants.CONNECTIONSTATE_REQUEST_TIMEOUT);
+        this._awaitingResponseType = KNXConstants.CONNECTIONSTATE_RESPONSE;
+        if (channelID == null) { channelID = this._channelID; }
+        this._sendConnectionStateRequestMessage(host, port, channelID);
+    }
+
+    /**
+     *
+     * @param {string} host
+     * @param {number} port
+     * @param {number} [channelID]
+     */
+    disconnect(host, port, channelID = null) {
+        if (this._clientSocket == null) {
+            throw new Error("No client socket defined");
+        }
+        this._timer = setTimeout(() => {
+            this._timer = null;
+        }, 1000 * KNXConstants.CONNECT_REQUEST_TIMEOUT);
+        this._awaitingResponseType = KNXConstants.DISCONNECT_RESPONSE;
+        this._connectionState = STATE.DISCONNECTING;
+        if (channelID == null) { channelID = this._channelID; }
+        this._sendDisconnectRequestMessage(host, port, channelID);
+    }
+
+    /**
+     *
+     */
+    close() {
+        if (this._clientSocket) {
+            this._clientSocket.close();
+            this._clientSocket = null;
+        }
+    }
+
+    /**
+     *
+     * @returns {boolean}
+     */
+    isConnected() {
+        return this._connectionState === STATE.CONNECTED;
+    }
+}
+
+module.exports = KNXClient;
+</pre>
+    </article>
+</section>
+
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+
+	<span class="copyright">
+	GDNet s.p.r.l.
+	</span>
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : true,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+</body>
+</html>

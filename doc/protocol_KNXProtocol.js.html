@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Documentation Source: protocol/KNXProtocol.js</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.dark.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.slate.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top ">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">Documentation</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="AdditionalInfo.html">AdditionalInfo</a></li><li><a href="CEMIMessage.html">CEMIMessage</a></li><li><a href="ControlField.html">ControlField</a></li><li><a href="ControlField.TYPE_GROUP.html">ControlField.TYPE_GROUP</a></li><li><a href="ControlField.TYPE_INDIVIDUAL.html">ControlField.TYPE_INDIVIDUAL</a></li><li><a href="CRD.html">CRD</a></li><li><a href="CRI.html">CRI</a></li><li><a href="DeviceInfo.html">DeviceInfo</a></li><li><a href="HPAI.html">HPAI</a></li><li><a href="IPConfig.html">IPConfig</a></li><li><a href="IPCurrentConfig.html">IPCurrentConfig</a></li><li><a href="KNXAddress.html">KNXAddress</a></li><li><a href="KNXAddress.LEVEL_THREE.html">KNXAddress.LEVEL_THREE</a></li><li><a href="KNXAddress.LEVEL_TWO.html">KNXAddress.LEVEL_TWO</a></li><li><a href="KNXAddress.TYPE_GROUP.html">KNXAddress.TYPE_GROUP</a></li><li><a href="KNXAddress.TYPE_INDIVIDUAL.html">KNXAddress.TYPE_INDIVIDUAL</a></li><li><a href="KNXAddresses.html">KNXAddresses</a></li><li><a href="KNXClient.html">KNXClient</a></li><li><a href="KNXConnectionStateRequest.html">KNXConnectionStateRequest</a></li><li><a href="KNXConnectionStateResponse.html">KNXConnectionStateResponse</a></li><li><a href="KNXConnectRequest.html">KNXConnectRequest</a></li><li><a href="KNXConnectResponse.html">KNXConnectResponse</a></li><li><a href="KNXDescriptionRequest.html">KNXDescriptionRequest</a></li><li><a href="KNXDescriptionResponse.html">KNXDescriptionResponse</a></li><li><a href="KNXDisconnectRequest.html">KNXDisconnectRequest</a></li><li><a href="KNXDisconnectResponse.html">KNXDisconnectResponse</a></li><li><a href="KNXHeader.html">KNXHeader</a></li><li><a href="KNXPacket.html">KNXPacket</a></li><li><a href="KNXProtocol.html">KNXProtocol</a></li><li><a href="KNXProtocol.CEMIFactory.html">KNXProtocol.CEMIFactory</a></li><li><a href="KNXProtocol.CRD.html">KNXProtocol.CRD</a></li><li><a href="KNXProtocol.CRI.html">KNXProtocol.CRI</a></li><li><a href="KNXProtocol.DeviceInfo.html">KNXProtocol.DeviceInfo</a></li><li><a href="KNXProtocol.DIB.html">KNXProtocol.DIB</a></li><li><a href="KNXProtocol.HPAI.html">KNXProtocol.HPAI</a></li><li><a href="KNXProtocol.IPConfig.html">KNXProtocol.IPConfig</a></li><li><a href="KNXProtocol.IPCurrentConfig.html">KNXProtocol.IPCurrentConfig</a></li><li><a href="KNXProtocol.KNX_CONSTANTS.html">KNXProtocol.KNX_CONSTANTS</a></li><li><a href="KNXProtocol.KNXAddress.html">KNXProtocol.KNXAddress</a></li><li><a href="KNXProtocol.KNXConnectionStateRequest.html">KNXProtocol.KNXConnectionStateRequest</a></li><li><a href="KNXProtocol.KNXConnectionStateResponse.html">KNXProtocol.KNXConnectionStateResponse</a></li><li><a href="KNXProtocol.KNXConnectRequest.html">KNXProtocol.KNXConnectRequest</a></li><li><a href="KNXProtocol.KNXConnectResponse.html">KNXProtocol.KNXConnectResponse</a></li><li><a href="KNXProtocol.KNXDescriptionRequest.html">KNXProtocol.KNXDescriptionRequest</a></li><li><a href="KNXProtocol.KNXDescriptionResponse.html">KNXProtocol.KNXDescriptionResponse</a></li><li><a href="KNXProtocol.KNXDisconnectRequest.html">KNXProtocol.KNXDisconnectRequest</a></li><li><a href="KNXProtocol.KNXDisconnectResponse.html">KNXProtocol.KNXDisconnectResponse</a></li><li><a href="KNXProtocol.KNXHeader.html">KNXProtocol.KNXHeader</a></li><li><a href="KNXProtocol.KNXSearchRequest.html">KNXProtocol.KNXSearchRequest</a></li><li><a href="KNXProtocol.KNXSearchResponse.html">KNXProtocol.KNXSearchResponse</a></li><li><a href="KNXProtocol.KNXTunnelingAck.html">KNXProtocol.KNXTunnelingAck</a></li><li><a href="KNXProtocol.KNXTunnelingRequest.html">KNXProtocol.KNXTunnelingRequest</a></li><li><a href="KNXProtocol.LDataCon.html">KNXProtocol.LDataCon</a></li><li><a href="KNXProtocol.LDataInd.html">KNXProtocol.LDataInd</a></li><li><a href="KNXProtocol.LDataReq.html">KNXProtocol.LDataReq</a></li><li><a href="KNXProtocol.ServiceFamilies.html">KNXProtocol.ServiceFamilies</a></li><li><a href="KNXProtocol.TunnelCRI.html">KNXProtocol.TunnelCRI</a></li><li><a href="KNXSearchRequest.html">KNXSearchRequest</a></li><li><a href="KNXSearchResponse.html">KNXSearchResponse</a></li><li><a href="KNXTunnelingAck.html">KNXTunnelingAck</a></li><li><a href="KNXTunnelingRequest.html">KNXTunnelingRequest</a></li><li><a href="KNXTunnelSocket.html">KNXTunnelSocket</a></li><li><a href="KNXUtils.html">KNXUtils</a></li><li><a href="LDataCon.html">LDataCon</a></li><li><a href="LDataInd.html">LDataInd</a></li><li><a href="LDataReq.html">LDataReq</a></li><li><a href="NPDU.html">NPDU</a></li><li><a href="NPDU.GROUP_READ.html">NPDU.GROUP_READ</a></li><li><a href="NPDU.GROUP_RESPONSE.html">NPDU.GROUP_RESPONSE</a></li><li><a href="NPDU.GROUP_WRITE.html">NPDU.GROUP_WRITE</a></li><li><a href="NPDU.INDIVIDUAL_READ.html">NPDU.INDIVIDUAL_READ</a></li><li><a href="NPDU.INDIVIDUAL_RESPONSE.html">NPDU.INDIVIDUAL_RESPONSE</a></li><li><a href="NPDU.INDIVIDUAL_WRITE.html">NPDU.INDIVIDUAL_WRITE</a></li><li><a href="ServiceFamilies.html">ServiceFamilies</a></li><li><a href="TLVInfo.html">TLVInfo</a></li><li><a href="TunnelCRI.html">TunnelCRI</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-12">
+	
+		<div id="main">
+			
+
+		<h1 class="page-title">Source: protocol/KNXProtocol.js</h1>
+    
+<section>
+    <article>
+        <pre
+            class="sunlight-highlight-javascript linenums">"use strict";
+const KNX_CONSTANTS = require("./KNXConstants");
+const KNXHeader = require("./KNXHeader");
+const KNXSearchRequest = require("./KNXSearchRequest");
+const KNXSearchResponse = require("./KNXSearchResponse");
+const KNXDescriptionRequest = require("./KNXDescriptionRequest");
+const KNXDescriptionResponse = require("./KNXDescriptionResponse");
+const KNXConnectRequest = require("./KNXConnectRequest");
+const KNXConnectResponse = require("./KNXConnectResponse");
+const KNXConnectionStateRequest = require("./KNXConnectionStateRequest");
+const KNXConnectionStateResponse = require("./KNXConnectionStateResponse");
+const KNXDisconnectRequest = require("./KNXDisconnectRequest");
+const KNXDisconnectResponse = require("./KNXDisconnectResponse");
+const KNXTunnelingRequest = require("./KNXTunnelingRequest");
+const KNXTunnelingAck = require("./KNXTunnelingAck");
+const KNXAddress = require("./KNXAddress");
+const HPAI = require("./HPAI");
+const CRI = require("./CRI");
+const CRD = require("./CRD");
+const DeviceInfo = require("./DeviceInfo");
+const DIB = require("./DIB");
+const IPCurrentConfig = require("./IPCurrentConfig");
+const IPConfig = require("./IPConfig");
+const TunnelCRI = require("./TunnelCRI");
+const ServiceFamilies = require("./ServiceFamilies");
+const CEMIFactory = require("./cEMI/CEMIFactory");
+const LDataCon = require("./cEMI/LDataCon");
+const LDataReq = require("./cEMI/LDataReq");
+const LDataInd = require("./cEMI/LDataInd");
+
+/**
+ * KNX Protocol Elements
+ */
+class KNXProtocol {
+    /**
+     *
+     * @returns {{REMLOG_CONNECTION, E_KNX_CONNECTION, KNX_ADDRESSES, KNX_PORT, IPV4_UDP, DEVICE_CONFIGURATION_REQUEST_TIMEOUT, TUNNEL_RAW, PL110, CONNECT_REQUEST, CONNECTIONSTATE_RESPONSE, KNX_IP, SEARCH_RESPONSE, TUNNEL_CONNECTION, MFR_DATA, ROUTING_INDICATION, IP, DEVICE_CONFIGURATION_ACK, DISCONNECT_REQUEST, TUNNELING_ACK, E_VERSION_NOT_SUPPORTED, E_DATA_CONNECTION, E_NO_MORE_CONNECTIONS, TP1, RF, TUNNELING_REQUEST_TIMEOUT, OBJSVR_CONNECTION, TUNNEL_BUSMONITOR, E_CONNECTION_OPTION, E_CONNECTION_ID, CONNECTION_ALIVE_TIME, SEARCH_TIMEOUT, DEVICE_MGMT_CONNECTION, ROUTING_LOST_MESSAGE, E_NO_ERROR, IP_CUR_CONFIG, IPV4_ADDRESS_LENGTH, E_SEQUENCE_NUMBER, DEVICE_CONFIGURATION_REQUEST, REMCONF_CONNECTION, TUNNEL_LINKLAYER, KNXNETIP_VERSION_10, DESCRIPTION_RESPONSE, E_CONNECTION_TYPE, TUNNELING_REQUEST, CONNECT_REQUEST_TIMEOUT, DISCONNECT_RESPONSE, DEVICE_INFO, CONNECTIONSTATE_REQUEST, SEARCH_REQUEST, CONNECT_RESPONSE, E_HOST_PROTOCOL_TYPE, HEADER_SIZE_10, IPV4_TCP, DESCRIPTION_REQUEST, CONNECTIONSTATE_REQUEST_TIMEOUT, E_TUNNELING_LAYER, SUPP_SVC_FAMILIES, IP_CONFIG}}
+     * @constructor
+     */
+    static get KNX_CONSTANTS() {return KNX_CONSTANTS; }
+
+    /**
+     *
+     * @returns {KNXHeader}
+     * @constructor
+     */
+    static get KNXHeader() { return KNXHeader;}
+
+    /**
+     *
+     * @returns {KNXSearchRequest}
+     * @constructor
+     */
+    static get KNXSearchRequest() { return KNXSearchRequest; }
+
+    /**
+     *
+     * @returns {KNXSearchResponse}
+     * @constructor
+     */
+    static get KNXSearchResponse() { return KNXSearchResponse;}
+
+    /**
+     *
+     * @returns {KNXDescriptionRequest}
+     * @constructor
+     */
+    static get KNXDescriptionRequest() { return KNXDescriptionRequest;}
+
+    /**
+     *
+     * @returns {KNXDescriptionResponse}
+     * @constructor
+     */
+    static get KNXDescriptionResponse() { return KNXDescriptionResponse;}
+
+    /**
+     *
+     * @returns {KNXConnectRequest}
+     * @constructor
+     */
+    static get KNXConnectRequest() { return KNXConnectRequest;}
+
+    /**
+     *
+     * @returns {KNXConnectResponse}
+     * @constructor
+     */
+    static get KNXConnectResponse() { return KNXConnectResponse;}
+
+    /**
+     *
+     * @returns {KNXConnectionStateRequest}
+     * @constructor
+     */
+    static get KNXConnectionStateRequest() { return KNXConnectionStateRequest;}
+
+    /**
+     *
+     * @returns {KNXConnectionStateResponse}
+     * @constructor
+     */
+    static get KNXConnectionStateResponse() { return KNXConnectionStateResponse;}
+
+    /**
+     *
+     * @returns {KNXDisconnectRequest}
+     * @constructor
+     */
+    static get KNXDisconnectRequest() {return KNXDisconnectRequest;}
+
+    /**
+     *
+     * @returns {KNXDisconnectResponse}
+     * @constructor
+     */
+    static get KNXDisconnectResponse() {return KNXDisconnectResponse;}
+
+    /**
+     *
+     * @returns {KNXTunnelingRequest}
+     * @constructor
+     */
+    static get KNXTunnelingRequest() {return KNXTunnelingRequest;}
+
+    /**
+     *
+     * @returns {KNXTunnelingAck}
+     * @constructor
+     */
+    static get KNXTunnelingAck() {return KNXTunnelingAck;}
+
+    /**
+     *
+     * @returns {KNXAddress}
+     * @constructor
+     */
+    static get KNXAddress() {return KNXAddress;}
+
+    /**
+     *
+     * @returns {HPAI}
+     * @constructor
+     */
+    static get HPAI() { return HPAI;}
+
+    /**
+     *
+     * @returns {CRI}
+     * @constructor
+     */
+    static get CRI() { return CRI;}
+
+    /**
+     *
+     * @returns {CRD}
+     * @constructor
+     */
+    static get CRD() { return CRD;}
+
+    /**
+     *
+     * @returns {DeviceInfo}
+     * @constructor
+     */
+    static get DeviceInfo() { return DeviceInfo;}
+
+    /**
+     *
+     * @returns {DIB}
+     * @constructor
+     */
+    static get DIB() { return DIB;}
+
+    /**
+     *
+     * @returns {IPCurrentConfig}
+     * @constructor
+     */
+    static get IPCurrentConfig() { return IPCurrentConfig; }
+
+    /**
+     *
+     * @returns {IPConfig}
+     * @constructor
+     */
+    static get IPConfig() { return IPConfig; }
+
+    /**
+     *
+     * @returns {TunnelCRI}
+     * @constructor
+     */
+    static get TunnelCRI() { return TunnelCRI; }
+
+    /**
+     *
+     * @returns {ServiceFamilies}
+     * @constructor
+     */
+    static get ServiceFamilies() { return ServiceFamilies; }
+
+    /**
+     *
+     * @returns {CEMIFactory}
+     * @constructor
+     */
+    static get CEMIFactory() { return CEMIFactory; }
+
+    /**
+     *
+     * @returns {LDataCon}
+     * @constructor
+     */
+    static get LDataCon() { return LDataCon; }
+
+    /**
+     *
+     * @returns {LDataReq}
+     * @constructor
+     */
+    static get LDataReq() {return LDataReq; }
+
+    /**
+     *
+     * @returns {LDataInd}
+     * @constructor
+     */
+    static get LDataInd() {return LDataInd; }
+
+    /**
+     *
+     * @param {Buffer} buffer
+     * @returns {{knxHeader: KNXHeader, knxMessage: Buffer|KNXPacket}}
+     */
+    static parseMessage(buffer) {
+        const knxHeader = KNXHeader.fromBuffer(buffer);
+        const knxData = buffer.slice(knxHeader.headerLength);
+        let knxMessage = knxData;
+        switch(knxHeader.service_type) {
+            case KNX_CONSTANTS.SEARCH_REQUEST:
+                knxMessage = KNXSearchRequest.fromBuffer(knxData);
+                break;
+            case KNX_CONSTANTS.SEARCH_RESPONSE:
+                knxMessage = KNXSearchResponse.fromBuffer(knxData);
+                break;
+            case KNX_CONSTANTS.DESCRIPTION_REQUEST:
+                knxMessage = KNXDescriptionRequest.fromBuffer(knxData);
+                break;
+            case KNX_CONSTANTS.DESCRIPTION_RESPONSE:
+                knxMessage = KNXDescriptionResponse.fromBuffer(knxData);
+                break;
+            case KNX_CONSTANTS.CONNECT_REQUEST:
+                knxMessage - KNXDescriptionResponse.fromBuffer(knxData);
+                break;
+            case KNX_CONSTANTS.CONNECT_RESPONSE:
+                knxMessage = KNXConnectResponse.fromBuffer(knxData);
+                break;
+            case KNX_CONSTANTS.CONNECTIONSTATE_REQUEST:
+                knxMessage = KNXConnectionStateRequest.fromBuffer(knxData);
+                break;
+            case KNX_CONSTANTS.CONNECTIONSTATE_RESPONSE:
+                knxMessage = KNXConnectionStateResponse.fromBuffer(knxData);
+                break;
+            case KNX_CONSTANTS.DISCONNECT_REQUEST:
+                knxMessage = KNXDisconnectRequest.fromBuffer(knxData);
+                break;
+            case KNX_CONSTANTS.DISCONNECT_RESPONSE:
+                knxMessage = KNXDisconnectResponse.fromBuffer(knxData);
+                break;
+            case KNX_CONSTANTS.TUNNELING_REQUEST:
+                knxMessage = KNXTunnelingRequest.fromBuffer(knxData);
+                break;
+            case KNX_CONSTANTS.TUNNELING_ACK:
+                knxMessage = KNXTunnelingAck.fromBuffer(buffer);
+                break;
+        }
+        return {knxHeader, knxMessage};
+    }
+
+    /**
+     *
+     * @param {HPAI} hpai
+     * @returns {KNXSearchRequest}
+     */
+    static newKNXSearchRequest(hpai) {
+        return new KNXSearchRequest(hpai);
+    }
+
+    /**
+     *
+     * @param {HPAI} hpai
+     * @returns {KNXDescriptionRequest}
+     */
+    static newKNXDescriptionRequest(hpai) {
+        return new KNXDescriptionRequest(hpai);
+    }
+
+    /**
+     *
+     * @param {CRI} cri
+     * @param {HPAI} hpaiControl=HPAI.NULLHPAI
+     * @param {HPAI} hpaiData=HPAI.NULLHPAI
+     * @returns {KNXConnectRequest}
+     */
+    static newKNXConnectRequest(cri, hpaiControl = HPAI.NULLHPAI, hpaiData = HPAI.NULLHPAI) {
+        return new KNXConnectRequest(cri, hpaiControl, hpaiData);
+    }
+
+    /**
+     *
+     * @param {number} channelID
+     * @param {HPAI} hpaiControl=HPAI.NULLHPAI
+     * @returns {KNXConnectionStateRequest}
+     */
+    static newKNXConnectionStateRequest(channelID, hpaiControl = HPAI.NULLHPAI) {
+        return new KNXConnectionStateRequest(channelID, hpaiControl);
+    }
+
+    /**
+     *
+     * @param {number} channelID
+     * @param {HPAI} hpaiControl=HPAI.NULLHPAI
+     * @returns {KNXConnectionStateRequest}
+     */
+    static newKNXDisconnectRequest(channelID, hpaiControl = HPAI.NULLHPAI) {
+        return new KNXDisconnectRequest(channelID, hpaiControl);
+    }
+
+    /**
+     *
+     * @param {number} channelID
+     * @param {number} status=KNX_CONSTANTS.E_NO_ERROR
+     * @returns {KNXConnectionStateResponse}
+     */
+    static newKNXDisconnectResponse(channelID, status = KNX_CONSTANTS.E_NO_ERROR) {
+        return new KNXDisconnectResponse(channelID, status);
+    }
+
+    /**
+     *
+     * @param {number} channelID
+     * @param {number} seqCounter
+     * @param {number} status
+     * @returns {KNXTunnelingAck}
+     */
+    static newKNXTunnelingACK(channelID, seqCounter, status){
+        return new KNXTunnelingAck(channelID, seqCounter, status)
+    }
+
+    /**
+     *
+     * @param {number} channelID
+     * @param {number} seqCounter
+     * @param {CEMIMessage} cEMIMessage
+     * @returns {KNXTunnelingRequest}
+     */
+    static newKNXTunnelingRequest(channelID, seqCounter, cEMIMessage){
+        return new KNXTunnelingRequest(channelID, seqCounter, cEMIMessage)
+    }
+}
+
+module.exports = KNXProtocol;
+</pre>
+    </article>
+</section>
+
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+
+	<span class="copyright">
+	GDNet s.p.r.l.
+	</span>
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : true,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+</body>
+</html>

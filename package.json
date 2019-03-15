@@ -1,0 +1,25 @@
+{
+  "name": "knx-ip",
+  "version": "0.0.1",
+  "description": "KNXnet/IP protocol",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest  test/",
+    "jsdoc": "jsdoc -a all -c ./jsdoc.json src"
+  },
+  "keywords": [
+    "knx",
+    "ip",
+    "knxnet",
+    "disovery"
+  ],
+  "dependencies": {
+    "eslint": "5.7.0",
+    "ink-docstrap": "1.3.2",
+    "jest": "^24.5.0",
+    "jsdoc": "3.5.5",
+    "mocha": "5.2.0"
+  },
+  "author": "dufour.gilles@gmail.com",
+  "license": "MIT"
+}
