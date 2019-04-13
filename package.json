@@ -1,6 +1,6 @@
 {
   "name": "knx-ip",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "KNXnet/IP protocol",
   "main": "src/index.js",
   "scripts": {
@@ -19,6 +19,10 @@
     "jest": "^24.5.0",
     "jsdoc": "3.5.5",
     "mocha": "5.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dufourgilles/knx-ip"
   },
   "author": "dufour.gilles@gmail.com",
   "license": "MIT"
