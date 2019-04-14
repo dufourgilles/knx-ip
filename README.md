@@ -71,54 +71,61 @@ const wait = (t=3000) => {
     });
 };
 
+const handleBusEvent = function(srcAddress, dstAddress, npdu) {
+    console.log(`${srcAddress.toString()} -> ${dstAddress.toString()} :`, npdu.dataValue);
+};
+
 // Actions to perform when a KNX gateway has been discovered.
 const discoverCB = (ip, port) => {
-    const GROUP_ADDRESS = 1;
-    console.log("Connecting to ", ip, port);
-    // Create a knx addres for a lamp switch on knx bus address 1.1.15
-    const lampSwitch = new KNXProtocol.KNXAddress("1.1.15", GROUP_ADDRESS);
-    // Create a knx address for a lamp status associated with the above lamp switch
-    const lampStatus = new KNXProtocol.KNXAddress("1.2.15", GROUP_ADDRESS);
-    const ON = Buffer.alloc(1);
-    ON.writeUInt8(1,0);
-    const OFF = Buffer.alloc(1);
-    OFF.writeUInt8(0,0);
-
-    // Create tunnel socket with source knx address 1.1.100
-    const knxSocket = new KNXTunnelSocket("1.1.100");
-    // Connect to the knx gateway on ip:port
-    knxSocket.connect(ip, port)
-        .then(() => console.log("Connected through channel id ", knxSocket.channelID))
-        .then(() => console.log("Reading lamp status"))
-        .then(() => knxSocket.read(lampStatus))
-        .then(buf => {
-            if (buf !== undefined) {
-                console.log("Lamp status:", buf.toString());
-            }
-        })
-        .then(() => console.log("Turn lamp ON"))
-        .then(() => knxSocket.write(lampSwitch, ON))
-        .then(() => wait())
-        .then(() => knxSocket.read(lampStatus))
-        .then(buf => {
-            if (buf !== undefined) {
-                console.log("Lamp status:", buf.toString());
-            }
-        })
-        .then(() => knxSocket.write(lampSwitch, OFF))
-        .then(() => wait(1000))
-        .then(() => knxSocket.read(lampStatus))
-        .catch(err => {console.log(err);});
+        console.log("Connecting to ", ip, port);
+        // Create a knx address for a lamp switch on knx bus address 1.1.15
+        const lampSwitchAddress = new KNXProtocol.KNXAddress("1.1.15", KNXProtocol.KNXAddress.TYPE_GROUP);
+        // Create a Datapoint of type Switch to control the lamp
+        const lampSwitch = new Datapoints.Switch(lampSwitchAddress);
+        // Create a Datapoint of type Switch to read the lamp status
+        const lampStatus = new Datapoints.Switch(new KNXProtocol.KNXAddress("1.2.15", KNXProtocol.KNXAddress.TYPE_GROUP));
+        // Create tunnel socket with source knx address 1.1.100
+        const knxSocket = new KNXTunnelSocket("1.1.100");
+        // Bind the datapoints with the socket
+        lampSwitch.bind(knxSocket);
+        lampStatus.bind(knxSocket);
+        // Connect to the knx gateway on ip:port
+        knxSocket.connect(ip, port)
+            .then(() => console.log("Connected through channel id ", knxSocket.channelID))
+            .then(() => console.log("Reading lamp status"))
+            .then(() => lampStatus.read())
+            .then(val => console.log("Lamp status:", val))
+            .then(() => console.log("Sending lamp ON"))
+            .then(() => lampSwitch.setOn())
+            .then(() => wait())
+            .then(() => lampStatus.read())
+            .then(val => console.log("Lamp status:", val))
+            .then(() => lampSwitch.setOff())
+            .then(() => wait(1000))
+            .then(() => lampStatus.read())
+            .then(val => console.log("Lamp status:", val))
+            .then(() => {
+                console.log("Starting bus monitoring");
+                knxSocket.on("indication", handleBusEvent);
+                knxSocket.monitorBus()
+            })
+            .then(() => wait(9000))
+            .catch(err => {console.log(err);})
+            .then(() => process.exit(0));
 };
 ```
 ```
-$ node src/test.js 
 Ready. Starting discovery
 Connecting to  192.168.1.158 3671
-Connected through channel id  43
-Reading lamp status 
+Connected through channel id  35
+Reading lamp status
 Lamp status: 0
 Sending lamp ON
 Lamp status: 1
+Lamp status: 0
+Starting bus monitoring
+1.1.16 -> 9.1.2 : <Buffer 00 64>
+1.1.16 -> 9.1.5 : <Buffer 42 d2 7c c8>
+1.1.16 -> 9.1.6 : <Buffer 41 c0 bd 5d>
 
 ```

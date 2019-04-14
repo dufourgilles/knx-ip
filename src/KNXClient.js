@@ -110,6 +110,7 @@ class KNXClient extends EventEmitter{
      * @private
      */
     _setTimerAndCallback(knxTunnelingRequest, cb) {
+        const timeoutErr = new Error(`Request ${knxTunnelingRequest.seqCounter} timed out`);
         const key = this._keyFromCEMIMessage(knxTunnelingRequest.cEMIMessage);
         this._pendingTunnelAnswer.set(
             key,
@@ -117,9 +118,8 @@ class KNXClient extends EventEmitter{
                 cb,
                 timer: setTimeout(() => {
                     this._pendingTunnelAnswer.delete(key);
-                    const err = new Error(`Request ${knxTunnelingRequest.seqCounter} timed out`);
                     if (cb) {
-                        cb(err)
+                        cb(timeoutErr)
                     }
                     else {
                         this.emit("error", err);

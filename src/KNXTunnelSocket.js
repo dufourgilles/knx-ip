@@ -17,6 +17,7 @@ class KNXTunnelSocket extends EventEmitter {
         this._monitoringBus = false;
         this._connected = false;
         this._srcAddress = srcAddress == null ? new KNXAddress("15.15.200") : new KNXAddress(srcAddress);
+        this._handleBusEvent = this._handleBusEvent.bind(this);
         this._init();
     }
 
@@ -139,6 +140,17 @@ class KNXTunnelSocket extends EventEmitter {
     }
 
     /**
+     *
+     * @param {KNXAddress} srcAddress
+     * @param {KNXAddress} dstAddress
+     * @param {NPDU} npdu
+     * @private
+     */
+    _handleBusEvent(srcAddress, dstAddress, npdu) {
+        this.emit("indication", srcAddress, dstAddress, npdu);
+    }
+
+    /**
      * Start bus monitoring.
      * The socket will emit "indication" in the form (srcAddress, dstAddress, NPDU)
      */
@@ -148,9 +160,21 @@ class KNXTunnelSocket extends EventEmitter {
         }
         if (this._monitoringBus) { return; }
         this._monitoringBus = true;
-        this._knxClient.on("indication", (srcAddress, dstAddress, npdu) => {
-            this.emit("indication", srcAddress, dstAddress, npdu);
-        });
+        this._knxClient.on("indication", this._handleBusEvent);
+    }
+
+    /**
+     *
+     */
+    stopBusMonitor() {
+        if (this._knxClient.isConnected() === false) {
+            throw new Error("Socket not connected");
+        }
+        if (this._monitoringBus === false) {
+            return;
+        }
+        this._monitoringBus = false;
+        this._knxClient.off("indication", this._handleBusEvent)
     }
 }
 

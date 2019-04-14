@@ -64,11 +64,12 @@ class NPDU {
 
     /**
      *
-     * @returns {number|Buffer}
+     * @returns {Buffer}
      */
     get dataValue() {
         if (this._data == null) {
-            return this.apci & 0x3F;
+            const val = this.apci & 0x3F;
+            return Buffer.alloc(1, val);
         }
         return this._data;
     }
@@ -131,7 +132,7 @@ class NPDU {
      * @returns {Buffer}
      */
     toBuffer() {
-        const length = this.data == null ? 1 : this.data.length + 1;
+        const length = this._data == null ? 1 : this._data.length + 1;
         const buffer = Buffer.alloc(3);
         buffer.writeUInt8(length, 0);
         buffer.writeUInt8(this.tpci, 1);
@@ -139,7 +140,7 @@ class NPDU {
         if (length === 1) {
             return buffer;
         }
-        return Buffer.concat([buffer, this.data]);
+        return Buffer.concat([buffer, this._data]);
     }
 
     /**
@@ -156,7 +157,7 @@ class NPDU {
         const npduLength = buffer.readUInt8(offset++);
         const tpci = buffer.readUInt8(offset++);
         const apci = buffer.readUInt8(offset++);
-        const data = npduLength > 1 ? buffer.slice(offset, npduLength - 1) : null;
+        const data = npduLength > 1 ? buffer.slice(offset, offset + npduLength - 1) : null;
         return new NPDU(tpci, apci, data);
     }
 

@@ -1,6 +1,6 @@
 "use strict";
 
-const {KNXClient, KNXTunnelSocket, KNXProtocol} = require("./index");
+const {KNXClient, KNXTunnelSocket, KNXProtocol, Datapoints, DataPointType} = require("./index");
 
 const knxClient = new KNXClient();
 
@@ -20,43 +20,45 @@ knxClient.on("ready", () => {
 });
 
 knxClient.startDiscovery("192.168.1.99");
-const wait = (t=3000) => {
+const wait = (t=2000) => {
     return new Promise(resolve => {
         setTimeout(() => { resolve(); }, t);
     });
 };
 
+const handleBusEvent = function(srcAddress, dstAddress, npdu) {
+    console.log(`${srcAddress.toString()} -> ${dstAddress.toString()} :`, npdu.dataValue);
+};
+
 const discoverCB = (ip, port) => {
-    const GROUP_ADDRESS = 1;
     console.log("Connecting to ", ip, port);
-    const lampSwitch = new KNXProtocol.KNXAddress("1.1.15", GROUP_ADDRESS);
-    const lampStatus = new KNXProtocol.KNXAddress("1.2.15", GROUP_ADDRESS);
-    const ON = Buffer.alloc(1);
-    ON.writeUInt8(1,0);
-    const OFF = Buffer.alloc(1);
-    OFF.writeUInt8(0,0);
+    const lampSwitchAddress = new KNXProtocol.KNXAddress("1.1.15", KNXProtocol.KNXAddress.TYPE_GROUP);
+    const lampSwitch = new Datapoints.Switch(lampSwitchAddress);
+    const lampStatus = new Datapoints.Switch(new KNXProtocol.KNXAddress("1.2.15", KNXProtocol.KNXAddress.TYPE_GROUP));
 
     const knxSocket = new KNXTunnelSocket("1.1.100");
+    lampSwitch.bind(knxSocket);
+    lampStatus.bind(knxSocket);
     knxSocket.connect(ip, port)
         .then(() => console.log("Connected through channel id ", knxSocket.channelID))
         .then(() => console.log("Reading lamp status"))
-        .then(() => knxSocket.read(lampStatus))
-        .then(buf => {
-            if (buf !== undefined) {
-                console.log("Lamp status:", buf.toString());
-            }
-        })
+        .then(() => lampStatus.read())
+        .then(val => console.log("Lamp status:", val))
         .then(() => console.log("Sending lamp ON"))
-        .then(() => knxSocket.write(lampSwitch, ON))
+        .then(() => lampSwitch.setOn())
         .then(() => wait())
-        .then(() => knxSocket.read(lampStatus))
-        .then(buf => {
-            if (buf !== undefined) {
-                console.log("Lamp status:", buf.toString());
-            }
-        })
-        .then(() => knxSocket.write(lampSwitch, OFF))
+        .then(() => lampStatus.read())
+        .then(val => console.log("Lamp status:", val))
+        .then(() => lampSwitch.setOff())
         .then(() => wait(1000))
-        .then(() => knxSocket.read(lampStatus))
-        .catch(err => {console.log(err);});
+        .then(() => lampStatus.read())
+        .then(val => console.log("Lamp status:", val))
+        .then(() => {
+            console.log("Starting bus monitoring");
+            knxSocket.on("indication", handleBusEvent);
+            knxSocket.monitorBus()
+        })
+        .then(() => wait(9000))
+        .catch(err => {console.log(err);})
+        .then(() => process.exit(0));
 };
