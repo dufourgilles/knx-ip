@@ -148,7 +148,7 @@ class NPDU {
      * @returns {boolean}
      */
     get isGroupResponse() {
-        return action === NPDU.GROUP_RESPONSE;
+        return this.action === NPDU.GROUP_RESPONSE;
     }
 
 
