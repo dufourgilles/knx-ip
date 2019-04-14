@@ -191,7 +191,7 @@ class KNXClient extends EventEmitter{
                 if (knxTunnelingRequest.cEMIMessage.msgCode === CEMIConstants.L_DATA_IND) {
                     /** @type {LDataInd} */
                     const ind = knxTunnelingRequest.cEMIMessage;
-                    if (ind.npdu.action === CEMIConstants.GROUP_RESPONSE) {
+                    if (ind.npdu.isGroupResponse) {
                         this._handleResponse(knxTunnelingRequest);
                     }
                     else {

@@ -127,6 +127,30 @@ class NPDU {
         }
     }
 
+    /**
+     *
+     * @returns {boolean}
+     */
+    get isGroupRead() {
+        return this.action == NPDU.GROUP_READ;
+    }
+
+    /**
+     *
+     * @returns {boolean}
+     */
+    get isGroupWrite() {
+        return this.action == NPDU.GROUP_WRITE;
+    }
+
+    /**
+     *
+     * @returns {boolean}
+     */
+    get isGroupResponse() {
+        return action === NPDU.GROUP_RESPONSE;
+    }
+
 
     /**
      * @returns {Buffer}

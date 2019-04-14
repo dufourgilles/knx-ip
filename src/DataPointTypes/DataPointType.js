@@ -104,8 +104,8 @@ class DataPointType {
 
     /**
      *
-     * @param {string} type
-     * @param {string} subtype
+     * @param {string|number} type - example 1
+     * @param {string|number} subtype - example 5 or 005 for alarm
      * @returns {string}
      */
     static getDataPointType(type, subtype) {

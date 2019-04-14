@@ -30,7 +30,7 @@ class KNXUtils {
      */
     static validateKNXAddress(address, isGroup) {
         if (typeof(address) === "string"){
-            const digits = address.split(".");
+            const digits = address.split(/[./]/);
             if (digits.length < 2 || digits.length > 3) {
                 throw new Error(`Invalid address format: ${address}`);
             }
