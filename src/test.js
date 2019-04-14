@@ -1,6 +1,6 @@
 "use strict";
 
-const {KNXClient, KNXTunnelSocket, KNXProtocol, Datapoints, DataPointType} = require("./index");
+const {KNXClient, KNXTunnelSocket, KNXProtocol, DataPoints} = require("./index");
 
 const knxClient = new KNXClient();
 
@@ -33,8 +33,11 @@ const handleBusEvent = function(srcAddress, dstAddress, npdu) {
 const discoverCB = (ip, port) => {
     console.log("Connecting to ", ip, port);
     const lampSwitchAddress = new KNXProtocol.KNXAddress("1.1.15", KNXProtocol.KNXAddress.TYPE_GROUP);
-    const lampSwitch = new Datapoints.Switch(lampSwitchAddress);
-    const lampStatus = new Datapoints.Switch(new KNXProtocol.KNXAddress("1.2.15", KNXProtocol.KNXAddress.TYPE_GROUP));
+    const lampSwitch = new DataPoints.Switch(lampSwitchAddress);
+    const lampStatus = DataPoints.createDataPoint(
+        new KNXProtocol.KNXAddress("1.2.15", KNXProtocol.KNXAddress.TYPE_GROUP),
+        "Switch"
+        );
 
     const knxSocket = new KNXTunnelSocket("1.1.100");
     lampSwitch.bind(knxSocket);

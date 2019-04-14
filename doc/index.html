@@ -109,7 +109,7 @@ We then read the status (on or off) of a lamp with knx address 1.2.15 and then s
 read the status again before switching the lamp off.</p>
 <pre class="prettyprint source lang-javascript"><code>&quot;use strict&quot;;
 
-const {KNXClient, KNXTunnelSocket, KNXProtocol} = require(&quot;knx-ip&quot;);
+const {KNXClient, KNXTunnelSocket, KNXProtocol, DataPoints} = require(&quot;knx-ip&quot;);
 
 const knxClient = new KNXClient();
 
@@ -138,52 +138,63 @@ const wait = (t=3000) => {
     });
 };
 
+const handleBusEvent = function(srcAddress, dstAddress, npdu) {
+    console.log(`${srcAddress.toString()} -> ${dstAddress.toString()} :`, npdu.dataValue);
+};
+
 // Actions to perform when a KNX gateway has been discovered.
 const discoverCB = (ip, port) => {
-    const GROUP_ADDRESS = 1;
-    console.log(&quot;Connecting to &quot;, ip, port);
-    // Create a knx addres for a lamp switch on knx bus address 1.1.15
-    const lampSwitch = new KNXProtocol.KNXAddress(&quot;1.1.15&quot;, GROUP_ADDRESS);
-    // Create a knx address for a lamp status associated with the above lamp switch
-    const lampStatus = new KNXProtocol.KNXAddress(&quot;1.2.15&quot;, GROUP_ADDRESS);
-    const ON = Buffer.alloc(1);
-    ON.writeUInt8(1,0);
-    const OFF = Buffer.alloc(1);
-    OFF.writeUInt8(0,0);
-
-    // Create tunnel socket with source knx address 1.1.100
-    const knxSocket = new KNXTunnelSocket(&quot;1.1.100&quot;);
-    // Connect to the knx gateway on ip:port
-    knxSocket.connect(ip, port)
-        .then(() => console.log(&quot;Connected through channel id &quot;, knxSocket.channelID))
-        .then(() => console.log(&quot;Reading lamp status&quot;))
-        .then(() => knxSocket.read(lampStatus))
-        .then(buf => {
-            if (buf !== undefined) {
-                console.log(&quot;Lamp status:&quot;, buf.toString());
-            }
-        })
-        .then(() => console.log(&quot;Turn lamp ON&quot;))
-        .then(() => knxSocket.write(lampSwitch, ON))
-        .then(() => wait())
-        .then(() => knxSocket.read(lampStatus))
-        .then(buf => {
-            if (buf !== undefined) {
-                console.log(&quot;Lamp status:&quot;, buf.toString());
-            }
-        })
-        .then(() => knxSocket.write(lampSwitch, OFF))
-        .then(() => wait(1000))
-        .then(() => knxSocket.read(lampStatus))
-        .catch(err => {console.log(err);});
-};</code></pre><pre class="prettyprint source"><code>$ node src/test.js 
-Ready. Starting discovery
+        console.log(&quot;Connecting to &quot;, ip, port);
+        // Create a knx address for a lamp switch on knx bus address 1.1.15
+        const lampSwitchAddress = new KNXProtocol.KNXAddress(&quot;1.1.15&quot;, KNXProtocol.KNXAddress.TYPE_GROUP);
+        // Create a Datapoint of type Switch to control the lamp
+        const lampSwitch = new DataPoints.Switch(lampSwitchAddress);
+        // Create a Datapoint of type Switch to read the lamp status
+        // This time using the createDataPoint function
+        const lampStatus = DataPoints.createDataPoint(
+            new KNXProtocol.KNXAddress(&quot;1.2.15&quot;, KNXProtocol.KNXAddress.TYPE_GROUP),
+            &quot;Switch&quot;
+        );
+        // Create tunnel socket with source knx address 1.1.100
+        const knxSocket = new KNXTunnelSocket(&quot;1.1.100&quot;);
+        // Bind the datapoints with the socket
+        lampSwitch.bind(knxSocket);
+        lampStatus.bind(knxSocket);
+        // Connect to the knx gateway on ip:port
+        knxSocket.connect(ip, port)
+            .then(() => console.log(&quot;Connected through channel id &quot;, knxSocket.channelID))
+            .then(() => console.log(&quot;Reading lamp status&quot;))
+            .then(() => lampStatus.read())
+            .then(val => console.log(&quot;Lamp status:&quot;, val))
+            .then(() => console.log(&quot;Sending lamp ON&quot;))
+            .then(() => lampSwitch.setOn())
+            .then(() => wait())
+            .then(() => lampStatus.read())
+            .then(val => console.log(&quot;Lamp status:&quot;, val))
+            .then(() => lampSwitch.setOff())
+            .then(() => wait(1000))
+            .then(() => lampStatus.read())
+            .then(val => console.log(&quot;Lamp status:&quot;, val))
+            .then(() => {
+                console.log(&quot;Starting bus monitoring&quot;);
+                knxSocket.on(&quot;indication&quot;, handleBusEvent);
+                knxSocket.monitorBus()
+            })
+            .then(() => wait(9000))
+            .catch(err => {console.log(err);})
+            .then(() => process.exit(0));
+};</code></pre><pre class="prettyprint source"><code>Ready. Starting discovery
 Connecting to  192.168.1.158 3671
-Connected through channel id  43
-Reading lamp status 
+Connected through channel id  35
+Reading lamp status
 Lamp status: 0
 Sending lamp ON
 Lamp status: 1
+Lamp status: 0
+Starting bus monitoring
+1.1.16 -> 9.1.2 : &lt;Buffer 00 64>
+1.1.16 -> 9.1.5 : &lt;Buffer 42 d2 7c c8>
+1.1.16 -> 9.1.6 : &lt;Buffer 41 c0 bd 5d>
 </code></pre></article>
     </section>
 

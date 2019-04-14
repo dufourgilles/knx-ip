@@ -5,21 +5,11 @@ const KNXAddress = require("../protocol/KNXAddress");
 
 const UNKOWN_VALUE = "n/a";
 
-function _getDataPointTypeClass(type, subtype) {
+function _getDataPointTypeClass(typeName) {
     const dataPointTypeName = DataPointType.getDataPointType(type, subtype);
     const DataPointClassName = `${dataPointTypeName[0].toUpperCase()}${dataPointTypeName.slice(1)}`;
     const DataPointClass = require(`./${DataPointClassName}`);
     return DataPointClass;
-}
-
-function _getDataPointTypeFromString(type) {
-    let m = type.split("-");
-    if (m.length === 2) {
-        m.push("001");
-    }
-    if (m.length === 3) {
-        return _getDataPointTypeClass(m[1], m[2]);
-    }
 }
 
 class DataPoint {
@@ -31,13 +21,6 @@ class DataPoint {
     constructor(ga, type) {
         this._ga = ga;
         this._type = type;
-        this.status = UNKOWN_VALUE;
-        this.name = "";
-        this.description = "";
-        this._knxName = "";
-        this._knxID = "";
-        this._knxAddress = "";
-        this._knxGroupName = "";
         this._knxTunnelSocket = null;
         this._value = UNKOWN_VALUE;
     }
@@ -60,38 +43,6 @@ class DataPoint {
      */
     get value() {
         return this._value;
-    }
-
-    /**
-     *
-     * @returns {string}
-     */
-    get knxName() {
-        return this._knxName;
-    }
-
-    /**
-     *
-     * @returns {string}
-     */
-    get knxID() {
-        return this._knxID;
-    }
-
-    /**
-     *
-     * @returns {string}
-     */
-    get knxGroupName() {
-        return this._knxGroupName;
-    }
-
-    /**
-     *
-     * @returns {string}
-     */
-    get knxAddress() {
-        return this._knxAddress;
     }
 
     /**
@@ -142,6 +93,24 @@ class DataPoint {
         });
     }
 
+    /**
+     *
+     * @param {KNXAddress} ga
+     * @param {string} typeName
+     * @returns {DataPoint}
+     */
+    static createDataPoint(ga, typeName) {
+        /** @type {string} */
+        const DataPointClassName = `${typeName[0].toUpperCase()}${typeName.slice(1).toLowerCase()}`;
+        let DataPointClass;
+        try {
+            DataPointClass = require(`./${DataPointClassName}`);
+        }
+        catch(e) {
+            throw new Error(`Unknown DataPoint type ${typeName}`);
+        }
+        return new DataPointClass(ga);
+    }
 }
 
 module.exports = DataPoint;

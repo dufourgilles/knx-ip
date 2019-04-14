@@ -19,5 +19,6 @@ module.exports = {
     Temperature: require("./Temperature"),
     Time: require("./Time"),
     Trigger: require("./Trigger"),
-    Updown: require("./Updown")
+    Updown: require("./Updown"),
+    createDataPoint: require("./DataPoint").createDataPoint
 };

@@ -89,40 +89,24 @@ class Switch extends DataPoint {
     constructor(ga) {
         super(ga, DPTSwitch);
         this._actions = {
-            "toggle": {func: this.toggle.bind(this), parameterType: null},
             "off": {func: this.setOff.bind(this), parameterType: null},
             "on": {func: this.setOn.bind(this), parameterType: null}
         };
     }
 
-    /**
-     *
-     * @returns {*}
-     */
-    toggle() {
-        if (this.value === DataPoint.UNKOWN_VALUE) {
-            return this.read().then(() => this.toggle());
-        }
-        if (this.value) {
-            return this.setOff();
-        }
-        else {
-            return this.setOn();
-        }
-    }
 
     /**
      *
      */
     setOff() {
-        this.write(false);
+        this.write(0);
     }
 
     /**
      *
      */
     setOn() {
-        this.write(true);
+        this.write(1);
     }
 }
 

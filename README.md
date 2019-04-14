@@ -42,7 +42,7 @@ read the status again before switching the lamp off.
 ```javascript
 "use strict";
 
-const {KNXClient, KNXTunnelSocket, KNXProtocol} = require("knx-ip");
+const {KNXClient, KNXTunnelSocket, KNXProtocol, DataPoints} = require("knx-ip");
 
 const knxClient = new KNXClient();
 
@@ -81,9 +81,13 @@ const discoverCB = (ip, port) => {
         // Create a knx address for a lamp switch on knx bus address 1.1.15
         const lampSwitchAddress = new KNXProtocol.KNXAddress("1.1.15", KNXProtocol.KNXAddress.TYPE_GROUP);
         // Create a Datapoint of type Switch to control the lamp
-        const lampSwitch = new Datapoints.Switch(lampSwitchAddress);
+        const lampSwitch = new DataPoints.Switch(lampSwitchAddress);
         // Create a Datapoint of type Switch to read the lamp status
-        const lampStatus = new Datapoints.Switch(new KNXProtocol.KNXAddress("1.2.15", KNXProtocol.KNXAddress.TYPE_GROUP));
+        // This time using the createDataPoint function
+        const lampStatus = DataPoints.createDataPoint(
+            new KNXProtocol.KNXAddress("1.2.15", KNXProtocol.KNXAddress.TYPE_GROUP),
+            "Switch"
+        );
         // Create tunnel socket with source knx address 1.1.100
         const knxSocket = new KNXTunnelSocket("1.1.100");
         // Bind the datapoints with the socket
