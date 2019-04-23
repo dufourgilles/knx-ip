@@ -23,6 +23,29 @@ function frexp(value) {
     return [mantissa, exponent];
 }
 
+/**
+ * @typedef {Object} SUBDPT9
+ * @property {Object} ids
+ * @property {string} temperature
+ * @property {string} temperaturedifference
+ * @property {string} kelvin
+ * @property {string} lux
+ * @property {string} speed
+ * @property {string} pressure
+ * @property {string} humidity
+ * @property {string} airquality
+ * @property {string} time1
+ * @property {string} time2
+ * @property {string} voltage
+ * @property {string} current
+ * @property {string} powerdensity
+ * @property {string} kelvinpercent
+ * @property {string} power
+ * @property {string} volumeflow
+ * @property {string} rainamount
+ * @property {string} ftemperature
+ * @property {string} windspeed
+ */
 
 const DPT9 = {
     id: "9",

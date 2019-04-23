@@ -1,5 +1,19 @@
 "use strict";
 
+
+/**
+ * @typedef {Object} DPT10Value
+ * @property {number} day
+ * @property {number} hours
+ * @property {number} minutes
+ * @property {number} seconds
+ */
+
+/**
+ * @typedef {Object} SUBDPT10
+ * @property {Object} ids
+ * @property {string} time
+ */
 const DPT10 = {
     id: "10",
     subtypes: {

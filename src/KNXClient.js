@@ -131,12 +131,11 @@ class KNXClient extends EventEmitter{
         this._tunnelReqTimer.set(knxTunnelingRequest.seqCounter, setTimeout(() => {
             this._tunnelReqTimer.delete(knxTunnelingRequest.seqCounter);
             this._pendingTunnelAnswer.delete(key);
-            const err = new Error(`Request ${knxTunnelingRequest.seqCounter} timed out`);
             if (cb) {
-                cb(err)
+                cb(timeoutErr)
             }
             else {
-                this.emit("error", err);
+                this.emit("error", timeoutErr);
             }
         }, KNXConstants.TUNNELING_REQUEST_TIMEOUT * 1000));
     }
@@ -503,9 +502,10 @@ class KNXClient extends EventEmitter{
         if (this._clientSocket == null) {
             throw new Error("No client socket defined");
         }
+        const timeoutError = new Error(`Connection timeout to ${host}:${port}`);
         this._timer = setTimeout(() => {
             this._timer = null;
-            this.emit("error", new Error("Connection timeout"));
+            this.emit("error", timeoutError);
         }, 1000 * KNXConstants.CONNECT_REQUEST_TIMEOUT);
         this._awaitingResponseType = KNXConstants.CONNECT_RESPONSE;
         this._sendConnectRequestMessage(host, port, new KNXProtocol.TunnelCRI(knxLayer));

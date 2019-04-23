@@ -1,5 +1,20 @@
 "use strict";
-
+/**
+ * @typedef {Object} SUBDPT2
+ * @property {Object} ids
+ * @property {string} switchcontrol
+ * @property {string} booleancontrol
+ * @property {string} enablecontrol
+ * @property {string} rampcontrol
+ * @property {string} alarmcontrol
+ * @property {string} binarycontrol
+ * @property {string} stepcontrol
+ * @property {string} direction1control
+ * @property {string} direction2control
+ * @property {string} startcontrol
+ * @property {string} statecontrol
+ * @property {string} invertcontrol
+ */
 const DPT2 = {
     id: "2",
     subtypes: {

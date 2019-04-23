@@ -1,5 +1,9 @@
 "use strict";
-
+/**
+ * @typedef {Object} SUBDPT11
+ * @property {Object} ids
+ * @property {string} date
+ */
 const DPT11 = {
     id: "11",
     subtypes: {

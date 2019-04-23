@@ -1,5 +1,15 @@
 "use strict";
 
+/**
+ * @typedef {Object} DPT18Value
+ * @property {number} isLearning
+ * @property {number} sceneNumber
+ */
+/**
+ * @typedef {Object} SUBDPT18
+ * @property {Object} ids
+ * @property {string} scenecontrol
+ */
 const DPT18 = {
     id: "18",
     subtypes: {

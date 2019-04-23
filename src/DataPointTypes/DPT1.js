@@ -1,5 +1,33 @@
 "use strict";
 
+/**
+ * @typedef {Object} SUBDPT1
+ * @property {Object} ids
+ * @property {string} switch
+ * @property {string} boolean
+ * @property {string} enable
+ * @property {string} ramp
+ * @property {string} alarm
+ * @property {string} binary
+ * @property {string} step
+ * @property {string} updown
+ * @property {string} openclose
+ * @property {string} startstop
+ * @property {string} state
+ * @property {string} invert
+ * @property {string} dimsend
+ * @property {string} input
+ * @property {string} reset
+ * @property {string} acknowledge
+ * @property {string} trigger
+ * @property {string} occupied
+ * @property {string} opendoor
+ * @property {string} andor
+ * @property {string} scene
+ * @property {string} shutter
+ */
+
+
 const DPT1 = {
     id: "1",
     subtypes: {

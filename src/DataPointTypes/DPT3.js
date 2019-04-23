@@ -1,5 +1,18 @@
 "use strict";
 
+/**
+ * @typedef {Object} DPT3Value
+ * @property {number} stepCode
+ * @property {number} isUP
+ * @property {number} isIncrease
+ */
+
+/**
+ * @typedef {Object} SUBDPT3
+ * @property {Object} ids
+ * @property {string} dimmingcontrol
+ * @property {string} blindcontrol
+ **/
 const DPT3 = {
     id: "3",
     subtypes: {

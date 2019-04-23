@@ -79,8 +79,8 @@ class DataPoint {
 
     /**
      * Set datapoint value - only for writeable datapoint
-     * @param val
-     * @returns {Promise<never>|Promise<void>}
+     * @param {number|DPT10Value|DPT3Value|Date|DPT18Value} val
+     * @returns {Promise}
      */
     write(val = null) {
         if (this._knxTunnelSocket == null) {

@@ -1,7 +1,30 @@
 "use strict";
 
 // Datapoint Types “4-Octet Float Value”
-
+/**
+ * @typedef {Object} SUBDPT14
+ * @property {Object} ids
+ * @property {string} angle
+ * @property {string} current
+ * @property {string} potential
+ * @property {string} potentialdifference
+ * @property {string} energy
+ * @property {string} force
+ * @property {string} frequency
+ * @property {string} heat
+ * @property {string} impedance
+ * @property {string} length
+ * @property {string} mass
+ * @property {string} power
+ * @property {string} speed
+ * @property {string} stress
+ * @property {string} tension
+ * @property {string} temperature
+ * @property {string} absolutetemperature
+ * @property {string} ktemperature
+ * @property {string} weight
+ * @property {string} work
+ */
 const DPT14 = {
     id: "14",
     subtypes: {

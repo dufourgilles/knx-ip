@@ -1,5 +1,14 @@
 "use strict";
-
+/**
+ * @typedef {Object} SUBDPT5
+ * @property {Object} ids
+ * @property {string} percentage
+ * @property {string} angle
+ * @property {string} percentagescaling
+ * @property {string} ratio
+ * @property {string} tariff
+ * @property {string} pulsecounter
+ */
 const DPT5 = {
     id: "5",
     subtypes: {
