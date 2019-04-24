@@ -18,17 +18,17 @@ const DPT11 = {
         }
         const day = buffer.readUInt8(0) & 0x1F;
         const month = buffer.readUInt8(1) & 0x0F;
-        const year = buffer.readUInt8(2) & 0x7F;
+        const year = 2000 + buffer.readUInt8(2) & 0x7F;
         if (day < 1 || day > 31) {
             throw new Error(`Invalid day ${day}`);
         }
         if (month < 1 || month > 12) {
             throw new Error(`Invalid month ${month}`);
         }
-        if (year < 1990 || year > 2089) {
+        if (year > 2089) {
             throw new Error(`Invalid year ${year}`);
         }
-        return new Date(year, month - 1, day);
+        return {year, month, day};
     },
     encoder: value => {
         if (!(value instanceof Date)) {
