@@ -54,7 +54,7 @@ class KNXClient extends EventEmitter{
     }
 
     /**
-     *
+     * @fires error
      * @private
      */
     _initDiscoverySocket() {
@@ -104,7 +104,7 @@ class KNXClient extends EventEmitter{
     }
 
     /**
-     *
+     * @fires error
      * @param {KNXTunnelingRequest} knxTunnelingRequest
      * @param {function} cb
      * @private
@@ -141,7 +141,12 @@ class KNXClient extends EventEmitter{
     }
 
     /**
-     *
+     * @fires KNXClient#discover
+     * @fires KNXClient#connected
+     * @fires KNXClient#disconnected
+     * @fires KNXClient#indication
+     * @fires KNXClient#response
+     * @fires KNXClient#error
      * @param {Buffer} msg
      * @param {Object} rinfo
      * @param {string} rinfo.address
@@ -157,6 +162,12 @@ class KNXClient extends EventEmitter{
                 if (this._discovery_timer == null) {
                     return;
                 }
+                /**
+                 * @event KNXClient#discover
+                 * @param {string} ip:port
+                 * @param {KNXHeader} header
+                 * @param {KNXPacket} packet
+                 */
                 this.emit("discover", `${rinfo.address}:${rinfo.port}`, knxHeader, knxMessage);
             }
             else if (knxHeader.service_type === KNXConstants.CONNECT_RESPONSE) {
@@ -167,6 +178,11 @@ class KNXClient extends EventEmitter{
                     /** @type {KNXConnectResponse } */
                     const knxConnectResponse = knxMessage;
                     this._channelID = knxConnectResponse.channelID;
+                    /**
+                     * @event KNXClient#connected
+                     * @param {string} ip:port
+                     * @param {string} channelID
+                     */
                     this.emit("connected", `${rinfo.address}:${rinfo.port}`,this._channelID);
                 }
             }
@@ -174,7 +190,12 @@ class KNXClient extends EventEmitter{
                 if (this._connectionState === STATE.DISCONNECTING) {
                     this._connectionState = STATE.STARTED;
                     this._channelID = null;
-                    this.emit("disconnected", `${rinfo.address}:${rinfo.port}`, knxHeader, knxMessage);
+                    /**
+                     * @event KNXClient#disconnected
+                     * @param {string} ip:port
+                     * @param {string} channelID
+                     */
+                    this.emit("disconnected", `${rinfo.address}:${rinfo.port}`, this._channelID);
                 }
             }
             else if (knxHeader.service_type === KNXConstants.DISCONNECT_REQUEST) {
@@ -194,9 +215,15 @@ class KNXClient extends EventEmitter{
                         this._handleResponse(knxTunnelingRequest);
                     }
                     else {
+                        /**
+                         * @event KNXClient#indication
+                         * @param {KNXAddress} knx src
+                         * @param {KNXAddress} knx dst
+                         * @param {NPDU} npdu
+                         */
                         this.emit("indication",
-                            knxTunnelingRequest.cEMIMessage.srcAddress.toString(),
-                            knxTunnelingRequest.cEMIMessage.dstAddress.toString(),
+                            knxTunnelingRequest.cEMIMessage.srcAddress,
+                            knxTunnelingRequest.cEMIMessage.dstAddress,
                             knxTunnelingRequest.cEMIMessage.npdu
                         );
                     }
@@ -223,16 +250,26 @@ class KNXClient extends EventEmitter{
                 if (knxHeader.service_type === this._awaitingResponseType) {
                     clearTimeout(this._timer);
                 }
+                /**
+                 * @event KNXClient#response
+                 * @param {string} ip:port
+                 * @param {KNXHeader} knx header
+                 * @param {KNXPacket} knx packet
+                 */
                 this.emit("response", `${rinfo.address}:${rinfo.port}`, knxHeader, knxMessage);
             }
         }
         catch(e) {
+            /**
+             * @event KNXClient#error
+             * @type {Error}
+             */
             this.emit("error", e);
         }
     }
 
     /**
-     *
+     * @fires error
      * @param {string }host
      * @param {number} port
      * @private
@@ -246,6 +283,10 @@ class KNXClient extends EventEmitter{
         );
     }
 
+    /**
+     * @fires error
+     * @private
+     */
     _sendSearchRequestMessage() {
         this._discoverySocket.send(
             KNXProtocol.newKNXSearchRequest(new KNXProtocol.HPAI(this._host, this._port)).toBuffer(),
@@ -275,7 +316,7 @@ class KNXClient extends EventEmitter{
     }
 
     /**
-     *
+     * @fires error
      * @param {string }host
      * @param {number} port
      * @param {number} channelID
@@ -291,7 +332,7 @@ class KNXClient extends EventEmitter{
     }
 
     /**
-     *
+     * @fires error
      * @param {string }host
      * @param {number} port
      * @param {number} channelID
@@ -308,7 +349,7 @@ class KNXClient extends EventEmitter{
     }
 
     /**
-     *
+     * @fires error
      * @param {string }host
      * @param {number} port
      * @param {number} channelID
@@ -325,7 +366,7 @@ class KNXClient extends EventEmitter{
     }
 
     /**
-     *
+     * @fires ready
      * @param {string} host
      * @param {number} port
      */
@@ -339,12 +380,15 @@ class KNXClient extends EventEmitter{
             this._discoverySocket.setMulticastInterface(host);
             this._discoverySocket.setMulticastTTL(16);
             this._host = host;
+            /**
+             * @event ready
+             */
             this.emit("ready");
         });
     }
 
     /**
-     *
+     * @fires error
      * @param {KNXPacket} knxPacket
      * @param {string} host=null
      * @param {number} port=null
@@ -364,7 +408,7 @@ class KNXClient extends EventEmitter{
     }
 
     /**
-     *
+     * @fires error
      * @param {KNXAddress} srcAddress
      * @param {KNXAddress} dstAddress
      * @param {Buffer} data
@@ -406,7 +450,7 @@ class KNXClient extends EventEmitter{
     }
 
     /**
-     *
+     * @fires error
      * @param srcAddress
      * @param dstAddress
      * @param cb

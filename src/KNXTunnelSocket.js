@@ -140,19 +140,25 @@ class KNXTunnelSocket extends EventEmitter {
     }
 
     /**
-     *
+     * @fires KNXTunnelSocket#indication
      * @param {KNXAddress} srcAddress
      * @param {KNXAddress} dstAddress
      * @param {NPDU} npdu
      * @private
      */
     _handleBusEvent(srcAddress, dstAddress, npdu) {
+        /**
+         * @event KNXTunnelSocket#indication
+         * @param {KNXAddress} src
+         * @param {KNXAddress} dest
+         * @param {NPDU} npdu
+         */
         this.emit("indication", srcAddress, dstAddress, npdu);
     }
 
     /**
      * Start bus monitoring.
-     * The socket will emit "indication" in the form (srcAddress, dstAddress, NPDU)
+     * The socket will emit "indication" events
      */
     monitorBus() {
         if (this._knxClient.isConnected() === false) {

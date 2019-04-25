@@ -38,6 +38,13 @@
 			</li>
 			
 			<li class="dropdown">
+				<a href="events.list.html" class="dropdown-toggle" data-toggle="dropdown">Events<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="global.html#event:ready">event:ready</a></li><li><a href="KNXClient.html#event:connected">KNXClient#event:connected</a></li><li><a href="KNXClient.html#event:disconnected">KNXClient#event:disconnected</a></li><li><a href="KNXClient.html#event:discover">KNXClient#event:discover</a></li><li><a href="KNXClient.html#event:error">KNXClient#event:error</a></li><li><a href="KNXClient.html#event:indication">KNXClient#event:indication</a></li><li><a href="KNXClient.html#event:response">KNXClient#event:response</a></li><li><a href="KNXTunnelSocket.html#event:indication">KNXTunnelSocket#event:indication</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
 					<li><a href="global.html">Global</a></li>
@@ -491,6 +498,11 @@
     
 
     
+    <h5>Fires:</h5>
+    <ul>
+        <li><a href="KNXTunnelSocket.html#event:indication">KNXTunnelSocket#event:indication</a></li>
+    </ul>
+    
 
     
 
@@ -894,7 +906,7 @@
     
     <div class="description">
         Start bus monitoring.
-The socket will emit "indication" in the form (srcAddress, dstAddress, NPDU)
+The socket will emit "indication" events
     </div>
     
 
@@ -941,7 +953,7 @@ The socket will emit "indication" in the form (srcAddress, dstAddress, NPDU)
 		<ul class="dummy">
 			<li>
 				<a href="KNXTunnelSocket.js.html">KNXTunnelSocket.js</a>,
-				 <a href="KNXTunnelSocket.js.html#sunlight-1-line-157">line 157</a>
+				 <a href="KNXTunnelSocket.js.html#sunlight-1-line-163">line 163</a>
 			</li>
 		</ul>
 	</dd>
@@ -1183,7 +1195,7 @@ The socket will emit "indication" in the form (srcAddress, dstAddress, NPDU)
 		<ul class="dummy">
 			<li>
 				<a href="KNXTunnelSocket.js.html">KNXTunnelSocket.js</a>,
-				 <a href="KNXTunnelSocket.js.html#sunlight-1-line-169">line 169</a>
+				 <a href="KNXTunnelSocket.js.html#sunlight-1-line-175">line 175</a>
 			</li>
 		</ul>
 	</dd>
@@ -1399,6 +1411,192 @@ The socket will emit "indication" in the form (srcAddress, dstAddress, NPDU)
 
     
 
+    
+        <h3 class="subsection-title">Events</h3>
+
+        <dl>
+            
+<hr>
+<dt>
+    <h4 class="name" id="event:indication">indication</h4>
+    
+    
+</dt>
+<dd>
+
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>src</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="KNXAddress.html">KNXAddress</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>dest</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="KNXAddress.html">KNXAddress</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>npdu</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="NPDU.html">NPDU</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="KNXTunnelSocket.js.html">KNXTunnelSocket.js</a>,
+				 <a href="KNXTunnelSocket.js.html#sunlight-1-line-150">line 150</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        </dl>
     
 </article>
 
