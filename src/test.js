@@ -38,12 +38,18 @@ const discoverCB = (ip, port) => {
         new KNXProtocol.KNXAddress("1.2.15", KNXProtocol.KNXAddress.TYPE_GROUP),
         "Switch"
         );
-
+    const dateAddress = new KNXProtocol.KNXAddress("9.1.11", KNXProtocol.KNXAddress.TYPE_GROUP);
+    const dateStatus = new DataPoints.Date(dateAddress);
+    
     const knxSocket = new KNXTunnelSocket("1.1.100");
     lampSwitch.bind(knxSocket);
     lampStatus.bind(knxSocket);
+    dateStatus.bind(knxSocket);
     knxSocket.connect(ip, port)
         .then(() => console.log("Connected through channel id ", knxSocket.channelID))
+	.then(() => console.log("Reading date"))
+	.then(() => dateStatus.read())
+	.then(val => console.log("Date: ", val))
         .then(() => console.log("Reading lamp status"))
         .then(() => lampStatus.read())
         .then(val => console.log("Lamp status:", val))
