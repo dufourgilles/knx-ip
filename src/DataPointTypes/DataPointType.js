@@ -145,7 +145,7 @@ class DataPointType {
      * @returns {string}
      */
     static getDataPointType(type, subtype) {
-        const dpt = DPTYPES[`DPT${type}`];
+        const dpt = this.TYPES[`DPT${type}`];
         if (dpt == null) {
             throw new Error(`Unknown type ${type}`);
         }
