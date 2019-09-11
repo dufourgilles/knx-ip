@@ -54,6 +54,17 @@ class KNXClient extends EventEmitter{
     }
 
     /**
+     * Increment sequence number
+     */
+    _incSeqNumber() {
+        const seq = this._clientTunnelSeqNumber++;
+        if (this._clientTunnelSeqNumber > 255) {
+            this._clientTunnelSeqNumber = 0;
+        }
+        return seq;
+    }
+
+    /**
      * @fires error
      * @private
      */
@@ -439,7 +450,7 @@ class KNXClient extends EventEmitter{
         cEMIMessage.control.priority = 3;
         cEMIMessage.control.addressType = 1;
         cEMIMessage.control.hopCount = 6;
-        const seqNum = this._clientTunnelSeqNumber++;
+        const seqNum = this._incSeqNumber();
         const knxTunnelingRequest = KNXProtocol.newKNXTunnelingRequest(
             this._channelID,
             seqNum,
@@ -481,7 +492,7 @@ class KNXClient extends EventEmitter{
         cEMIMessage.control.priority = 3;
         cEMIMessage.control.addressType = 1;
         cEMIMessage.control.hopCount = 6;
-        const seqNum = this._clientTunnelSeqNumber++;
+        const seqNum = this._incSeqNumber();
         const knxTunnelingRequest = KNXProtocol.newKNXTunnelingRequest(
             this._channelID,
             seqNum,

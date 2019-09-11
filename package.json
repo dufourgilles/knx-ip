@@ -1,6 +1,6 @@
 {
   "name": "knx-ip",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "KNXnet/IP protocol",
   "main": "src/index.js",
   "scripts": {
