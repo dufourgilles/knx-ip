@@ -86,11 +86,11 @@ class NPDU {
         if (!(data instanceof Buffer)) {
             throw new Error("Invalid data Buffer");
         }
-        if (data.length === 1 && data.readUInt8(0) < 0x3F) {
-            this.apci = (this.apci & 0xC0) | data.readUInt8(0);
-            this._data = null;
-            return;
-        }
+        // if (data.length === 1 && data.readUInt8(0) < 0x3F) {
+        //     this.apci = (this.apci & 0xC0) | data.readUInt8(0);
+        //     this._data = null;
+        //     return;
+        // }
         this._data = data;
     }
 
