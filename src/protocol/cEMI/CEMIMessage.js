@@ -5,11 +5,14 @@ class CEMIMessage {
      *
      * @param {number} msgCode
      * @param {number} length
-     * @param {Buffer} additionalInfo
+     * @param {KNXDataBuffer} additionalInfo
      */
     constructor(msgCode, length, additionalInfo = null) {
+        /** @type {number} */
         this.msgCode = msgCode;
+        /** @type number */
         this.length = length;
+        /** @type {KNXDataBuffer} */
         this.additionalInfo = additionalInfo;
     }
 
@@ -19,7 +22,7 @@ class CEMIMessage {
         const len = this.additionalInfo == null ? 0 : this.additionalInfo.length;
         buffer.writeUInt8(len, 1);
         if (this.additionalInfo) {
-            return Buffer.concat([buffer, this.additionalInfo]);
+            return Buffer.concat([buffer, this.additionalInfo.value]);
         }
         return buffer;
     }

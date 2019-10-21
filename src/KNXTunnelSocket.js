@@ -27,7 +27,6 @@ class KNXTunnelSocket extends EventEmitter {
                 this._connectionCB();
             }
         }).on("error", err => {
-            console.log("received error", err);
             if (err == null) { return; }
             if (this._connectionCB != null) {
                 this._connectionCB(err);
@@ -105,7 +104,7 @@ class KNXTunnelSocket extends EventEmitter {
     /**
      * Write data to a knx component
      * @param {KNXAddress} dstAddress - knx address ie: 1.1.15
-     * @param {Buffer} data - data to write
+     * @param {KNXDataBuffer} data - data to write
      * @returns {Promise}
      */
     write(dstAddress, data) {

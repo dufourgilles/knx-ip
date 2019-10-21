@@ -1,18 +1,20 @@
 "use strict";
-const CEMIConstants = require("./CEMIConstants")
+const CEMIConstants = require("./CEMIConstants");
+const KNXDataBuffer = require("../KNXDataBuffer");
+
 class NPDU {
     /**
      *
      * @param {number} tpci
      * @param {number} apci
-     * @param {Buffer} data
+     * @param {KNXDataBuffer} data
      */
     constructor(tpci = 0x0, apci = 0x0, data = null) {
         /** @type {number} */
         this.tpci = tpci;
         /** @type {number} */
         this.apci = apci;
-        /** @type {Buffer} */
+        /** @type {KNXDataBuffer} */
         this.data = data
     }
 
@@ -56,7 +58,7 @@ class NPDU {
 
     /**
      *
-     * @returns {Buffer}
+     * @returns {KNXDataBuffer}
      */
     get dataBuffer() {
         return this._data;
@@ -71,26 +73,26 @@ class NPDU {
             const val = this.apci & 0x3F;
             return Buffer.alloc(1, val);
         }
-        return this._data;
+        return this._data.value;
     }
 
     /**
      *
-     * @param {Buffer} data
+     * @param {KNXDataBuffer} data
      */
     set data(data) {
         if (data == null) {
             this._data = null;
             return;
         }
-        if (!(data instanceof Buffer)) {
+        if (!(data instanceof KNXDataBuffer)) {
             throw new Error("Invalid data Buffer");
         }
-        // if (data.length === 1 && data.readUInt8(0) < 0x3F) {
-        //     this.apci = (this.apci & 0xC0) | data.readUInt8(0);
-        //     this._data = null;
-        //     return;
-        // }
+        if (data.sixBits() && data.length === 1 && data.value.readUInt8(0) < 0x3F) {
+            this.apci = (this.apci & 0xC0) | data.value.readUInt8(0);
+            this._data = null;
+            return;
+        }
         this._data = data;
     }
 
@@ -164,7 +166,7 @@ class NPDU {
         if (length === 1) {
             return buffer;
         }
-        return Buffer.concat([buffer, this._data]);
+        return Buffer.concat([buffer, this._data.value]);
     }
 
     /**
@@ -182,7 +184,7 @@ class NPDU {
         const tpci = buffer.readUInt8(offset++);
         const apci = buffer.readUInt8(offset++);
         const data = npduLength > 1 ? buffer.slice(offset, offset + npduLength - 1) : null;
-        return new NPDU(tpci, apci, data);
+        return new NPDU(tpci, apci, data == null ? null : new KNXDataBuffer(data));
     }
 
     /**

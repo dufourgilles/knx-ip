@@ -2,6 +2,7 @@
 
 const DataPointType = require("../DataPointTypes/DataPointType");
 const KNXAddress = require("../protocol/KNXAddress");
+const KNXDataBuffer = require("../protocol/KNXDataBuffer");
 
 const UNKOWN_VALUE = "n/a";
 
@@ -89,7 +90,8 @@ class DataPoint {
         return Promise.resolve().then(() => {
             const value = val == null ? this._value : val;
             const buf = this._type.encode(value);
-            return this._knxTunnelSocket.write(this._ga, buf);
+            const knxBuf = new KNXDataBuffer(buf, this);
+            return this._knxTunnelSocket.write(this._ga, knxBuf);
         });
     }
 

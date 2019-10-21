@@ -5,6 +5,7 @@ const KNXConstants = require("./protocol/KNXConstants");
 const CEMIConstants = require("./protocol/cEMI/CEMIConstants");
 const KNXProtocol = require("./protocol/KNXProtocol");
 const CEMIFactory = require("./protocol/cEMI/CEMIFactory");
+const KNXDataBuffer = require("./protocol/KNXDataBuffer");
 
 const STATE = {
     STARTED: 0,
@@ -233,9 +234,9 @@ class KNXClient extends EventEmitter{
                          * @param {NPDU} npdu
                          */
                         this.emit("indication",
-                            knxTunnelingRequest.cEMIMessage.srcAddress,
-                            knxTunnelingRequest.cEMIMessage.dstAddress,
-                            knxTunnelingRequest.cEMIMessage.npdu
+                            ind.srcAddress,
+                            ind.dstAddress,
+                            ind.npdu
                         );
                     }
                 }
@@ -422,7 +423,7 @@ class KNXClient extends EventEmitter{
      * @fires error
      * @param {KNXAddress} srcAddress
      * @param {KNXAddress} dstAddress
-     * @param {Buffer} data
+     * @param {KNXDataBuffer} data
      * @param {string} host
      * @param {number} port
      */

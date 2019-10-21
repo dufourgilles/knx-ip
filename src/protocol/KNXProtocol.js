@@ -27,6 +27,7 @@ const CEMIFactory = require("./cEMI/CEMIFactory");
 const LDataCon = require("./cEMI/LDataCon");
 const LDataReq = require("./cEMI/LDataReq");
 const LDataInd = require("./cEMI/LDataInd");
+const KNXDataBuffer = require("./KNXDataBuffer");
 
 /**
  * KNX Protocol Elements
@@ -136,6 +137,11 @@ class KNXProtocol {
      * @constructor
      */
     static get KNXAddress() {return KNXAddress;}
+
+    /**
+     * @returns {KNXDataBuffer}
+     */
+    static get KNXDataBuffer() {return KNXDataBuffer;}
 
     /**
      *
