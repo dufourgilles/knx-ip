@@ -189,6 +189,12 @@ class KNXClient extends EventEmitter{
                     this._connectionState = STATE.CONNECTED;
                     /** @type {KNXConnectResponse } */
                     const knxConnectResponse = knxMessage;
+                    if (knxConnectResponse.status !== 0x0) {
+                        // We got an error
+                        this._connectionState = STATE.STARTED;
+                        this.emit("error", KNXConnectResponse.statusToString(knxConnectResponse.status));
+                        return;
+                    }
                     this._channelID = knxConnectResponse.channelID;
                     /**
                      * @event KNXClient#connected
