@@ -1,9 +1,9 @@
 'use strict';
-import {EventEmitter} from 'events'; )
-
-const KNXClient = require('./KNXClient');
+import {EventEmitter} from 'events';
+import {KNXClient} from './KNXClient';
 import {KNXAddress} from './protocol/KNXAddress';
 import KNXDataBuffer = require('./protocol/KNXDataBuffer');
+import NPDU = require('./protocol/cEMI/NPDU');
 
 export const KNXTunnelSocketEvents = {
     indication: 'indication'
@@ -78,7 +78,7 @@ export class KNXTunnelSocket extends EventEmitter {
      * @param {KNXDataBuffer} data - data to write
      * @returns {Promise}
      */
-    writeAsync(dstAddress: KNXAddress, data: KNXDataBuffer): Promise<void> {
+    writeAsync(dstAddress: KNXAddress, data: Buffer): Promise<void> {
         return new Promise((resolve, reject) => {
             this._knxClient.sendWriteRequest(this._srcAddress, dstAddress, data, (err: Error) => {
                 if (err) {
@@ -90,9 +90,9 @@ export class KNXTunnelSocket extends EventEmitter {
         });
     }
 
-    readAsync(dstAddress: KNXAddress): Promise<void> {
+    readAsync(dstAddress: KNXAddress): Promise<Buffer> {
         return new Promise((resolve, reject) => {
-            this._knxClient.sendReadRequest(this._srcAddress, dstAddress, (err, data) => {
+            this._knxClient.sendReadRequest(this._srcAddress, dstAddress, (err: Error, data: Buffer) => {
                 if (err) {
                     reject(err);
                 } else {

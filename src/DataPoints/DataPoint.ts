@@ -44,7 +44,7 @@ export class DataPoint {
         if (this._knxTunnelSocket == null) {
             throw new Error('Datapoint not binded');
         }
-        const buf = await this._knxTunnelSocket.readAsync(this._ga);
+        const buf: Buffer = await this._knxTunnelSocket.readAsync(this._ga);
         this._value = this._type.decode(buf);
         return this._value;
     }
@@ -60,7 +60,6 @@ export class DataPoint {
         }
         const value = val == null ? this._value : val;
         const buf = this._type.encode(value);
-        const knxBuf = new KNXDataBuffer(buf, this);
-        await this._knxTunnelSocket.write(this._ga, knxBuf);
+        await this._knxTunnelSocket.writeAsync(this._ga, buf);
     }
 }

@@ -144,7 +144,10 @@ export class KNXClient extends EventEmitter {
         this.send(knxTunnelingRequest, peerHost, peerPort);
     }
 
-    sendReadRequest(srcAddress: KNXAddress, dstAddress: KNXAddress, cb: (e: Error) => void = null, host?: string, port?: number): void {
+    sendReadRequest(
+        srcAddress: KNXAddress,
+        dstAddress: KNXAddress,
+        cb: (e: Error, d?: Buffer) => void = null, host?: string, port?: number): void {
         const key = dstAddress.toString();
         if (this._pendingTunnelAnswer.has(key)) {
             const err = new Error(`Requested already pending for ${key}`);
