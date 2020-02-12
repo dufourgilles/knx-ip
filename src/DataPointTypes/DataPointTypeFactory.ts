@@ -18,8 +18,9 @@ import DPTTemperature from '../DataPointTypes/DPTTemperature';
 import DPTTime from '../DataPointTypes/DPTTime';
 import DPTTrigger from '../DataPointTypes/DPTTrigger';
 import DPTUpdown from '../DataPointTypes/DPTUpdown';
+import { DataPointType } from './DataPointType';
 
-export const DPTS: {[index: string]: any} = {
+export const DPTS: {[index: string]: DataPointType} = {
     DPTAlarm: new DPTAlarm(),
     DPTAngle: new DPTAngle(),
     DPTBinary: new DPTBinary(),
