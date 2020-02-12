@@ -1,0 +1,35 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "module": "commonjs",
+        "lib": [
+            "es6",
+            "esnext"
+        ],
+        "declaration": true,        
+        "sourceMap": true,
+        "outDir": "lib",
+        "rootDir": "src",
+        "removeComments": true,
+        "strict": false,
+        "noImplicitAny": true,
+        "moduleResolution": "node",
+        "strictNullChecks": false,
+        "resolveJsonModule": true,
+        "typeRoots": [
+            "node_modules/@types"
+        ],
+        "esModuleInterop": true,
+        "experimentalDecorators": true,
+        "downlevelIteration": true,
+        "emitDecoratorMetadata": true
+    },
+    "exclude": [
+        "node_modules",
+        "lib",
+        "**/*.spec.ts"
+    ],
+    "include": [
+        "src/**/*"
+    ]
+}

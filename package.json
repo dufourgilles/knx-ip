@@ -1,29 +1,101 @@
 {
-  "name": "knx-ip",
-  "version": "0.0.17",
-  "description": "KNXnet/IP protocol",
-  "main": "src/index.js",
-  "scripts": {
-    "test": "jest  test/",
-    "jsdoc": "jsdoc -a all -c ./jsdoc.json src"
-  },
-  "keywords": [
-    "knx",
-    "ip",
-    "knxnet",
-    "disovery"
-  ],
-  "dependencies": {
-    "eslint": "5.7.0",
-    "ink-docstrap": "1.3.2",
-    "jest": "^24.5.0",
-    "jsdoc": "^3.5.5",
-    "mocha": "5.2.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/dufourgilles/knx-ip"
-  },
-  "author": "dufour.gilles@gmail.com",
-  "license": "MIT"
+    "name": "knx-ip",
+    "version": "0.0.17",
+    "description": "KNXnet/IP protocol",
+    "main": "lib/index.ts",
+    "types": "lib/index.d.ts",
+    "scripts": {
+        "compile": "rimraf lib && tsc -p .",
+        "compile:watch": "tsc -w -p .",
+        "tslint": "tslint --project tslint.json --fix",
+        "tslint:nofix": "tslint --project tslint.json",
+        "test": "jest  --forceExit  --detectOpenHandles",
+        "test:badges": "npm run jest-coverage-badges output ./badges",
+        "test:coverage": "jest --coverage --forceExit --detectOpenHandles && npm run test:badges",
+        "build": "npm run compile && npm run tslint:nofix && npm run test:coverage",
+        "jest-coverage-badges": "jest-coverage-badges"
+    },
+    "engines": {
+        "node": ">=10.13.0"
+    },
+    "keywords": [
+        "knx",
+        "ip",
+        "knxnet",
+        "disovery"
+    ],
+    "devDependencies": {
+        "@types/jest": "^24.0.19",
+        "@types/node": "^12.12.27",
+        "@types/yargs": "^15.0.2",
+        "ghooks": "2.0.4",
+        "jest": "^24.9.0",
+        "jest-cli": "^24.9.0",
+        "jest-coverage-badges": "1.1.2",
+        "jest-create-mock-instance": "^1.1.0",
+        "jest-jenkins-reporter": "^1.0.2",
+        "jest-junit-reporter": "^1.1.0",
+        "rimraf": "3.0.0",
+        "sinon": "^7.4.1",
+        "ts-jest": "^24.1.0",
+        "ts-node": "^8.4.1",
+        "tslint": "^5.20.0",
+        "tslint-loader": "^3.5.4",
+        "typescript": "^3.6.4"
+    },
+    "dependencies": {
+        "ink-docstrap": "1.3.2"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/dufourgilles/knx-ip"
+    },
+    "author": "dufour.gilles@gmail.com",
+    "license": "MIT",
+    "config": {
+        "ghooks": {
+            "pre-commit": "npm run tslint:nofix"
+        }
+    },
+    "jest": {
+        "verbose": true,
+        "transform": {
+            "^.+\\.tsx?$": "ts-jest"
+        },
+        "testEnvironment": "node",
+        "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
+        "testPathIgnorePatterns": [
+            "/coverage"
+        ],
+        "testResultsProcessor": "./node_modules/jest-junit-reporter",
+        "moduleFileExtensions": [
+            "ts",
+            "tsx",
+            "js",
+            "jsx",
+            "json",
+            "node"
+        ],
+        "coverageThreshold": {
+            "global": {
+                "branches": 20,
+                "functions": 20,
+                "lines": 20,
+                "statements": -50
+            }
+        },
+        "collectCoverageFrom": [
+            "src/**/*.ts"
+        ],
+        "coveragePathIgnorePatterns": [
+            "src/tools",
+            "src/test",
+            "src/logging"
+        ],
+        "coverageReporters": [
+            "json-summary",
+            "text",
+            "lcov"
+        ]
+    }
 }
