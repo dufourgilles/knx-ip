@@ -5,11 +5,11 @@ import Alarm from './Alarm';
 import Angle from './Angle';
 import Binary from './Binary';
 import Date from './Date';
-import DimmingControl from './Dimmingcontrol';
+import Dimmingcontrol from './Dimmingcontrol';
 import Enable from './Enable';
 import Lux from './Lux';
 import Percentage from './Percentage';
-import PercentageScaling from './Percentagescaling';
+import Percentagescaling from './Percentagescaling';
 import Scene from './Scene';
 import Scenecontrol from './Scenecontrol';
 import Speed from './Speed';
@@ -20,19 +20,25 @@ import Temperature from './Temperature';
 import Time from './Time';
 import Trigger from './Trigger';
 import Updown from './Updown';
+import { DataPointType } from '../DataPointTypes/DataPointType';
+import { DPT } from '../DataPointTypes/definitions';
 
-type DataPointFactoryItem = ((x: KNXAddress, y: string) => DataPoint) | IDataPoint ;
+type DataPointFactoryItem = (
+    ((x: KNXAddress, y: string) => DataPoint) |
+    ((type: string|number, subtype: string|number) => string) |
+    IDataPoint
+);
 
 export const DataPointFactory: {[index: string]: DataPointFactoryItem} = {
     Alarm,
     Angle,
     Binary,
     Date,
-    DimmingControl,
+    Dimmingcontrol,
     Enable,
     Lux,
     Percentage,
-    PercentageScaling,
+    Percentagescaling,
     Scene,
     Scenecontrol,
     Speed,
@@ -51,5 +57,20 @@ export const DataPointFactory: {[index: string]: DataPointFactoryItem} = {
             throw new Error(`Unknown DataPoint type ${typeName}`);
         }
         return new DataPointClass(ga);
+    },
+    getDataPointType: (type: string|number, subtype: string|number): string => {
+        const dpt: DPT = DataPointType.TYPES[`DPT${type}`];
+        if (dpt == null) {
+            throw new Error(`Unknown type ${type}`);
+        }
+        let _3digitSubtype = `${subtype}`;
+        while (_3digitSubtype.length < 3) {
+            _3digitSubtype = `0${_3digitSubtype}`;
+        }
+        const dptSubtype = dpt.subtypes.ids[_3digitSubtype];
+        if (dptSubtype == null) {
+            throw new Error(`Invalid subtype ${subtype} for type DPT${type}`);
+        }
+        return dptSubtype;
     }
 };

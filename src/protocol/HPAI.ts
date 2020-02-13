@@ -62,9 +62,10 @@ export class HPAI {
     }
     private _header: KNXHeader;
     private _splitHost: RegExpMatchArray;
+    private _host: string;
 
-    constructor(private _host: string, private _port: number = KNX_CONSTANTS.KNX_PORT, private _protocol: KnxProtocol = KNX_CONSTANTS.IPV4_UDP) {
-        this._splitHost = null;
+    constructor( _host: string, private _port: number = KNX_CONSTANTS.KNX_PORT, private _protocol: KnxProtocol = KNX_CONSTANTS.IPV4_UDP) {
+        this.host = _host;
     }
 
     static createFromBuffer(buffer: Buffer, offset: number = 0): HPAI {

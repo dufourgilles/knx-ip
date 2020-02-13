@@ -25,7 +25,7 @@ import {DPT} from './definitions';
  * @property {string} weight
  * @property {string} work
  */
-const DPT14: DPT = {
+export const DPT14: DPT = {
     id: '14',
     subtypes: {
         ids: {

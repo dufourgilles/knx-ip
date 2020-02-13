@@ -4,9 +4,9 @@ import KNXHeader from './KNXHeader';
 export = class KNXPacket {
     private _header: KNXHeader;
     constructor(readonly type: number, readonly length: number) {
-        this._header = new KNXHeader(
+            this._header = new KNXHeader(
             type,
-            KNXHeader.length + length
+            length
         );
         this.type = type;
         this.length = length;

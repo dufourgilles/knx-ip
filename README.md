@@ -1,64 +1,69 @@
+
 # knx-ip
-Pure javascript implementation of KNXnet/IP protocol for Node.JS.
+
+Pure typescript implementation of KNXnet/IP protocol for Node.JS.
 
 KNX-IP allows you to discover KNX gateways in your home installation and create a tunnel connection to
-pass knx messages to read status of sensors (wind, sun, temperature,...), lamp switches, ... and 
+pass knx messages to read status of sensors (wind, sun, temperature,...), lamp switches, ...
 also switch on/off lamps, send signals to stores, ...
 
-###### Installation
+WARNIG
+This new version (0.0.17) is now written in typescript.
+The classes remain the same but some methods/properties may have changed.
+
+## Installation
 
 Make sure your machine has Node.JS (version 6.x or greater) and do:
-```
+
+```bash
 npm install knx-ip
 ```
 
-#### Documentation
+## Documentation
 
 For more information, check the
-[knx-ip documentation](http://www.gdnet.be/knx-ip/doc/)
+[knx-ip documentation](doc/)
 
+## Usage
 
-#### Usage
-
-Use the KNXClient class to discover existing KNX Gateways.
+Use the [KNXClient class](doc/classes/_knxclient_.knxclient.html) to discover existing KNX Gateways.
 The KNXClient.startDiscovery(ip) function starts a new discovery on the interface
 matching the specified ip address.  This process runs for 20 seconds.
 The KNXClient will emit "discover" messages when a new knx gateway is discovered.
 
 To send KNX messages to your knx home installation, first create a tunnel to your knx gateway.
-A tunnel is created with the KNXTunnelSocket class.  The single argument is the knx bus address to use to connect
+A tunnel is created with the [KNXTunnelSocket class](doc/classes/_knxtunnelsocket_.knxtunnelsocket.html).  
+The single argument is the knx bus address to use to connect
 to the gateway (this should be a unique knx address in your environment).
 Use this socket to connect() to the ip address of the knx gateway.
 Once connected, you can read() the status of readable knx components and set the state of any knx 
 writeable component.
 
-
 In the example below, we attempt to discover the knx gateway using the KNXClient.startDiscovery function.
 Once the gateway is identified, we setup a tunnel using the knxSocket.connect() method.
 We then read the status (on or off) of a lamp with knx address 1.2.15 and then switch the lamp on,
 read the status again before switching the lamp off.
- 
 
 ```javascript
-"use strict";
+
 
 const {KNXClient, KNXTunnelSocket, KNXProtocol, DataPoints} = require("knx-ip");
 
 const knxClient = new KNXClient();
 
-knxClient.on("error", err => {
+knxClient.on(KNXClient.KNXClientEvents.error, err => {
     if (err) {
         console.log(err);
     }
 });
 
 // Call discoverCB when a knx gateway has been discovered.
-knxClient.on("discover",  info => {
+knxClient.on(KNXClient.KNXClientEvents.discover,  info => {
     const [ip,port] = info.split(":");
     discoverCB(ip,port);
 });
 
-knxClient.on("ready", () => {
+knxClient.on(KNXClient.KNXClientEvents.ready, () => {
     console.log("Ready. Starting discovery");
 });
 
@@ -79,13 +84,13 @@ const handleBusEvent = function(srcAddress, dstAddress, npdu) {
 const discoverCB = (ip, port) => {
         console.log("Connecting to ", ip, port);
         // Create a knx address for a lamp switch on knx bus address 1.1.15
-        const lampSwitchAddress = new KNXProtocol.KNXAddress("1.1.15", KNXProtocol.KNXAddress.TYPE_GROUP);
+        const lampSwitchAddress = KNXProtocol.KNXAddress.createFromString("1.1.15", KNXProtocol.KNXAddress.TYPE_GROUP);
         // Create a Datapoint of type Switch to control the lamp
         const lampSwitch = new DataPoints.Switch(lampSwitchAddress);
         // Create a Datapoint of type Switch to read the lamp status
         // This time using the createDataPoint function
         const lampStatus = DataPoints.createDataPoint(
-            new KNXProtocol.KNXAddress("1.2.15", KNXProtocol.KNXAddress.TYPE_GROUP),
+            KNXProtocol.KNXAddress.createFromString("1.2.15", KNXProtocol.KNXAddress.TYPE_GROUP),
             "Switch"
         );
         // Create tunnel socket with source knx address 1.1.100
@@ -118,7 +123,8 @@ const discoverCB = (ip, port) => {
             .then(() => process.exit(0));
 };
 ```
-```
+
+```bash
 Ready. Starting discovery
 Connecting to  192.168.1.158 3671
 Connected through channel id  35
@@ -131,5 +137,4 @@ Starting bus monitoring
 1.1.16 -> 9.1.2 : <Buffer 00 64>
 1.1.16 -> 9.1.5 : <Buffer 42 d2 7c c8>
 1.1.16 -> 9.1.6 : <Buffer 41 c0 bd 5d>
-
 ```

@@ -12,7 +12,7 @@ export interface DPT3Value {
  * @property {string} dimmingcontrol
  * @property {string} blindcontrol
  **/
-const DPT3: DPT = {
+export const DPT3: DPT = {
     id: '3',
     subtypes: {
         ids: {

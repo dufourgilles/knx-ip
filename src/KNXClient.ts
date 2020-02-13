@@ -16,43 +16,48 @@ import KNXPacket from './protocol/KNXPacket';
 import { KNXAddress } from './protocol/KNXAddress';
 import { TunnelCRI, TunnelTypes } from './protocol/TunnelCRI';
 
-export enum STATE {
+enum STATE {
     STARTED = 0,
     CONNECTING = 3,
     CONNECTED = 4,
     DISCONNECTING = 5
 }
 
-export interface PendingAnswer {
+interface PendingAnswer {
     cb: (e: Error, d: any) => void;
     timer: NodeJS.Timeout;
     req: KNXTunnelingRequest;
 }
 
-export interface SocketInfo {
+interface SocketInfo {
     address: string;
     family: string;
     port: number;
     size: number;
 }
 
-export enum TUNNELSTATE {
+enum TUNNELSTATE {
     READY = 0
 }
-
-export const KNXClientEvents = {
-    error: 'error',
-    disconnected: 'disconnected',
-    connected: 'connected',
-    ready: 'ready'
-};
 
 const SocketEvents = {
     error: 'error',
     message: 'message'
 };
 
+enum KNXClientEvents {
+    error = 'error',
+    disconnected = 'disconnected',
+    discover = 'discover',
+    indication = 'indication',
+    connected = 'connected',
+    ready = 'ready',
+    response = 'response'
+}
+
 export class KNXClient extends EventEmitter {
+
+    static  KNXClientEvents = KNXClientEvents;
 
     get channelID(): number {
         return this._channelID;
@@ -101,7 +106,7 @@ export class KNXClient extends EventEmitter {
             peerHost,
                 err => {
                     if (err) {
-                        this.emit(KNXClientEvents.error, err);
+                        this.emit(KNXClient.KNXClientEvents.error, err);
                     }
                 });
     }
@@ -117,7 +122,7 @@ export class KNXClient extends EventEmitter {
             if (cb) {
                 cb(err);
             }
-            this.emit(KNXClientEvents.error, err);
+            this.emit(KNXClient.KNXClientEvents.error, err);
             return;
         }
         const peerHost = host == null ? this._peerHost : host;
@@ -154,7 +159,7 @@ export class KNXClient extends EventEmitter {
             if (cb) {
                 cb(err);
             }
-            this.emit(KNXClientEvents.error, err);
+            this.emit(KNXClient.KNXClientEvents.error, err);
             return;
         }
         const peerHost = host == null ? this._peerHost : host;
@@ -221,7 +226,7 @@ export class KNXClient extends EventEmitter {
         const timeoutError = new Error(`Connection timeout to ${host}:${port}`);
         this._timer = setTimeout(() => {
             this._timer = null;
-            this.emit(KNXClientEvents.error, timeoutError);
+            this.emit(KNXClient.KNXClientEvents.error, timeoutError);
         }, 1000 * KNX_CONSTANTS.CONNECT_REQUEST_TIMEOUT);
         this._awaitingResponseType = KNX_CONSTANTS.CONNECT_RESPONSE;
         this._sendConnectRequestMessage(host, port, new TunnelCRI(knxLayer));
@@ -276,7 +281,7 @@ export class KNXClient extends EventEmitter {
             throw new Error('No server socket defined');
         }
         this._discoverySocket.on(SocketEvents.error, err => {
-            this.emit(KNXClientEvents.error, err);
+            this.emit(KNXClient.KNXClientEvents.error, err);
         });
         this._discoverySocket.on(SocketEvents.message, this._processInboundMessage);
     }
@@ -318,7 +323,7 @@ export class KNXClient extends EventEmitter {
                     if (cb) {
                         cb(timeoutErr);
                     } else {
-                        this.emit(KNXClientEvents.error, timeoutErr);
+                        this.emit(KNXClient.KNXClientEvents.error, timeoutErr);
                     }
                 }, KNX_CONSTANTS.TUNNELING_REQUEST_TIMEOUT * 2000),
                 req: knxTunnelingRequest
@@ -330,7 +335,7 @@ export class KNXClient extends EventEmitter {
             if (cb) {
                 cb(timeoutErr);
             } else {
-                this.emit(KNXClientEvents.error, timeoutErr);
+                this.emit(KNXClient.KNXClientEvents.error, timeoutErr);
             }
         }, KNX_CONSTANTS.TUNNELING_REQUEST_TIMEOUT * 1000));
     }
@@ -348,7 +353,7 @@ export class KNXClient extends EventEmitter {
                  * @param {KNXHeader} header
                  * @param {KNXPacket} packet
                  */
-                this.emit('discover', `${rinfo.address}:${rinfo.port}`, knxHeader, knxMessage);
+                this.emit(KNXClient.KNXClientEvents.discover, `${rinfo.address}:${rinfo.port}`, knxHeader, knxMessage);
             } else if (knxHeader.service_type === KNX_CONSTANTS.CONNECT_RESPONSE) {
                 if (this._connectionState === STATE.CONNECTING) {
                     clearTimeout(this._timer);
@@ -357,7 +362,7 @@ export class KNXClient extends EventEmitter {
                     if (knxConnectResponse.status !== ConnectionStatus.E_NO_ERROR) {
                         // We got an error
                         this._connectionState = STATE.STARTED;
-                        this.emit(KNXClientEvents.error, KNXConnectResponse.statusToString(knxConnectResponse.status));
+                        this.emit(KNXClient.KNXClientEvents.error, KNXConnectResponse.statusToString(knxConnectResponse.status));
                         return;
                     }
                     this._connectionState = STATE.CONNECTED;
@@ -367,19 +372,19 @@ export class KNXClient extends EventEmitter {
                      * @param {string} ip:port
                      * @param {string} channelID
                      */
-                    this.emit(KNXClientEvents.connected, `${rinfo.address}:${rinfo.port}`, this._channelID);
+                    this.emit(KNXClient.KNXClientEvents.connected, `${rinfo.address}:${rinfo.port}`, this._channelID);
                 }
             } else if (knxHeader.service_type === KNX_CONSTANTS.DISCONNECT_RESPONSE) {
                 if (this._connectionState === STATE.DISCONNECTING) {
                     this._connectionState = STATE.STARTED;
                     this._channelID = null;
-                    this.emit(KNXClientEvents.disconnected, `${rinfo.address}:${rinfo.port}`, this._channelID);
+                    this.emit(KNXClient.KNXClientEvents.disconnected, `${rinfo.address}:${rinfo.port}`, this._channelID);
                 }
             } else if (knxHeader.service_type === KNX_CONSTANTS.DISCONNECT_REQUEST) {
                 this._connectionState = STATE.STARTED;
                 const knxDisconnectRequest: KNXDisconnectRequest = knxMessage as KNXDisconnectRequest;
                 this._sendDisconnectResponseMessage(rinfo.address, rinfo.port, knxDisconnectRequest.channelID);
-                this.emit(KNXClientEvents.disconnected, `${rinfo.address}:${rinfo.port}`, knxHeader, knxDisconnectRequest);
+                this.emit(KNXClient.KNXClientEvents.disconnected, `${rinfo.address}:${rinfo.port}`, knxHeader, knxDisconnectRequest);
             } else if (knxHeader.service_type === KNX_CONSTANTS.TUNNELING_REQUEST) {
                 /** @type {KNXTunnelingRequest} */
                 const knxTunnelingRequest: KNXTunnelingRequest = knxMessage as KNXTunnelingRequest;
@@ -395,7 +400,7 @@ export class KNXClient extends EventEmitter {
                          * @param {KNXAddress} knx dst
                          * @param {NPDU} npdu
                          */
-                        this.emit('indication',
+                        this.emit(KNXClient.KNXClientEvents.indication,
                             ind.srcAddress,
                             ind.dstAddress,
                             ind.npdu
@@ -426,14 +431,14 @@ export class KNXClient extends EventEmitter {
                  * @param {KNXHeader} knx header
                  * @param {KNXPacket} knx packet
                  */
-                this.emit('response', `${rinfo.address}:${rinfo.port}`, knxHeader, knxMessage);
+                this.emit(KNXClient.KNXClientEvents.response, `${rinfo.address}:${rinfo.port}`, knxHeader, knxMessage);
             }
         } catch (e) {
             /**
              * @event KNXClient#error
              * @type {Error}
              */
-            this.emit(KNXClientEvents.error, e);
+            this.emit(KNXClient.KNXClientEvents.error, e);
         }
     }
 
@@ -442,7 +447,7 @@ export class KNXClient extends EventEmitter {
             KNXProtocol.newKNXDescriptionRequest(new HPAI(this._host)).toBuffer(),
             port,
             host,
-            err => this.emit(KNXClientEvents.error, err)
+            err => this.emit(KNXClient.KNXClientEvents.error, err)
         );
     }
 
@@ -451,7 +456,7 @@ export class KNXClient extends EventEmitter {
             KNXProtocol.newKNXSearchRequest(new HPAI(this._host, this._port)).toBuffer(),
             KNX_CONSTANTS.KNX_PORT,
             KNX_CONSTANTS.KNX_IP,
-            err => this.emit(KNXClientEvents.error, err)
+            err => this.emit(KNXClient.KNXClientEvents.error, err)
         );
     }
 
@@ -472,7 +477,7 @@ export class KNXClient extends EventEmitter {
             KNXProtocol.newKNXConnectionStateRequest(channelID).toBuffer(),
             port,
             host,
-            err => this.emit(KNXClientEvents.error, err)
+            err => this.emit(KNXClient.KNXClientEvents.error, err)
         );
     }
 
@@ -482,7 +487,7 @@ export class KNXClient extends EventEmitter {
             KNXProtocol.newKNXDisconnectRequest(channelID).toBuffer(),
             port,
             host,
-            err => this.emit(KNXClientEvents.error, err)
+            err => this.emit(KNXClient.KNXClientEvents.error, err)
         );
     }
 
@@ -495,7 +500,7 @@ export class KNXClient extends EventEmitter {
             KNXProtocol.newKNXDisconnectResponse(channelID, status).toBuffer(),
             port,
             host,
-            err => this.emit(KNXClientEvents.error, err)
+            err => this.emit(KNXClient.KNXClientEvents.error, err)
         );
     }
 
@@ -512,7 +517,7 @@ export class KNXClient extends EventEmitter {
             /**
              * @event ready
              */
-            this.emit(KNXClientEvents.ready);
+            this.emit(KNXClient.KNXClientEvents.ready);
         });
     }
 }

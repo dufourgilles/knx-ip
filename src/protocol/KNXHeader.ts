@@ -31,7 +31,7 @@ export = class KNXHeader {
         this._headerLength = KNX_CONSTANTS.HEADER_SIZE_10;
         this._version = KNX_CONSTANTS.KNXNETIP_VERSION_10;
         this.service_type = type;
-        this.length = length;
+        this.length = KNX_CONSTANTS.HEADER_SIZE_10 + length;
     }
 
     static createFromBuffer(buffer: Buffer, offset: number = 0): KNXHeader {
@@ -54,7 +54,7 @@ export = class KNXHeader {
         if (length !== buffer.length) {
             throw new Error(`Message length mismatch ${length}/${buffer.length}`);
         }
-        return new KNXHeader(type, length);
+        return new KNXHeader(type, length - header_length);
     }
 
     toBuffer(): Buffer {

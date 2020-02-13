@@ -1,4 +1,4 @@
-"use strict";
+
 
 const {KNXClient, KNXTunnelSocket, KNXProtocol, DataPoints} = require("./index");
 

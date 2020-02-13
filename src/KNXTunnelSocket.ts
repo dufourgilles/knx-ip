@@ -5,11 +5,13 @@ import {KNXAddress} from './protocol/KNXAddress';
 import KNXDataBuffer = require('./protocol/KNXDataBuffer');
 import NPDU = require('./protocol/cEMI/NPDU');
 
-export const KNXTunnelSocketEvents = {
-    indication: 'indication'
-};
+export enum KNXTunnelSocketEvents {
+    indication = 'indication',
+    error = 'error'
+}
 
 export class KNXTunnelSocket extends EventEmitter {
+    static KNXTunnelSocketEvents = KNXTunnelSocketEvents;
 
     get channelID(): number {
         return this._knxClient.channelID;
@@ -130,18 +132,18 @@ export class KNXTunnelSocket extends EventEmitter {
     }
 
     private _init(): void {
-        this._knxClient.on('connected', () => {
+        this._knxClient.on(KNXClient.KNXClientEvents.connected, () => {
             if (this._connectionCB != null) {
                 this._connectionCB();
             }
-        }).on('error', (err: Error) => {
+        }).on(KNXClient.KNXClientEvents.error, (err: Error) => {
             if (err == null) { return; }
             if (this._connectionCB != null) {
                 this._connectionCB(err);
             } else if (this._disconnectCB != null) {
                 this._disconnectCB(err);
             }
-        }).on('disconnected', () => {
+        }).on(KNXClient.KNXClientEvents.disconnected, () => {
             this._connected = false;
             if (this._disconnectCB != null) {
                 this._disconnectCB();

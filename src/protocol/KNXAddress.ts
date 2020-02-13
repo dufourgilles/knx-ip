@@ -25,8 +25,16 @@ export class KNXAddress {
         this.length = ADDRESS_LENGTH;
     }
 
+    static get TYPE_INDIVIDUAL(): KNXAddressType {
+        return KNXAddressType.TYPE_INDIVIDUAL;
+    }
+
+    static get TYPE_GROUP(): KNXAddressType {
+        return KNXAddressType.TYPE_GROUP;
+    }
+
     static createFromString(address: string|number, type: KNXAddressType = KNXAddressType.TYPE_INDIVIDUAL): KNXAddress {
-        return new KNXAddress(validateKNXAddress(address, type === KNXAddressType.TYPE_GROUP));
+        return new KNXAddress(validateKNXAddress(address, type === KNXAddressType.TYPE_GROUP), type);
     }
 
     static createFromBuffer(buffer: Buffer, offset = 0, type: KNXAddressType = KNXAddressType.TYPE_INDIVIDUAL): KNXAddress {

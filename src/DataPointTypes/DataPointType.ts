@@ -1,6 +1,16 @@
 'use strict';
 
-import { Encoder, Decoder } from './definitions';
+import { Encoder, Decoder, DPT } from './definitions';
+
+import {DPT1} from './DPT1';
+import {DPT2} from './DPT2';
+import {DPT3} from './DPT3';
+import {DPT5} from './DPT5';
+import {DPT9} from './DPT9';
+import {DPT10} from './DPT10';
+import {DPT11} from './DPT11';
+import {DPT14} from './DPT14';
+import {DPT18} from './DPT18';
 
 // KNX Specs
 // Chapter 3/7/2 Datapoint Types
@@ -37,28 +47,28 @@ export class DataPointType {
      * @property {DPTYPE}  DPT19
      * @property {DPTYPE}  DPT20
      */
-    static get TYPES(): {[index: string]: any} {
+    static get TYPES(): {[index: string]: DPT | null } {
         return {
-            DPT1: require('./DPT1'),
-            DPT2: require('./DPT2'),
-            DPT3: require('./DPT3'),
-            DPT4: '4',
-            DPT5: require('./DPT5'),
-            DPT6: '6',
-            DPT7: '7',
-            DPT8: '8',
-            DPT9: require('./DPT9'),
-            DPT10: require('./DPT10'),
-            DPT11: require('./DPT11'),
-            DPT12: '12',
-            DPT13: '13',
-            DPT14: require('./DPT14'),
-            DPT15: '15',
-            DPT16: '16',
-            DPT17: '17',
-            DPT18: require('./DPT18'),
-            DPT19: '19',
-            DPT20: '20'
+            DPT1,
+            DPT2,
+            DPT3,
+            DPT4: null,
+            DPT5,
+            DPT6: null,
+            DPT7: null,
+            DPT8: null,
+            DPT9,
+            DPT10,
+            DPT11,
+            DPT12: null,
+            DPT13: null,
+            DPT14,
+            DPT15: null,
+            DPT16: null,
+            DPT17: null,
+            DPT18,
+            DPT19: null,
+            DPT20: null
         };
     }
 
@@ -68,28 +78,6 @@ export class DataPointType {
     static validType(text: string): boolean {
         const m = text.toUpperCase().match(/(?:DPT)?(\d+)(\.(\d+))?/);
         return m != null;
-    }
-
-    /**
-     * Function to return the name of the datapoint type based on its type and subtype.
-     * @param {string|number} type - example 1
-     * @param {string|number} subtype - example 5 or 005 for alarm
-     * @returns {string}
-     */
-    static getDataPointType(type: string|number, subtype: string|number): string {
-        const dpt = this.TYPES[`DPT${type}`];
-        if (dpt == null) {
-            throw new Error(`Unknown type ${type}`);
-        }
-        let _3digitSubtype = `${subtype}`;
-        while (_3digitSubtype.length < 3) {
-            _3digitSubtype = `0${_3digitSubtype}`;
-        }
-        const dptSubtype = dpt.subtypes.ids[_3digitSubtype];
-        if (dptSubtype == null) {
-            throw new Error(`Invalid subtype ${subtype} for type DPT${type}`);
-        }
-        return dptSubtype;
     }
 
     toString(): string {

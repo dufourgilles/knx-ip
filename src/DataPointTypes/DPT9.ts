@@ -47,7 +47,7 @@ function frexp(value: number): number[] {
  * @property {string} windspeed
  */
 
-const DPT9: DPT = {
+export const DPT9: DPT = {
     id: '9',
     subtypes: {
         ids: {

@@ -23,14 +23,14 @@ export const validateKNXAddress = (address: string|number, isGroup: boolean = fa
                 throw new Error(`Invalid digit at pos ${i} inside address: ${address}`);
             }
             if (count === 0) {
-                newAddress = Number(digits[i]);
+                newAddress = digit;
             } else if (count === 1) {
-                newAddress = newAddress + (Number(digits[i]) << 8);
+                newAddress = newAddress + (digit << 8);
             } else {
                 if (isGroup) {
-                    newAddress = newAddress + (Number(digits[i]) << 11);
+                    newAddress = newAddress + (digit << 11);
                 } else {
-                    newAddress = newAddress + (Number(digits[i]) << 12);
+                    newAddress = newAddress + (digit << 12);
                 }
             }
         }
