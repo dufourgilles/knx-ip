@@ -22,17 +22,17 @@ npm install knx-ip
 ## Documentation
 
 For more information, check the
-[knx-ip documentation](doc/)
+[knx-ip documentation](http://www.gdnet.be/knx-ip/doc/)
 
 ## Usage
 
-Use the [KNXClient class](doc/classes/_knxclient_.knxclient.html) to discover existing KNX Gateways.
+Use the [KNXClient class](http://www.gdnet.be/knx-ip/doc/classes/_knxclient_.knxclient.html) to discover existing KNX Gateways.
 The KNXClient.startDiscovery(ip) function starts a new discovery on the interface
 matching the specified ip address.  This process runs for 20 seconds.
 The KNXClient will emit "discover" messages when a new knx gateway is discovered.
 
 To send KNX messages to your knx home installation, first create a tunnel to your knx gateway.
-A tunnel is created with the [KNXTunnelSocket class](doc/classes/_knxtunnelsocket_.knxtunnelsocket.html).  
+A tunnel is created with the [KNXTunnelSocket class](http://www.gdnet.be/knx-ip/doc/classes/_knxtunnelsocket_.knxtunnelsocket.html).  
 The single argument is the knx bus address to use to connect
 to the gateway (this should be a unique knx address in your environment).
 Use this socket to connect() to the ip address of the knx gateway.
