@@ -8,7 +8,7 @@ pass knx messages to read status of sensors (wind, sun, temperature,...), lamp s
 also switch on/off lamps, send signals to stores, ...
 
 WARNIG
-This new version (0.0.17) is now written in typescript.
+This new version (0.0.18) is now written in typescript.
 The classes remain the same but some methods/properties may have changed.
 
 ## Installation
