@@ -13,6 +13,7 @@ import KNXTunnelingAck from './protocol/KNXTunnelingAck';
 import { HPAI } from './protocol/HPAI';
 import { CRI } from './protocol/CRI';
 import KNXPacket from './protocol/KNXPacket';
+import KNXDataBuffer from './protocol/KNXDataBuffer';
 import { KNXAddress } from './protocol/KNXAddress';
 import { TunnelCRI, TunnelTypes } from './protocol/TunnelCRI';
 
@@ -114,7 +115,8 @@ export class KNXClient extends EventEmitter {
     sendWriteRequest(
         srcAddress: KNXAddress,
         dstAddress: KNXAddress,
-        data: Buffer, cb: (e: Error) => void = null,
+        data: KNXDataBuffer,
+        cb: (e: Error) => void = null,
         host?: string, port?: number): void {
         const key = dstAddress.toString();
         if (this._pendingTunnelAnswer.has(key)) {
@@ -508,7 +510,7 @@ export class KNXClient extends EventEmitter {
         if (this._discoverySocket != null) {
             throw new Error('Discovery socket already binded');
         }
-        this._discoverySocket = dgram.createSocket('udp4');
+        this._discoverySocket = dgram.createSocket({type: 'udp4', reuseAddr: true});
         this._initDiscoverySocket();
         this._discoverySocket.bind(port, host, () => {
             this._discoverySocket.setMulticastInterface(host);

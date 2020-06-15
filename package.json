@@ -1,13 +1,13 @@
 {
     "name": "knx-ip",
-    "version": "0.0.18",
+    "version": "0.0.19",
     "description": "KNXnet/IP protocol",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
     "scripts": {
         "compile": "rimraf lib && tsc -p .",
         "compile:watch": "tsc -w -p .",
-	"gendoc": "rimraf doc && typedoc --out doc src",
+        "gendoc": "rimraf doc && typedoc --out doc src",
         "tslint": "tslint --project tslint.json --fix",
         "tslint:nofix": "tslint --project tslint.json",
         "test": "jest  --forceExit  --detectOpenHandles",

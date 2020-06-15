@@ -80,7 +80,7 @@ export class KNXTunnelSocket extends EventEmitter {
      * @param {KNXDataBuffer} data - data to write
      * @returns {Promise}
      */
-    writeAsync(dstAddress: KNXAddress, data: Buffer): Promise<void> {
+    writeAsync(dstAddress: KNXAddress, data: KNXDataBuffer): Promise<void> {
         return new Promise((resolve, reject) => {
             this._knxClient.sendWriteRequest(this._srcAddress, dstAddress, data, (err: Error) => {
                 if (err) {

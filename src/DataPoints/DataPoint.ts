@@ -2,6 +2,7 @@
 
 import {DataPointType} from '../DataPointTypes/DataPointType';
 import {KNXAddress} from '../protocol/KNXAddress';
+import KNXDataBuffer from '../protocol/KNXDataBuffer';
 import { DPT10Value } from '../DataPointTypes/DPT10';
 import { DPT3Value } from '../DataPointTypes/DPT3';
 import { DPT18Value } from '../DataPointTypes/DPT18';
@@ -59,7 +60,7 @@ export class DataPoint {
             throw new Error('Datapoint not binded');
         }
         const value = val == null ? this._value : val;
-        const buf = this._type.encode(value);
+        const buf =  new KNXDataBuffer(this._type.encode(value), this);
         await this._knxTunnelSocket.writeAsync(this._ga, buf);
     }
 }

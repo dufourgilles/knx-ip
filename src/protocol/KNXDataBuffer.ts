@@ -1,14 +1,14 @@
 'use strict';
 
-import { DataPoint } from '../DataPoints/DataPoint';
+import { IDataPoint } from '../DataPoints/DataPointInterface';
 
 export = class KNXDataBuffer {
     /**
      *
      * @param {Buffer} data
-     * @param {DataPoint} info=null
+     * @param {IDataPoint} info=null
      */
-    constructor(private _data: Buffer, private _info?: DataPoint) {
+    constructor(private _data: Buffer, private _info?: IDataPoint) {
     }
 
     get length(): number {
@@ -19,7 +19,7 @@ export = class KNXDataBuffer {
         return this._data;
     }
 
-    get info(): DataPoint|null {
+    get info(): IDataPoint|null {
         return this._info;
     }
 
