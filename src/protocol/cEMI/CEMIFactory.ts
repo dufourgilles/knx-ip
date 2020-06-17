@@ -3,15 +3,15 @@
 import { KNXAddress } from '../KNXAddress';
 
 import {CEMIConstants } from './CEMIConstants';
-import CEMIMessage = require('./CEMIMessage');
-import LDataInd = require('./LDataInd');
-import LDataCon = require('./LDataCon');
-import LDataReq = require('./LDataReq');
+import {CEMIMessage} from './CEMIMessage';
+import {LDataInd} from './LDataInd';
+import {LDataCon} from './LDataCon';
+import {LDataReq} from './LDataReq';
 import { ControlField } from './ControlField';
-import NPDU = require('./NPDU');
-import KNXDataBuffer = require('../KNXDataBuffer');
+import {NPDU} from './NPDU';
+import {KNXDataBuffer} from '../KNXDataBuffer';
 
-export = class CEMIFactory {
+export class CEMIFactory {
     /**
      *
      * @param {number} type - message type
@@ -94,4 +94,4 @@ export = class CEMIFactory {
         npdu.data = data;
         return new LDataReq(null, controlField, srcAddress, dstAddress, npdu);
     }
-};
+}

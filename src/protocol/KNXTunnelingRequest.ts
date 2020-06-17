@@ -1,8 +1,8 @@
 'use strict';
-import KNXPacket from './KNXPacket';
+import {KNXPacket} from './KNXPacket';
 import {KNX_CONSTANTS} from './KNXConstants';
-import CEMIFactory from './cEMI/CEMIFactory';
-import CEMIMessage from './cEMI/CEMIMessage';
+import {CEMIFactory} from './cEMI/CEMIFactory';
+import {CEMIMessage} from './cEMI/CEMIMessage';
 
 export class KNXTunnelingRequest extends KNXPacket {
     constructor(readonly channelID: number, readonly seqCounter: number, readonly cEMIMessage: CEMIMessage) {

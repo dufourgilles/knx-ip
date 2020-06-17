@@ -1,9 +1,9 @@
 'use strict';
 import {KNX_CONSTANTS} from './KNXConstants';
-import KNXPacket from './KNXPacket';
+import {KNXPacket} from './KNXPacket';
 import {HPAI} from './HPAI';
 
-export = class KNXDisconnectRequest extends KNXPacket {
+export class KNXDisconnectRequest extends KNXPacket {
 
     constructor(readonly channelID: number, readonly hpaiControl: HPAI = HPAI.NULLHPAI) {
         super(KNX_CONSTANTS.DISCONNECT_REQUEST, hpaiControl.length + 2);
@@ -30,4 +30,4 @@ export = class KNXDisconnectRequest extends KNXPacket {
             this.hpaiControl.toBuffer()
         ]);
     }
-};
+}

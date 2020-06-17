@@ -1,11 +1,11 @@
 'use strict';
 import {KNX_CONSTANTS} from './KNXConstants';
-import KNXPacket from './KNXPacket';
+import {KNXPacket} from './KNXPacket';
 import {HPAI} from './HPAI';
 import CRIFactory from './CRIFactory';
 import { CRI } from './CRI';
 
-export = class KNXConnectRequest extends KNXPacket {
+export class KNXConnectRequest extends KNXPacket {
     constructor(readonly cri: CRI, readonly hpaiControl: HPAI = HPAI.NULLHPAI, readonly hpaiData: HPAI = HPAI.NULLHPAI) {
         super(KNX_CONSTANTS.CONNECT_REQUEST, hpaiControl.length + hpaiData.length + cri.length);
     }
@@ -33,4 +33,4 @@ export = class KNXConnectRequest extends KNXPacket {
             this.hpaiData.toBuffer(),
             this.cri.toBuffer()]);
     }
-};
+}

@@ -1,11 +1,11 @@
-import CEMIMessage from './CEMIMessage';
+import {CEMIMessage} from './CEMIMessage';
 import { CEMIConstants } from './CEMIConstants';
 import { KNXAddress } from '../KNXAddress';
 import {ControlField } from './ControlField';
-import NPDU from './NPDU';
-import KNXDataBuffer from '../KNXDataBuffer';
+import {NPDU} from './NPDU';
+import {KNXDataBuffer} from '../KNXDataBuffer';
 
-export = class LDataInd extends CEMIMessage {
+export class LDataInd extends CEMIMessage {
     constructor(
         additionalInfo: KNXDataBuffer,
         control: ControlField,
@@ -69,4 +69,4 @@ export = class LDataInd extends CEMIMessage {
         msgBuffer.push(this.npdu.toBuffer());
         return Buffer.concat(msgBuffer);
     }
-};
+}

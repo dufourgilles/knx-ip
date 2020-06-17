@@ -1,10 +1,10 @@
 
-import KNXDataBuffer = require('../KNXDataBuffer');
+import {KNXDataBuffer} from '../KNXDataBuffer';
 import { ControlField } from './ControlField';
 import { KNXAddress } from '../KNXAddress';
-import NPDU = require('./NPDU');
+import {NPDU} from './NPDU';
 
-export = class CEMIMessage {
+export class CEMIMessage {
 
     constructor(
         readonly msgCode: number,
@@ -37,4 +37,4 @@ export = class CEMIMessage {
             const npduLength = npdu == null ? 0 : npdu.length;
             return 1 + length + control.length + srcAddress.length + dstAddress.length + npduLength;
     }
-};
+}

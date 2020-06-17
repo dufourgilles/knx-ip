@@ -1,7 +1,7 @@
 'use strict';
-import KNXHeader from './KNXHeader';
+import {KNXHeader} from './KNXHeader';
 
-export = class KNXPacket {
+export class KNXPacket {
     private _header: KNXHeader;
     constructor(readonly type: number, readonly length: number) {
             this._header = new KNXHeader(
@@ -19,4 +19,4 @@ export = class KNXPacket {
     toBuffer(): Buffer {
         return Buffer.alloc(0);
     }
-};
+}

@@ -1,8 +1,8 @@
 'use strict';
 import {CEMIConstants} from './CEMIConstants';
-import KNXDataBuffer from '../KNXDataBuffer';
+import {KNXDataBuffer} from '../KNXDataBuffer';
 
-export = class NPDU {
+export class NPDU {
 
     set tpci(tpci: number) {
         if (isNaN(tpci) ||  (tpci < 0 && tpci > 0xFF)) {
@@ -138,4 +138,4 @@ export = class NPDU {
         }
         return Buffer.concat([buffer, this._data.value]);
     }
-};
+}

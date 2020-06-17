@@ -1,6 +1,6 @@
 'use strict';
 
-export = class TLVInfo {
+export class TLVInfo {
     constructor(readonly type: number, readonly length: number, readonly info: Buffer) {
     }
 
@@ -20,4 +20,4 @@ export = class TLVInfo {
         buffer.writeUInt8(this.length, 1);
         return Buffer.concat([buffer, this.info]);
     }
-};
+}

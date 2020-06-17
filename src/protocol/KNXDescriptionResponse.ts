@@ -1,10 +1,10 @@
 'use strict';
 import {KNX_CONSTANTS} from './KNXConstants';
-import KNXPacket from './KNXPacket';
+import {KNXPacket} from './KNXPacket';
 import {DeviceInfo} from './DeviceInfo';
 import ServiceFamilies from './ServiceFamilies';
 
-export = class KNXDescriptionResponse extends KNXPacket {
+export class KNXDescriptionResponse extends KNXPacket {
 
     constructor(readonly deviceInfo: DeviceInfo, readonly serviceFamilies: ServiceFamilies) {
         super(KNX_CONSTANTS.DESCRIPTION_RESPONSE, deviceInfo.length + serviceFamilies.length);
@@ -31,4 +31,4 @@ export = class KNXDescriptionResponse extends KNXPacket {
             this.serviceFamilies.toBuffer()
         ]);
     }
-};
+}

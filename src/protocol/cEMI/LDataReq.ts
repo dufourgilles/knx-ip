@@ -1,12 +1,12 @@
 'use strict';
-import CEMIMessage from './CEMIMessage';
+import {CEMIMessage} from './CEMIMessage';
 import { CEMIConstants } from './CEMIConstants';
 import { KNXAddress } from '../KNXAddress';
 import {ControlField } from './ControlField';
-import NPDU from './NPDU';
-import KNXDataBuffer from '../KNXDataBuffer';
+import {NPDU} from './NPDU';
+import {KNXDataBuffer} from '../KNXDataBuffer';
 
-export = class LDataReq extends CEMIMessage {
+export class LDataReq extends CEMIMessage {
     constructor(
         additionalInfo: KNXDataBuffer,
         control: ControlField,
@@ -68,4 +68,4 @@ export = class LDataReq extends CEMIMessage {
         msgBuffer.push(this.npdu.toBuffer());
         return Buffer.concat(msgBuffer);
     }
-};
+}

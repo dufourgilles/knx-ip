@@ -1,8 +1,8 @@
 'use strict';
 import {KNX_CONSTANTS, ConnectionStatus} from './KNXConstants';
-import KNXPacket from './KNXPacket';
+import {KNXPacket} from './KNXPacket';
 
-export = class KNXConnectionStateResponse extends KNXPacket {
+export class KNXConnectionStateResponse extends KNXPacket {
     /**
      *
      * @param {number} channelID
@@ -37,4 +37,4 @@ export = class KNXConnectionStateResponse extends KNXPacket {
         buffer.writeUInt8(this.status, 1);
         return Buffer.concat([this.header.toBuffer(), buffer]);
     }
-};
+}

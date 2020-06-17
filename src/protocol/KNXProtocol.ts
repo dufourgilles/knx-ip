@@ -1,22 +1,22 @@
 'use strict';
 import {KNX_CONSTANTS, ConnectionStatus} from './KNXConstants';
-import KNXHeader from './KNXHeader';
+import {KNXHeader} from './KNXHeader';
 import {KNXSearchRequest} from './KNXSearchRequest';
-import KNXSearchResponse from './KNXSearchResponse';
+import {KNXSearchResponse} from './KNXSearchResponse';
 import {KNXDescriptionRequest} from './KNXDescriptionRequest';
-import KNXDescriptionResponse from './KNXDescriptionResponse';
-import KNXConnectRequest from './KNXConnectRequest';
-import KNXConnectResponse from './KNXConnectResponse';
-import KNXConnectionStateRequest from './KNXConnectionStateRequest';
-import KNXConnectionStateResponse from './KNXConnectionStateResponse';
-import KNXDisconnectRequest from './KNXDisconnectRequest';
-import KNXDisconnectResponse from './KNXDisconnectResponse';
+import {KNXDescriptionResponse} from './KNXDescriptionResponse';
+import {KNXConnectRequest} from './KNXConnectRequest';
+import {KNXConnectResponse} from './KNXConnectResponse';
+import {KNXConnectionStateRequest} from './KNXConnectionStateRequest';
+import {KNXConnectionStateResponse} from './KNXConnectionStateResponse';
+import {KNXDisconnectRequest} from './KNXDisconnectRequest';
+import {KNXDisconnectResponse} from './KNXDisconnectResponse';
 import {KNXTunnelingRequest} from './KNXTunnelingRequest';
-import KNXTunnelingAck from './KNXTunnelingAck';
+import {KNXTunnelingAck} from './KNXTunnelingAck';
 import {HPAI} from './HPAI';
 import {CRI} from './CRI';
-import KNXPacket from './KNXPacket';
-import CEMIMessage from './cEMI/CEMIMessage';
+import {KNXPacket} from './KNXPacket';
+import {CEMIMessage} from './cEMI/CEMIMessage';
 
 export interface KNXProtocolInfo {
     knxHeader: KNXHeader;

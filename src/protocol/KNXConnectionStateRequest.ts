@@ -1,9 +1,9 @@
 'use strict';
-import KNXPacket from './KNXPacket';
+import {KNXPacket} from './KNXPacket';
 import {KNX_CONSTANTS, ConnectionStatus} from './KNXConstants';
 import { HPAI } from './HPAI';
 
-export = class KNXConnectionStateRequest extends KNXPacket {
+export class KNXConnectionStateRequest extends KNXPacket {
     constructor(readonly channelID: number, readonly hpaiControl: HPAI = HPAI.NULLHPAI) {
         super(KNX_CONSTANTS.CONNECTIONSTATE_REQUEST, hpaiControl.length + 2);
         this.channelID = channelID;
@@ -31,4 +31,4 @@ export = class KNXConnectionStateRequest extends KNXPacket {
             this.hpaiControl.toBuffer()
         ]);
     }
-};
+}

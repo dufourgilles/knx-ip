@@ -1,7 +1,7 @@
 'use strict';
-import TLVInfo from './TLVInfo';
+import {TLVInfo} from './TLVInfo';
 
-export = class AdditionalInfo {
+export class AdditionalInfo {
     private _length: number;
     constructor(private _tlvs: TLVInfo[] = []) {
         this._length = 0;
@@ -33,4 +33,4 @@ export = class AdditionalInfo {
         return Buffer.concat(this._tlvs.map(tlv => tlv.toBuffer()));
     }
 
-};
+}

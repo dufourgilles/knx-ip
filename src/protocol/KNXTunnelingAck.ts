@@ -1,8 +1,8 @@
 'use strict';
-import KNXPacket from './KNXPacket';
+import {KNXPacket} from './KNXPacket';
 import {KNX_CONSTANTS} from './KNXConstants';
 
-export = class KNXTunnelingAck extends KNXPacket {
+export class KNXTunnelingAck extends KNXPacket {
     /**
      *
      * @param {number} channelID
@@ -36,4 +36,4 @@ export = class KNXTunnelingAck extends KNXPacket {
         buffer.writeUInt8(this.status, 3);
         return Buffer.concat([this.header.toBuffer(), buffer]);
     }
-};
+}

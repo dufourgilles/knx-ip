@@ -2,7 +2,7 @@
 
 import {DataPointType} from '../DataPointTypes/DataPointType';
 import {KNXAddress} from '../protocol/KNXAddress';
-import KNXDataBuffer from '../protocol/KNXDataBuffer';
+import {KNXDataBuffer} from '../protocol/KNXDataBuffer';
 import { DPT10Value } from '../DataPointTypes/DPT10';
 import { DPT3Value } from '../DataPointTypes/DPT3';
 import { DPT18Value } from '../DataPointTypes/DPT18';

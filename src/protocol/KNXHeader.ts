@@ -13,7 +13,7 @@ import {KNX_CONSTANTS} from './KNXConstants';
  | (2 Octet)                                                     |
  +-7-+-6-+-5-+-4-+-3-+-2-+-1-+-0-+-7-+-6-+-5-+-4-+-3-+-2-+-1-+-0-+
  */
-export = class KNXHeader {
+export class KNXHeader {
 
     get headerLength(): number {
         return this._headerLength;
@@ -69,5 +69,4 @@ export = class KNXHeader {
         buffer.writeUInt16BE(this.length, offset);
         return buffer;
     }
-
-};
+}

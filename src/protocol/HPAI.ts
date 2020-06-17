@@ -1,6 +1,6 @@
 'use strict';
 import {KNX_CONSTANTS} from './KNXConstants';
-import KNXHeader = require('./KNXHeader');
+import {KNXHeader} from './KNXHeader';
 const HPAI_STRUCTURE_LENGTH = 8;
 
 export enum KnxProtocol {

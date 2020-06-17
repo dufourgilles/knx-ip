@@ -1,8 +1,8 @@
 
-import KNXPacket from './KNXPacket';
+import {KNXPacket} from './KNXPacket';
 import {KNX_CONSTANTS, ConnectionStatus} from './KNXConstants';
 
-export = class KNXDisconnectResponse extends KNXPacket {
+export class KNXDisconnectResponse extends KNXPacket {
     constructor(readonly channelID: number, readonly status: ConnectionStatus) {
         super(KNX_CONSTANTS.DISCONNECT_RESPONSE, 2);
     }
@@ -22,4 +22,4 @@ export = class KNXDisconnectResponse extends KNXPacket {
         buffer.writeUInt8(this.status, 1);
         return Buffer.concat([this.header.toBuffer(), buffer]);
     }
-};
+}

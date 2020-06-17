@@ -2,7 +2,7 @@
 
 import { IDataPoint } from '../DataPoints/DataPointInterface';
 
-export = class KNXDataBuffer {
+export class KNXDataBuffer {
     /**
      *
      * @param {Buffer} data
@@ -27,4 +27,4 @@ export = class KNXDataBuffer {
         if (this.info == null) { return true; }
         return this.info.type.type === '1';
     }
-};
+}

@@ -29,7 +29,7 @@ type DataPointFactoryItem = (
     IDataPoint
 );
 
-export const DataPointFactory: {[index: string]: DataPointFactoryItem} = {
+const DataPointFactory: {[index: string]: DataPointFactoryItem} = {
     Alarm,
     Angle,
     Binary,
@@ -48,29 +48,31 @@ export const DataPointFactory: {[index: string]: DataPointFactoryItem} = {
     Temperature,
     Time,
     Trigger,
-    Updown,
-    createDataPoint: (ga: KNXAddress, typeName: string): DataPoint => {
-        /** @type {string} */
-        const DataPointClassName = `${typeName[0].toUpperCase()}${typeName.slice(1).toLowerCase()}`;
-        const DataPointClass: IDataPoint = DataPointFactory[DataPointClassName] as IDataPoint;
-        if (DataPointClass == null) {
-            throw new Error(`Unknown DataPoint type ${typeName}`);
-        }
-        return new DataPointClass(ga);
-    },
-    getDataPointType: (type: string|number, subtype: string|number): string => {
-        const dpt: DPT = DataPointType.TYPES[`DPT${type}`];
-        if (dpt == null) {
-            throw new Error(`Unknown type ${type}`);
-        }
-        let _3digitSubtype = `${subtype}`;
-        while (_3digitSubtype.length < 3) {
-            _3digitSubtype = `0${_3digitSubtype}`;
-        }
-        const dptSubtype = dpt.subtypes.ids[_3digitSubtype];
-        if (dptSubtype == null) {
-            throw new Error(`Invalid subtype ${subtype} for type DPT${type}`);
-        }
-        return dptSubtype;
+    Updown
+};
+
+export const createDataPoint = (ga: KNXAddress, typeName: string): DataPoint => {
+    /** @type {string} */
+    const DataPointClassName = `${typeName[0].toUpperCase()}${typeName.slice(1).toLowerCase()}`;
+    const DataPointClass: IDataPoint = DataPointFactory[DataPointClassName] as IDataPoint;
+    if (DataPointClass == null) {
+        throw new Error(`Unknown DataPoint type ${typeName}`);
     }
+    return new DataPointClass(ga);
+};
+
+export const getDataPointType = (type: string|number, subtype: string|number): string => {
+    const dpt: DPT = DataPointType.TYPES[`DPT${type}`];
+    if (dpt == null) {
+        throw new Error(`Unknown type ${type}`);
+    }
+    let _3digitSubtype = `${subtype}`;
+    while (_3digitSubtype.length < 3) {
+        _3digitSubtype = `0${_3digitSubtype}`;
+    }
+    const dptSubtype = dpt.subtypes.ids[_3digitSubtype];
+    if (dptSubtype == null) {
+        throw new Error(`Invalid subtype ${subtype} for type DPT${type}`);
+    }
+    return dptSubtype;
 };

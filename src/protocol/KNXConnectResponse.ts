@@ -1,10 +1,10 @@
 'use strict';
 import {KNX_CONSTANTS} from './KNXConstants';
-import KNXPacket from './KNXPacket';
+import {KNXPacket} from './KNXPacket';
 import {HPAI} from './HPAI';
 import { CRD } from './CRD';
 
-export = class KNXConnectResponse extends KNXPacket {
+export class KNXConnectResponse extends KNXPacket {
     constructor(readonly channelID: number, readonly status: number, readonly hpai: HPAI, readonly crd: CRD) {
         super(KNX_CONSTANTS.CONNECT_RESPONSE, hpai == null ? 2 : 2 + hpai.length + crd.length);
     }
@@ -58,4 +58,4 @@ export = class KNXConnectResponse extends KNXPacket {
         }
         return Buffer.concat([buffer, this.hpai.toBuffer(), this.crd.toBuffer()]);
     }
-};
+}
