@@ -6,6 +6,7 @@ import {KNXDataBuffer} from './protocol/KNXDataBuffer';
 import {NPDU} from './protocol/cEMI/NPDU';
 
 export enum KNXTunnelSocketEvents {
+    disconnected = 'disconnected',
     indication = 'indication',
     error = 'error'
 }
@@ -148,6 +149,7 @@ export class KNXTunnelSocket extends EventEmitter {
             if (this._disconnectCB != null) {
                 this._disconnectCB();
             }
+            this.emit(KNXTunnelSocketEvents.disconnected);
         });
     }
 
