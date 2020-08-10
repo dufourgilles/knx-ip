@@ -1,1 +1,1 @@
-{"version":3,"file":"Time.js","sourceRoot":"","sources":["../../src/DataPoints/Time.ts"],"names":[],"mappings":";AAAA,2CAAsC;AACtC,iFAA4D;AAU5D,iBAAS,MAAM,IAAK,SAAQ,qBAAS;IACjC,YAAY,EAAc;QACtB,KAAK,CAAC,EAAE,EAAE,2BAAI,CAAC,OAAO,CAAC,CAAC;IAC5B,CAAC;CACJ,CAAC"}
+{"version":3,"file":"Time.js","sourceRoot":"","sources":["../../src/DataPoints/Time.ts"],"names":[],"mappings":";;;AAAA,2CAAsC;AACtC,iFAA4D;AAU5D,MAAa,IAAK,SAAQ,qBAAS;IAC/B,YAAY,EAAc;QACtB,KAAK,CAAC,EAAE,EAAE,2BAAI,CAAC,OAAO,CAAC,CAAC;IAC5B,CAAC;CACJ;AAJD,oBAIC"}

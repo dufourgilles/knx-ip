@@ -1,1 +1,1 @@
-{"version":3,"file":"Trigger.js","sourceRoot":"","sources":["../../src/DataPoints/Trigger.ts"],"names":[],"mappings":";AAAA,2CAAsC;AACtC,iFAA4D;AAG5D,iBAAS,MAAM,OAAQ,SAAQ,qBAAS;IACpC,YAAY,EAAc;QACtB,KAAK,CAAC,EAAE,EAAE,2BAAI,CAAC,UAAU,CAAC,CAAC;IAC/B,CAAC;CACJ,CAAC"}
+{"version":3,"file":"Trigger.js","sourceRoot":"","sources":["../../src/DataPoints/Trigger.ts"],"names":[],"mappings":";;;AAAA,2CAAsC;AACtC,iFAA4D;AAG5D,MAAa,OAAQ,SAAQ,qBAAS;IAClC,YAAY,EAAc;QACtB,KAAK,CAAC,EAAE,EAAE,2BAAI,CAAC,UAAU,CAAC,CAAC;IAC/B,CAAC;CACJ;AAJD,0BAIC"}

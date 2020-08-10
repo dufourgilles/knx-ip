@@ -10,8 +10,8 @@ import { KNXAddress } from '../protocol/KNXAddress';
     },
  */
 
-export = class Temperature extends DataPoint {
+export class Temperature extends DataPoint {
     constructor(ga: KNXAddress) {
         super(ga, DPTS.DPTTemperature);
     }
-};
+}

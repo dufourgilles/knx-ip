@@ -1,1 +1,1 @@
-{"version":3,"file":"Binary.js","sourceRoot":"","sources":["../../src/DataPoints/Binary.ts"],"names":[],"mappings":";AAAA,2CAAsC;AACtC,iFAA4D;AAG5D,iBAAS,MAAM,MAAO,SAAQ,qBAAS;IACnC,YAAY,EAAc;QACtB,KAAK,CAAC,EAAE,EAAE,2BAAI,CAAC,SAAS,CAAC,CAAC;IAC9B,CAAC;CACJ,CAAC"}
+{"version":3,"file":"Binary.js","sourceRoot":"","sources":["../../src/DataPoints/Binary.ts"],"names":[],"mappings":";;;AAAA,2CAAsC;AACtC,iFAA4D;AAG5D,MAAa,MAAO,SAAQ,qBAAS;IACjC,YAAY,EAAc;QACtB,KAAK,CAAC,EAAE,EAAE,2BAAI,CAAC,SAAS,CAAC,CAAC;IAC9B,CAAC;CACJ;AAJD,wBAIC"}

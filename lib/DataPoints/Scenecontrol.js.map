@@ -1,1 +1,1 @@
-{"version":3,"file":"Scenecontrol.js","sourceRoot":"","sources":["../../src/DataPoints/Scenecontrol.ts"],"names":[],"mappings":";AAAA,2CAAsC;AACtC,iFAA4D;AAG5D,iBAAS,MAAM,YAAa,SAAQ,qBAAS;IACzC,YAAY,EAAc;QACtB,KAAK,CAAC,EAAE,EAAE,2BAAI,CAAC,eAAe,CAAC,CAAC;IACpC,CAAC;CACJ,CAAC"}
+{"version":3,"file":"Scenecontrol.js","sourceRoot":"","sources":["../../src/DataPoints/Scenecontrol.ts"],"names":[],"mappings":";;;AAAA,2CAAsC;AACtC,iFAA4D;AAG5D,MAAa,YAAa,SAAQ,qBAAS;IACvC,YAAY,EAAc;QACtB,KAAK,CAAC,EAAE,EAAE,2BAAI,CAAC,eAAe,CAAC,CAAC;IACpC,CAAC;CACJ;AAJD,oCAIC"}

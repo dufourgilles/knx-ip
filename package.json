@@ -13,7 +13,7 @@
         "test": "jest  --forceExit  --detectOpenHandles",
         "test:badges": "npm run jest-coverage-badges output ./badges",
         "test:coverage": "jest --coverage --forceExit --detectOpenHandles && npm run test:badges",
-        "build": "npm run compile && npm run tslint:nofix && npm run test:coverage",
+        "build": "npm run compile && npm run tslint:nofix",
         "jest-coverage-badges": "jest-coverage-badges"
     },
     "engines": {
