@@ -98,6 +98,14 @@ export class KNXClient extends EventEmitter {
         this._clientSocket.on('message', this._processInboundMessage);
     }
 
+    bindSocketPort(port: number): void {
+        try {
+            this._clientSocket.bind(port, '0.0.0.0');
+        } catch (err) {
+            this.emit(KNXClient.KNXClientEvents.error, err);
+        }
+    }
+
     send(knxPacket: KNXPacket, host?: string, port?: number): void {
         const peerHost = host == null ? this._peerHost : host;
         const peerPort = port == null ? this._peerPort : port;
