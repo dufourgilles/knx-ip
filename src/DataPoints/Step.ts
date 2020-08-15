@@ -11,8 +11,8 @@ import { KNXAddress } from '../protocol/KNXAddress';
 
  */
 
-export class Step extends DataPoint {
+export = class Step extends DataPoint {
     constructor(ga: KNXAddress) {
         super(ga, DPTS.DPTStep);
     }
-}
+};
