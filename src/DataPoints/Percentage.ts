@@ -14,7 +14,7 @@ import { KNXAddress } from '../protocol/KNXAddress';
 const MIN = 0;
 const MAX = 100;
 
-export class Percentage extends DataPoint {
+export = class Percentage extends DataPoint {
     constructor(ga: KNXAddress) {
         super(ga, DPTS.DPTPercentage);
 
@@ -41,4 +41,4 @@ export class Percentage extends DataPoint {
         }
         this.write(value);
     }
-}
+};

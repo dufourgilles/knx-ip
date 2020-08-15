@@ -1,6 +1,0 @@
-import { DataPoint } from './DataPoint';
-import { KNXAddress } from '../protocol/KNXAddress';
-export declare class Percentagescaling extends DataPoint {
-    constructor(ga: KNXAddress);
-    set(_value: number): void;
-}

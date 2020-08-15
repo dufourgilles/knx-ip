@@ -11,7 +11,7 @@ import { KNXAddress } from '../protocol/KNXAddress';
 
  */
 
-export class Switch extends DataPoint {
+export = class Switch extends DataPoint {
     constructor(ga: KNXAddress) {
         super(ga, DPTS.DPTSwitch);
         this._actions = {
@@ -33,4 +33,4 @@ export class Switch extends DataPoint {
     setOn(): void {
         this.write(1);
     }
-}
+};

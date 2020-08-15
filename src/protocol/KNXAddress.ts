@@ -79,12 +79,7 @@ export class KNXAddress {
             }
         }
         digits.push(this._address & 0xFF);
-
-        if (this.type === KNXAddressType.TYPE_GROUP) {
-            return digits.join('/');
-        } else {
-            return digits.join('.');
-        }
+        return digits.join('.');
     }
 
     toBuffer(): Buffer {
