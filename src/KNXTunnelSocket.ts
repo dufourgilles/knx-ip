@@ -25,9 +25,12 @@ export class KNXTunnelSocket extends EventEmitter {
     private _srcAddress: KNXAddress|null;
     private _host: string;
     private _port: number;
-    constructor(srcAddress: string = null) {
+    constructor(srcAddress: string = null, socketPort?: number) {
         super();
         this._knxClient = new KNXClient();
+        if (socketPort != null) {
+            this._knxClient.bindSocketPort(socketPort);
+        }
         this._connectionCB = null;
         this._disconnectCB = null;
         this._monitoringBus = false;
@@ -35,6 +38,18 @@ export class KNXTunnelSocket extends EventEmitter {
         this._srcAddress = srcAddress == null ? KNXAddress.createFromString('15.15.200') : KNXAddress.createFromString(srcAddress);
         this._handleBusEvent = this._handleBusEvent.bind(this);
         this._init();
+    }
+
+    bindSocketPort(port: number): Promise<void> {
+        if (this._knxClient.isConnected() === true) { return Promise.reject('Socket already connected'); }
+        return new Promise((resolve, reject) => {
+            try {
+                this._knxClient.bindSocketPort(port);
+                resolve();
+            } catch (err) {
+                reject(err);
+            }
+        });
     }
 
     close(): void {
