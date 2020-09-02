@@ -58,25 +58,31 @@ enum KNXClientEvents {
 
 export class KNXClient extends EventEmitter {
 
-    static  KNXClientEvents = KNXClientEvents;
-
     get channelID(): number {
         return this._channelID;
     }
+
+    static  KNXClientEvents = KNXClientEvents;
+    public max_HeartbeatFailures: Number;
     private _host: string;
     private _port: number;
     private _peerHost: string;
     private _peerPort: number;
     private _timer: NodeJS.Timeout;
+    private _heartbeatTimer: NodeJS.Timeout;
+    private _heartbeatFailures: number;
+    private _heartbeatRunning: boolean;
     private _discovery_timer: NodeJS.Timeout;
     private _awaitingResponseType: number;
-    private _discoverySocket: dgram.Socket;
     private _clientSocket: dgram.Socket;
     private _clientTunnelSeqNumber = 0;
     private _channelID: number;
     private _connectionState: STATE;
     private _tunnelReqTimer: Map<number, NodeJS.Timeout>;
     private _pendingTunnelAnswer: Map<string, PendingAnswer>;
+    /**
+     *
+     */
     constructor() {
         super();
         this._host = null;
@@ -84,28 +90,48 @@ export class KNXClient extends EventEmitter {
         this._peerHost = null;
         this._peerPort = null;
         this._timer = null;
+        this._heartbeatFailures = 0;
+        this.max_HeartbeatFailures = 3;
+        this._heartbeatTimer = null;
         this._discovery_timer = null;
         this._awaitingResponseType = null;
-        this._discoverySocket = null;
-        this._clientSocket = dgram.createSocket('udp4');
+        this._processInboundMessage = this._processInboundMessage.bind(this);
+        this._clientSocket = dgram.createSocket({type: 'udp4', reuseAddr: true});
+        this._clientSocket.on(SocketEvents.message, this._processInboundMessage);
+        this._clientSocket.on(SocketEvents.error, error => this.emit(KNXClient.KNXClientEvents.error, error));
         this._clientTunnelSeqNumber = 0;
         this._channelID = null;
         this._connectionState = STATE.STARTED;
         this._tunnelReqTimer = new Map();
         this._pendingTunnelAnswer = new Map();
-        this._processInboundMessage = this._processInboundMessage.bind(this);
-
-        this._clientSocket.on('message', this._processInboundMessage);
     }
 
-    bindSocketPort(port: number): void {
-        try {
-            this._clientSocket.bind(port, '0.0.0.0');
-        } catch (err) {
-            this.emit(KNXClient.KNXClientEvents.error, err);
-        }
+    /**
+     *
+     * @param {number = 3671} port
+     * @param {string = '0.0.0.0'} host
+     */
+    bindSocketPortAsync(port = KNX_CONSTANTS.KNX_PORT, host = '0.0.0.0'): Promise<void> {
+        return new Promise((resolve, reject) => {
+            try {
+                this._clientSocket.bind(port, host, () => {
+                    this._clientSocket.setMulticastInterface(host);
+                    this._clientSocket.setMulticastTTL(16);
+                    this._host = host;
+                    resolve();
+                });
+            } catch (err) {
+                reject(err);
+            }
+        });
     }
 
+    /**
+     *
+     * @param {KNXPacket} knxPacket
+     * @param {string} host
+     * @param {number} port
+     */
     send(knxPacket: KNXPacket, host?: string, port?: number): void {
         const peerHost = host == null ? this._peerHost : host;
         const peerPort = port == null ? this._peerPort : port;
@@ -120,6 +146,15 @@ export class KNXClient extends EventEmitter {
                 });
     }
 
+    /**
+     *
+     * @param {KNXAddress} srcAddress
+     * @param {KNXAddress} dstAddress
+     * @param {KNXDataBuffer} data
+     * @param {function} cb
+     * @param {string} host
+     * @param {number} port
+     */
     sendWriteRequest(
         srcAddress: KNXAddress,
         dstAddress: KNXAddress,
@@ -159,6 +194,14 @@ export class KNXClient extends EventEmitter {
         this.send(knxTunnelingRequest, peerHost, peerPort);
     }
 
+    /**
+     *
+     * @param {KNXAddress} srcAddress
+     * @param {KNXAddress} dstAddress
+     * @param {function} cb
+     * @param {string} host
+     * @param {number} port
+     */
     sendReadRequest(
         srcAddress: KNXAddress,
         dstAddress: KNXAddress,
@@ -196,28 +239,59 @@ export class KNXClient extends EventEmitter {
         this.send(knxTunnelingRequest, peerHost, peerPort);
     }
 
-    startDiscovery(host: string , port: number = KNX_CONSTANTS.KNX_PORT): void {
-        this._host = host;
-        this._port = port;
-        this._bindDiscoverySocket(host, port);
+    /**
+     * Start Heart Beat - Automatically started on connect
+     */
+    startHeartBeat(): void {
+        this._heartbeatFailures = 0;
+        this._heartbeatRunning = true;
+        this._runHeartbeat();
+    }
+
+    /**
+     * Stop Heart Beat
+     */
+    stopHeartBeat(): void {
+        this._heartbeatRunning = false;
+        clearTimeout(this._heartbeatTimer);
+    }
+
+    /**
+     * @return {boolean}
+     */
+    isDiscoveryRunning(): boolean {
+        return this._discovery_timer != null;
+    }
+
+    /**
+     * Start KNX Gateway discovery
+     */
+    startDiscovery(): void {
+        if (this.isDiscoveryRunning()) {
+            throw new Error('Discovery already running');
+        }
         this._discovery_timer = setTimeout(() => {
             this._discovery_timer = null;
         }, 1000 * KNX_CONSTANTS.SEARCH_TIMEOUT);
         this._sendSearchRequestMessage();
     }
 
+    /**
+     *
+     */
     stopDiscovery(): void {
-        if (this._discoverySocket == null || this._host == null) {
+        if (!this.isDiscoveryRunning()) {
             return;
         }
-        if (this._discovery_timer != null) {
-            clearTimeout(this._discovery_timer);
-            this._discovery_timer = null;
-        }
-        this._discoverySocket.close();
-        this._discoverySocket = null;
+        clearTimeout(this._discovery_timer);
+        this._discovery_timer = null;
     }
 
+    /**
+     *
+     * @param {string} host
+     * @param {number} port
+     */
     getDescription(host: string, port: number): void {
         if (this._clientSocket == null) {
             throw new Error('No client socket defined');
@@ -229,6 +303,12 @@ export class KNXClient extends EventEmitter {
         this._sendDescriptionRequestMessage(host, port);
     }
 
+    /**
+     *
+     * @param {string} host
+     * @param {number} port
+     * @param {TunnelTypes = TunnelTypes.TUNNEL_LINKLAYER} knxLayer
+     */
     openTunnelConnection(host: string, port: number, knxLayer: TunnelTypes = TunnelTypes.TUNNEL_LINKLAYER): void {
         if (this._clientSocket == null) {
             throw new Error('No client socket defined');
@@ -242,22 +322,43 @@ export class KNXClient extends EventEmitter {
         this._sendConnectRequestMessage(host, port, new TunnelCRI(knxLayer));
     }
 
+    /**
+     *
+     * @param {string} host
+     * @param {number} port
+     * @param {number} channelID
+     */
     getConnectionStatus(host: string, port: number, channelID?: number): void {
         if (this._clientSocket == null) {
             throw new Error('No client socket defined');
         }
-        this._timer = setTimeout(() => {
-            this._timer = null;
+        const timeoutError = new Error(`HeartBeat failure with ${host}:${port}`);
+        const deadError = new Error(`Connection dead with ${host}:${port}`);
+        this._heartbeatTimer = setTimeout(() => {
+            this._heartbeatTimer = null;
+            this.emit(KNXClient.KNXClientEvents.error, timeoutError);
+            this._heartbeatFailures++;
+            if (this._heartbeatFailures >= this.max_HeartbeatFailures) {
+                this.emit(KNXClient.KNXClientEvents.error, deadError);
+                this.disconnect(host, port, this._channelID);
+            }
         }, 1000 * KNX_CONSTANTS.CONNECTIONSTATE_REQUEST_TIMEOUT);
         this._awaitingResponseType = KNX_CONSTANTS.CONNECTIONSTATE_RESPONSE;
         if (channelID == null) { channelID = this._channelID; }
         this._sendConnectionStateRequestMessage(host, port, channelID);
     }
 
+    /**
+     *
+     * @param {string} host
+     * @param {number} port
+     * @param {number?} channelID
+     */
     disconnect(host: string, port: number, channelID?: number): void {
         if (this._clientSocket == null) {
             throw new Error('No client socket defined');
         }
+        this.stopHeartBeat();
         this._timer = setTimeout(() => {
             this._timer = null;
         }, 1000 * KNX_CONSTANTS.CONNECT_REQUEST_TIMEOUT);
@@ -267,6 +368,9 @@ export class KNXClient extends EventEmitter {
         this._sendDisconnectRequestMessage(host, port, channelID);
     }
 
+    /**
+     *
+     */
     close(): void {
         if (this._clientSocket) {
             this._clientSocket.close();
@@ -274,8 +378,20 @@ export class KNXClient extends EventEmitter {
         }
     }
 
+    /**
+     * @return {boolean}
+     */
     isConnected(): boolean {
         return this._connectionState === STATE.CONNECTED;
+    }
+
+    private _runHeartbeat(): void {
+        if (this._heartbeatRunning) {
+            this.getConnectionStatus(this._peerHost, this._peerPort);
+            setTimeout(() => {
+                this._runHeartbeat();
+            }, 1000 * KNX_CONSTANTS.CONNECTION_ALIVE_TIME);
+        }
     }
 
     private _incSeqNumber(): number {
@@ -284,16 +400,6 @@ export class KNXClient extends EventEmitter {
             this._clientTunnelSeqNumber = 0;
         }
         return seq;
-    }
-
-    private _initDiscoverySocket(): void {
-        if (this._discoverySocket == null) {
-            throw new Error('No server socket defined');
-        }
-        this._discoverySocket.on(SocketEvents.error, err => {
-            this.emit(KNXClient.KNXClientEvents.error, err);
-        });
-        this._discoverySocket.on(SocketEvents.message, this._processInboundMessage);
     }
 
     private _handleResponse(knxTunnelingResponse: KNXTunnelingRequest): void {
@@ -433,7 +539,12 @@ export class KNXClient extends EventEmitter {
                 }
             } else {
                 if (knxHeader.service_type === this._awaitingResponseType) {
-                    clearTimeout(this._timer);
+                    if (this._awaitingResponseType === KNX_CONSTANTS.CONNECTIONSTATE_RESPONSE) {
+                        clearTimeout(this._heartbeatTimer);
+                        this._heartbeatFailures = 0;
+                    } else {
+                        clearTimeout(this._timer);
+                    }
                 }
                 /**
                  * @event KNXClient#response
@@ -462,7 +573,7 @@ export class KNXClient extends EventEmitter {
     }
 
     private _sendSearchRequestMessage(): void {
-        this._discoverySocket.send(
+        this._clientSocket.send(
             KNXProtocol.newKNXSearchRequest(new HPAI(this._host, this._port)).toBuffer(),
             KNX_CONSTANTS.KNX_PORT,
             KNX_CONSTANTS.KNX_IP,
@@ -512,22 +623,5 @@ export class KNXClient extends EventEmitter {
             host,
             err => this.emit(KNXClient.KNXClientEvents.error, err)
         );
-    }
-
-    private _bindDiscoverySocket(host: string, port: number): void {
-        if (this._discoverySocket != null) {
-            throw new Error('Discovery socket already binded');
-        }
-        this._discoverySocket = dgram.createSocket({type: 'udp4', reuseAddr: true});
-        this._initDiscoverySocket();
-        this._discoverySocket.bind(port, host, () => {
-            this._discoverySocket.setMulticastInterface(host);
-            this._discoverySocket.setMulticastTTL(16);
-            this._host = host;
-            /**
-             * @event ready
-             */
-            this.emit(KNXClient.KNXClientEvents.ready);
-        });
     }
 }

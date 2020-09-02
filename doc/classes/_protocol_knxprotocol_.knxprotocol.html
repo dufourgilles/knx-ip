@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>KNXProtocol | knx-ip</title>
-	<meta name="description" content="">
+	<meta name="description" content="Documentation for knx-ip">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
 </head>
@@ -13,7 +13,7 @@
 	<div class="tsd-page-toolbar">
 		<div class="container">
 			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.js" data-base="..">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
 					<div class="field">
 						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
 						<input id="tsd-search-field" type="text" />
@@ -38,8 +38,6 @@
 							</div>
 							<input type="checkbox" id="tsd-filter-inherited" checked />
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-							<input type="checkbox" id="tsd-filter-externals" checked />
-							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
 							<input type="checkbox" id="tsd-filter-only-exported" />
 							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
 						</div>
@@ -111,13 +109,13 @@
 					<a name="newknxconnectrequest" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> newKNXConnect<wbr>Request</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">newKNXConnect<wbr>Request<span class="tsd-signature-symbol">(</span>cri<span class="tsd-signature-symbol">: </span><a href="_protocol_cri_.cri.html" class="tsd-signature-type">CRI</a>, hpaiControl<span class="tsd-signature-symbol">?: </span><a href="_protocol_hpai_.hpai.html" class="tsd-signature-type">HPAI</a>, hpaiData<span class="tsd-signature-symbol">?: </span><a href="_protocol_hpai_.hpai.html" class="tsd-signature-type">HPAI</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">KNXConnectRequest</span></li>
+						<li class="tsd-signature tsd-kind-icon">newKNXConnect<wbr>Request<span class="tsd-signature-symbol">(</span>cri<span class="tsd-signature-symbol">: </span><a href="_protocol_cri_.cri.html" class="tsd-signature-type">CRI</a>, hpaiControl<span class="tsd-signature-symbol">?: </span><a href="_protocol_hpai_.hpai.html" class="tsd-signature-type">HPAI</a>, hpaiData<span class="tsd-signature-symbol">?: </span><a href="_protocol_hpai_.hpai.html" class="tsd-signature-type">HPAI</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_protocol_knxconnectrequest_.knxconnectrequest.html" class="tsd-signature-type">KNXConnectRequest</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/ac6f912/src/protocol/KNXProtocol.ts#L89">src/protocol/KNXProtocol.ts:89</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/protocol/KNXProtocol.ts#L89">src/protocol/KNXProtocol.ts:89</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -132,7 +130,7 @@
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> hpaiData: <a href="_protocol_hpai_.hpai.html" class="tsd-signature-type">HPAI</a><span class="tsd-signature-symbol"> = HPAI.NULLHPAI</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">KNXConnectRequest</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_protocol_knxconnectrequest_.knxconnectrequest.html" class="tsd-signature-type">KNXConnectRequest</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -140,13 +138,13 @@
 					<a name="newknxconnectionstaterequest" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> newKNXConnection<wbr>State<wbr>Request</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">newKNXConnection<wbr>State<wbr>Request<span class="tsd-signature-symbol">(</span>channelID<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, hpaiControl<span class="tsd-signature-symbol">?: </span><a href="_protocol_hpai_.hpai.html" class="tsd-signature-type">HPAI</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">KNXConnectionStateRequest</span></li>
+						<li class="tsd-signature tsd-kind-icon">newKNXConnection<wbr>State<wbr>Request<span class="tsd-signature-symbol">(</span>channelID<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, hpaiControl<span class="tsd-signature-symbol">?: </span><a href="_protocol_hpai_.hpai.html" class="tsd-signature-type">HPAI</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_protocol_knxconnectionstaterequest_.knxconnectionstaterequest.html" class="tsd-signature-type">KNXConnectionStateRequest</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/ac6f912/src/protocol/KNXProtocol.ts#L93">src/protocol/KNXProtocol.ts:93</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/protocol/KNXProtocol.ts#L93">src/protocol/KNXProtocol.ts:93</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -158,7 +156,7 @@
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> hpaiControl: <a href="_protocol_hpai_.hpai.html" class="tsd-signature-type">HPAI</a><span class="tsd-signature-symbol"> = HPAI.NULLHPAI</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">KNXConnectionStateRequest</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_protocol_knxconnectionstaterequest_.knxconnectionstaterequest.html" class="tsd-signature-type">KNXConnectionStateRequest</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -172,7 +170,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/ac6f912/src/protocol/KNXProtocol.ts#L85">src/protocol/KNXProtocol.ts:85</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/protocol/KNXProtocol.ts#L85">src/protocol/KNXProtocol.ts:85</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -189,13 +187,13 @@
 					<a name="newknxdisconnectrequest" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> newKNXDisconnect<wbr>Request</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">newKNXDisconnect<wbr>Request<span class="tsd-signature-symbol">(</span>channelID<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, hpaiControl<span class="tsd-signature-symbol">?: </span><a href="_protocol_hpai_.hpai.html" class="tsd-signature-type">HPAI</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">KNXDisconnectRequest</span></li>
+						<li class="tsd-signature tsd-kind-icon">newKNXDisconnect<wbr>Request<span class="tsd-signature-symbol">(</span>channelID<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, hpaiControl<span class="tsd-signature-symbol">?: </span><a href="_protocol_hpai_.hpai.html" class="tsd-signature-type">HPAI</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_protocol_knxdisconnectrequest_.knxdisconnectrequest.html" class="tsd-signature-type">KNXDisconnectRequest</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/ac6f912/src/protocol/KNXProtocol.ts#L97">src/protocol/KNXProtocol.ts:97</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/protocol/KNXProtocol.ts#L97">src/protocol/KNXProtocol.ts:97</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -207,7 +205,7 @@
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> hpaiControl: <a href="_protocol_hpai_.hpai.html" class="tsd-signature-type">HPAI</a><span class="tsd-signature-symbol"> = HPAI.NULLHPAI</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">KNXDisconnectRequest</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_protocol_knxdisconnectrequest_.knxdisconnectrequest.html" class="tsd-signature-type">KNXDisconnectRequest</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -215,13 +213,13 @@
 					<a name="newknxdisconnectresponse" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> newKNXDisconnect<wbr>Response</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">newKNXDisconnect<wbr>Response<span class="tsd-signature-symbol">(</span>channelID<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, status<span class="tsd-signature-symbol">: </span><a href="../enums/_protocol_knxconstants_.connectionstatus.html" class="tsd-signature-type">ConnectionStatus</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">KNXDisconnectResponse</span></li>
+						<li class="tsd-signature tsd-kind-icon">newKNXDisconnect<wbr>Response<span class="tsd-signature-symbol">(</span>channelID<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, status<span class="tsd-signature-symbol">: </span><a href="../enums/_protocol_knxconstants_.connectionstatus.html" class="tsd-signature-type">ConnectionStatus</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_protocol_knxdisconnectresponse_.knxdisconnectresponse.html" class="tsd-signature-type">KNXDisconnectResponse</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/ac6f912/src/protocol/KNXProtocol.ts#L101">src/protocol/KNXProtocol.ts:101</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/protocol/KNXProtocol.ts#L101">src/protocol/KNXProtocol.ts:101</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -233,7 +231,7 @@
 									<h5>status: <a href="../enums/_protocol_knxconstants_.connectionstatus.html" class="tsd-signature-type">ConnectionStatus</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">KNXDisconnectResponse</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_protocol_knxdisconnectresponse_.knxdisconnectresponse.html" class="tsd-signature-type">KNXDisconnectResponse</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -247,7 +245,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/ac6f912/src/protocol/KNXProtocol.ts#L81">src/protocol/KNXProtocol.ts:81</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/protocol/KNXProtocol.ts#L81">src/protocol/KNXProtocol.ts:81</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -264,13 +262,13 @@
 					<a name="newknxtunnelingack" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> newKNXTunnelingACK</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">newKNXTunnelingACK<span class="tsd-signature-symbol">(</span>channelID<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, seqCounter<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, status<span class="tsd-signature-symbol">: </span><a href="../enums/_protocol_knxconstants_.connectionstatus.html" class="tsd-signature-type">ConnectionStatus</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">KNXTunnelingAck</span></li>
+						<li class="tsd-signature tsd-kind-icon">newKNXTunnelingACK<span class="tsd-signature-symbol">(</span>channelID<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, seqCounter<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, status<span class="tsd-signature-symbol">: </span><a href="../enums/_protocol_knxconstants_.connectionstatus.html" class="tsd-signature-type">ConnectionStatus</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_protocol_knxtunnelingack_.knxtunnelingack.html" class="tsd-signature-type">KNXTunnelingAck</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/ac6f912/src/protocol/KNXProtocol.ts#L105">src/protocol/KNXProtocol.ts:105</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/protocol/KNXProtocol.ts#L105">src/protocol/KNXProtocol.ts:105</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -285,7 +283,7 @@
 									<h5>status: <a href="../enums/_protocol_knxconstants_.connectionstatus.html" class="tsd-signature-type">ConnectionStatus</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">KNXTunnelingAck</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_protocol_knxtunnelingack_.knxtunnelingack.html" class="tsd-signature-type">KNXTunnelingAck</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -293,13 +291,13 @@
 					<a name="newknxtunnelingrequest" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> newKNXTunneling<wbr>Request</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">newKNXTunneling<wbr>Request<span class="tsd-signature-symbol">(</span>channelID<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, seqCounter<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, cEMIMessage<span class="tsd-signature-symbol">: </span><a href="../modules/_protocol_cemi_cemifactory_.html#cemimessage" class="tsd-signature-type">CEMIMessage</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_protocol_knxtunnelingrequest_.knxtunnelingrequest.html" class="tsd-signature-type">KNXTunnelingRequest</a></li>
+						<li class="tsd-signature tsd-kind-icon">newKNXTunneling<wbr>Request<span class="tsd-signature-symbol">(</span>channelID<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, seqCounter<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, cEMIMessage<span class="tsd-signature-symbol">: </span><a href="_protocol_cemi_cemimessage_.cemimessage.html" class="tsd-signature-type">CEMIMessage</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_protocol_knxtunnelingrequest_.knxtunnelingrequest.html" class="tsd-signature-type">KNXTunnelingRequest</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/ac6f912/src/protocol/KNXProtocol.ts#L109">src/protocol/KNXProtocol.ts:109</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/protocol/KNXProtocol.ts#L109">src/protocol/KNXProtocol.ts:109</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -311,7 +309,7 @@
 									<h5>seqCounter: <span class="tsd-signature-type">number</span></h5>
 								</li>
 								<li>
-									<h5>cEMIMessage: <a href="../modules/_protocol_cemi_cemifactory_.html#cemimessage" class="tsd-signature-type">CEMIMessage</a></h5>
+									<h5>cEMIMessage: <a href="_protocol_cemi_cemimessage_.cemimessage.html" class="tsd-signature-type">CEMIMessage</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_protocol_knxtunnelingrequest_.knxtunnelingrequest.html" class="tsd-signature-type">KNXTunnelingRequest</a></h4>
@@ -328,7 +326,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/ac6f912/src/protocol/KNXProtocol.ts#L36">src/protocol/KNXProtocol.ts:36</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/protocol/KNXProtocol.ts#L36">src/protocol/KNXProtocol.ts:36</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -351,7 +349,7 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class="current tsd-kind-module">
 						<a href="../modules/_protocol_knxprotocol_.html">&quot;protocol/KNXProtocol&quot;</a>
 					</li>
 				</ul>
@@ -360,7 +358,7 @@
 				<ul class="before-current">
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-class tsd-parent-kind-external-module">
+					<li class="current tsd-kind-class tsd-parent-kind-module">
 						<a href="_protocol_knxprotocol_.knxprotocol.html" class="tsd-kind-icon">KNXProtocol</a>
 						<ul>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
@@ -394,7 +392,7 @@
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
 						<a href="../interfaces/_protocol_knxprotocol_.knxprotocolinfo.html" class="tsd-kind-icon">KNXProtocol<wbr>Info</a>
 					</li>
 				</ul>
@@ -407,57 +405,22 @@
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
-				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
 				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
 				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
 				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
-				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
-				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
 				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
-				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
-				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
-				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
-				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
-				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
-				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
-				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
-				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
 			</ul>
 			<ul class="tsd-legend">
-				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
-				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
 			</ul>
 		</div>
 	</div>
@@ -467,6 +430,5 @@
 </div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>

@@ -47,24 +47,20 @@ read the status again before switching the lamp off.
 ```javascript
 
 
-const {KNXClient, KNXTunnelSocket, KNXProtocol, DataPoints} = require("knx-ip");
+const {KNXTunnelSocket, DataPoints, KNXAddress} = require("knx-ip");
 
-const knxClient = new KNXClient();
+const knxSocket = new KNXTunnelSocket("1.1.100");
 
-knxClient.on(KNXClient.KNXClientEvents.error, err => {
+knxSocket.on(KNXTunnelSocket.KNXTunnelSocketEvents.error, err => {
     if (err) {
         console.log(err);
     }
 });
 
 // Call discoverCB when a knx gateway has been discovered.
-knxClient.on(KNXClient.KNXClientEvents.discover,  info => {
+knxSocket.on(KNXTunnelSocket.KNXTunnelSocketEvents.discover,  info => {
     const [ip,port] = info.split(":");
     discoverCB(ip,port);
-});
-
-knxClient.on(KNXClient.KNXClientEvents.ready, () => {
-    console.log("Ready. Starting discovery");
 });
 
 // start auto discovery on interface with ip 192.168.1.99
@@ -84,22 +80,26 @@ const handleBusEvent = function(srcAddress, dstAddress, npdu) {
 const discoverCB = (ip, port) => {
         console.log("Connecting to ", ip, port);
         // Create a knx address for a lamp switch on knx bus address 1.1.15
-        const lampSwitchAddress = KNXProtocol.KNXAddress.createFromString("1.1.15", KNXProtocol.KNXAddress.TYPE_GROUP);
+        const lampSwitchAddress =  KNXAddress.createFromString("1.1.15", KNXAddress.TYPE_GROUP);
+        const dateAddress = KNXAddress.createFromString("9.1.11", KNXAddress.TYPE_GROUP);
+        const bsoHallAddresss =  KNXAddress.createFromString("2.6.4", KNXAddress.TYPE_GROUP);
         // Create a Datapoint of type Switch to control the lamp
-        const lampSwitch = new DataPoints.Switch(lampSwitchAddress);
+        const lampSwitch = DataPoints.createDataPoint(lampSwitchAddress, "Switch");
         // Create a Datapoint of type Switch to read the lamp status
         // This time using the createDataPoint function
-        const lampStatus = DataPoints.createDataPoint(
-            KNXProtocol.KNXAddress.createFromString("1.2.15", KNXProtocol.KNXAddress.TYPE_GROUP),
-            "Switch"
+        const lampStatus = new DataPoints.Switch(
+            KNXAddress.createFromString("1.2.15", KNXAddress.TYPE_GROUP)"Switch"
         );
+        const dateStatus = new DataPoints.Date(dateAddress);
+        const bsoHall = new DataPoints.Percentage(bsoHallAddresss);
         // Create tunnel socket with source knx address 1.1.100
-        const knxSocket = new KNXTunnelSocket("1.1.100");
         // Bind the datapoints with the socket
         lampSwitch.bind(knxSocket);
         lampStatus.bind(knxSocket);
+        dateStatus.bind(knxSocket);
+        bsoHall.bind(knxSocket);
         // Connect to the knx gateway on ip:port
-        knxSocket.connect(ip, port)
+        knxSocket.connectAsync(ip, port)
             .then(() => console.log("Connected through channel id ", knxSocket.channelID))
             .then(() => console.log("Reading lamp status"))
             .then(() => lampStatus.read())

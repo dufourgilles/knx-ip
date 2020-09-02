@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>&quot;DataPoints/DataPointFactory&quot; | knx-ip</title>
-	<meta name="description" content="">
+	<meta name="description" content="Documentation for knx-ip">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
 </head>
@@ -13,7 +13,7 @@
 	<div class="tsd-page-toolbar">
 		<div class="container">
 			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.js" data-base="..">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
 					<div class="field">
 						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
 						<input id="tsd-search-field" type="text" />
@@ -38,8 +38,6 @@
 							</div>
 							<input type="checkbox" id="tsd-filter-inherited" checked />
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-							<input type="checkbox" id="tsd-filter-externals" checked />
-							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
 							<input type="checkbox" id="tsd-filter-only-exported" />
 							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
 						</div>
@@ -59,7 +57,7 @@
 					<a href="_datapoints_datapointfactory_.html">&quot;DataPoints/DataPointFactory&quot;</a>
 				</li>
 			</ul>
-			<h1>External module &quot;DataPoints/DataPointFactory&quot;</h1>
+			<h1>Module &quot;DataPoints/DataPointFactory&quot;</h1>
 		</div>
 	</div>
 </header>
@@ -73,13 +71,20 @@
 						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Type aliases</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported"><a href="_datapoints_datapointfactory_.html#datapointfactoryitem" class="tsd-kind-icon">Data<wbr>Point<wbr>Factory<wbr>Item</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-is-not-exported"><a href="_datapoints_datapointfactory_.html#datapointfactoryitem" class="tsd-kind-icon">Data<wbr>Point<wbr>Factory<wbr>Item</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
+							<h3>Functions</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_datapoints_datapointfactory_.html#createdatapoint" class="tsd-kind-icon">create<wbr>Data<wbr>Point</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_datapoints_datapointfactory_.html#getdatapointtype" class="tsd-kind-icon">get<wbr>Data<wbr>Point<wbr>Type</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Object literals</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-object-literal tsd-parent-kind-external-module"><a href="_datapoints_datapointfactory_.html#datapointfactory" class="tsd-kind-icon">Data<wbr>Point<wbr>Factory</a></li>
+								<li class="tsd-kind-object-literal tsd-parent-kind-module tsd-is-not-exported"><a href="_datapoints_datapointfactory_.html#datapointfactory" class="tsd-kind-icon">Data<wbr>Point<wbr>Factory</a></li>
 							</ul>
 						</section>
 					</div>
@@ -87,269 +92,272 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
 				<h2>Type aliases</h2>
-				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported">
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-is-not-exported">
 					<a name="datapointfactoryitem" class="tsd-anchor"></a>
 					<h3>Data<wbr>Point<wbr>Factory<wbr>Item</h3>
-					<div class="tsd-signature tsd-kind-icon">Data<wbr>Point<wbr>Factory<wbr>Item<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>x<span class="tsd-signature-symbol">: </span><a href="../classes/_protocol_knxaddress_.knxaddress.html" class="tsd-signature-type">KNXAddress</a>, y<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="../classes/_datapoints_datapoint_.datapoint.html" class="tsd-signature-type">DataPoint</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, subtype<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span></div>
+					<div class="tsd-signature tsd-kind-icon">Data<wbr>Point<wbr>Factory<wbr>Item<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>x<span class="tsd-signature-symbol">: </span><a href="../classes/_protocol_knxaddress_.knxaddress.html" class="tsd-signature-type">KNXAddress</a>, y<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="../classes/_datapoints_datapoint_.datapoint.html" class="tsd-signature-type">DataPoint</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, subtype<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_datapoints_datapointinterface_.idatapoint.html" class="tsd-signature-type">IDataPoint</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/ac6f912/src/DataPoints/DataPointFactory.ts#L26">src/DataPoints/DataPointFactory.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/DataPoints/DataPointFactory.ts#L26">src/DataPoints/DataPointFactory.ts:26</a></li>
 						</ul>
 					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Functions</h2>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="createdatapoint" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> create<wbr>Data<wbr>Point</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Data<wbr>Point<span class="tsd-signature-symbol">(</span>ga<span class="tsd-signature-symbol">: </span><a href="../classes/_protocol_knxaddress_.knxaddress.html" class="tsd-signature-type">KNXAddress</a>, typeName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../classes/_datapoints_datapoint_.datapoint.html" class="tsd-signature-type">DataPoint</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/DataPoints/DataPointFactory.ts#L54">src/DataPoints/DataPointFactory.ts:54</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>ga: <a href="../classes/_protocol_knxaddress_.knxaddress.html" class="tsd-signature-type">KNXAddress</a></h5>
+								</li>
+								<li>
+									<h5>typeName: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../classes/_datapoints_datapoint_.datapoint.html" class="tsd-signature-type">DataPoint</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="getdatapointtype" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Data<wbr>Point<wbr>Type</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Data<wbr>Point<wbr>Type<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, subtype<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/DataPoints/DataPointFactory.ts#L64">src/DataPoints/DataPointFactory.ts:64</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>type: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li>
+									<h5>subtype: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
 				<h2>Object literals</h2>
-				<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-external-module">
+				<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-module tsd-is-not-exported">
 					<a name="datapointfactory" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> Data<wbr>Point<wbr>Factory</h3>
 					<div class="tsd-signature tsd-kind-icon">Data<wbr>Point<wbr>Factory<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/ac6f912/src/DataPoints/DataPointFactory.ts#L32">src/DataPoints/DataPointFactory.ts:32</a></li>
+							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/DataPoints/DataPointFactory.ts#L32">src/DataPoints/DataPointFactory.ts:32</a></li>
 						</ul>
 					</aside>
-					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
 						<a name="datapointfactory.alarm" class="tsd-anchor"></a>
 						<h3>Alarm</h3>
-						<div class="tsd-signature tsd-kind-icon">Alarm<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Alarm</span></div>
+						<div class="tsd-signature tsd-kind-icon">Alarm<span class="tsd-signature-symbol">:</span> <a href="../classes/_datapoints_alarm_.alarm.html" class="tsd-signature-type">Alarm</a></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/ac6f912/src/DataPoints/DataPointFactory.ts#L33">src/DataPoints/DataPointFactory.ts:33</a></li>
+								<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/DataPoints/DataPointFactory.ts#L33">src/DataPoints/DataPointFactory.ts:33</a></li>
 							</ul>
 						</aside>
 					</section>
-					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
 						<a name="datapointfactory.angle" class="tsd-anchor"></a>
 						<h3>Angle</h3>
-						<div class="tsd-signature tsd-kind-icon">Angle<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Angle</span></div>
+						<div class="tsd-signature tsd-kind-icon">Angle<span class="tsd-signature-symbol">:</span> <a href="../classes/_datapoints_angle_.angle.html" class="tsd-signature-type">Angle</a></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/ac6f912/src/DataPoints/DataPointFactory.ts#L34">src/DataPoints/DataPointFactory.ts:34</a></li>
+								<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/DataPoints/DataPointFactory.ts#L34">src/DataPoints/DataPointFactory.ts:34</a></li>
 							</ul>
 						</aside>
 					</section>
-					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
 						<a name="datapointfactory.binary" class="tsd-anchor"></a>
 						<h3>Binary</h3>
-						<div class="tsd-signature tsd-kind-icon">Binary<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Binary</span></div>
+						<div class="tsd-signature tsd-kind-icon">Binary<span class="tsd-signature-symbol">:</span> <a href="../classes/_datapoints_binary_.binary.html" class="tsd-signature-type">Binary</a></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/ac6f912/src/DataPoints/DataPointFactory.ts#L35">src/DataPoints/DataPointFactory.ts:35</a></li>
+								<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/DataPoints/DataPointFactory.ts#L35">src/DataPoints/DataPointFactory.ts:35</a></li>
 							</ul>
 						</aside>
 					</section>
-					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
 						<a name="datapointfactory.date" class="tsd-anchor"></a>
 						<h3>Date</h3>
-						<div class="tsd-signature tsd-kind-icon">Date<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Date</span></div>
+						<div class="tsd-signature tsd-kind-icon">Date<span class="tsd-signature-symbol">:</span> <a href="../classes/_datapoints_date_.date.html" class="tsd-signature-type">Date</a></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/ac6f912/src/DataPoints/DataPointFactory.ts#L36">src/DataPoints/DataPointFactory.ts:36</a></li>
+								<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/DataPoints/DataPointFactory.ts#L36">src/DataPoints/DataPointFactory.ts:36</a></li>
 							</ul>
 						</aside>
 					</section>
-					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
 						<a name="datapointfactory.dimmingcontrol" class="tsd-anchor"></a>
 						<h3>Dimmingcontrol</h3>
-						<div class="tsd-signature tsd-kind-icon">Dimmingcontrol<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Dimmingcontrol</span></div>
+						<div class="tsd-signature tsd-kind-icon">Dimmingcontrol<span class="tsd-signature-symbol">:</span> <a href="../classes/_datapoints_dimmingcontrol_.dimmingcontrol.html" class="tsd-signature-type">Dimmingcontrol</a></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/ac6f912/src/DataPoints/DataPointFactory.ts#L37">src/DataPoints/DataPointFactory.ts:37</a></li>
+								<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/DataPoints/DataPointFactory.ts#L37">src/DataPoints/DataPointFactory.ts:37</a></li>
 							</ul>
 						</aside>
 					</section>
-					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
 						<a name="datapointfactory.enable" class="tsd-anchor"></a>
 						<h3>Enable</h3>
-						<div class="tsd-signature tsd-kind-icon">Enable<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Enable</span></div>
+						<div class="tsd-signature tsd-kind-icon">Enable<span class="tsd-signature-symbol">:</span> <a href="../classes/_datapoints_enable_.enable.html" class="tsd-signature-type">Enable</a></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/ac6f912/src/DataPoints/DataPointFactory.ts#L38">src/DataPoints/DataPointFactory.ts:38</a></li>
+								<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/DataPoints/DataPointFactory.ts#L38">src/DataPoints/DataPointFactory.ts:38</a></li>
 							</ul>
 						</aside>
 					</section>
-					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
 						<a name="datapointfactory.lux" class="tsd-anchor"></a>
 						<h3>Lux</h3>
-						<div class="tsd-signature tsd-kind-icon">Lux<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Lux</span></div>
+						<div class="tsd-signature tsd-kind-icon">Lux<span class="tsd-signature-symbol">:</span> <a href="../classes/_datapoints_lux_.lux.html" class="tsd-signature-type">Lux</a></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/ac6f912/src/DataPoints/DataPointFactory.ts#L39">src/DataPoints/DataPointFactory.ts:39</a></li>
+								<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/DataPoints/DataPointFactory.ts#L39">src/DataPoints/DataPointFactory.ts:39</a></li>
 							</ul>
 						</aside>
 					</section>
-					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
 						<a name="datapointfactory.percentage" class="tsd-anchor"></a>
 						<h3>Percentage</h3>
-						<div class="tsd-signature tsd-kind-icon">Percentage<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Percentage</span></div>
+						<div class="tsd-signature tsd-kind-icon">Percentage<span class="tsd-signature-symbol">:</span> <a href="../classes/_datapoints_percentage_.percentage.html" class="tsd-signature-type">Percentage</a></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/ac6f912/src/DataPoints/DataPointFactory.ts#L40">src/DataPoints/DataPointFactory.ts:40</a></li>
+								<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/DataPoints/DataPointFactory.ts#L40">src/DataPoints/DataPointFactory.ts:40</a></li>
 							</ul>
 						</aside>
 					</section>
-					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
 						<a name="datapointfactory.percentagescaling" class="tsd-anchor"></a>
 						<h3>Percentagescaling</h3>
-						<div class="tsd-signature tsd-kind-icon">Percentagescaling<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Percentagescaling</span></div>
+						<div class="tsd-signature tsd-kind-icon">Percentagescaling<span class="tsd-signature-symbol">:</span> <a href="../classes/_datapoints_percentagescaling_.percentagescaling.html" class="tsd-signature-type">Percentagescaling</a></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/ac6f912/src/DataPoints/DataPointFactory.ts#L41">src/DataPoints/DataPointFactory.ts:41</a></li>
+								<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/DataPoints/DataPointFactory.ts#L41">src/DataPoints/DataPointFactory.ts:41</a></li>
 							</ul>
 						</aside>
 					</section>
-					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
 						<a name="datapointfactory.scene" class="tsd-anchor"></a>
 						<h3>Scene</h3>
-						<div class="tsd-signature tsd-kind-icon">Scene<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Scene</span></div>
+						<div class="tsd-signature tsd-kind-icon">Scene<span class="tsd-signature-symbol">:</span> <a href="../classes/_datapoints_scene_.scene.html" class="tsd-signature-type">Scene</a></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/ac6f912/src/DataPoints/DataPointFactory.ts#L42">src/DataPoints/DataPointFactory.ts:42</a></li>
+								<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/DataPoints/DataPointFactory.ts#L42">src/DataPoints/DataPointFactory.ts:42</a></li>
 							</ul>
 						</aside>
 					</section>
-					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
 						<a name="datapointfactory.scenecontrol" class="tsd-anchor"></a>
 						<h3>Scenecontrol</h3>
-						<div class="tsd-signature tsd-kind-icon">Scenecontrol<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Scenecontrol</span></div>
+						<div class="tsd-signature tsd-kind-icon">Scenecontrol<span class="tsd-signature-symbol">:</span> <a href="../classes/_datapoints_scenecontrol_.scenecontrol.html" class="tsd-signature-type">Scenecontrol</a></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/ac6f912/src/DataPoints/DataPointFactory.ts#L43">src/DataPoints/DataPointFactory.ts:43</a></li>
+								<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/DataPoints/DataPointFactory.ts#L43">src/DataPoints/DataPointFactory.ts:43</a></li>
 							</ul>
 						</aside>
 					</section>
-					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
 						<a name="datapointfactory.speed" class="tsd-anchor"></a>
 						<h3>Speed</h3>
-						<div class="tsd-signature tsd-kind-icon">Speed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Speed</span></div>
+						<div class="tsd-signature tsd-kind-icon">Speed<span class="tsd-signature-symbol">:</span> <a href="../classes/_datapoints_speed_.speed.html" class="tsd-signature-type">Speed</a></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/ac6f912/src/DataPoints/DataPointFactory.ts#L44">src/DataPoints/DataPointFactory.ts:44</a></li>
+								<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/DataPoints/DataPointFactory.ts#L44">src/DataPoints/DataPointFactory.ts:44</a></li>
 							</ul>
 						</aside>
 					</section>
-					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
 						<a name="datapointfactory.startstop" class="tsd-anchor"></a>
 						<h3>Startstop</h3>
-						<div class="tsd-signature tsd-kind-icon">Startstop<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Startstop</span></div>
+						<div class="tsd-signature tsd-kind-icon">Startstop<span class="tsd-signature-symbol">:</span> <a href="../classes/_datapoints_startstop_.startstop.html" class="tsd-signature-type">Startstop</a></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/ac6f912/src/DataPoints/DataPointFactory.ts#L45">src/DataPoints/DataPointFactory.ts:45</a></li>
+								<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/DataPoints/DataPointFactory.ts#L45">src/DataPoints/DataPointFactory.ts:45</a></li>
 							</ul>
 						</aside>
 					</section>
-					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
 						<a name="datapointfactory.step" class="tsd-anchor"></a>
 						<h3>Step</h3>
-						<div class="tsd-signature tsd-kind-icon">Step<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Step</span></div>
+						<div class="tsd-signature tsd-kind-icon">Step<span class="tsd-signature-symbol">:</span> <a href="../classes/_datapoints_step_.step.html" class="tsd-signature-type">Step</a></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/ac6f912/src/DataPoints/DataPointFactory.ts#L46">src/DataPoints/DataPointFactory.ts:46</a></li>
+								<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/DataPoints/DataPointFactory.ts#L46">src/DataPoints/DataPointFactory.ts:46</a></li>
 							</ul>
 						</aside>
 					</section>
-					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
 						<a name="datapointfactory.switch" class="tsd-anchor"></a>
 						<h3>Switch</h3>
-						<div class="tsd-signature tsd-kind-icon">Switch<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Switch</span></div>
+						<div class="tsd-signature tsd-kind-icon">Switch<span class="tsd-signature-symbol">:</span> <a href="../classes/_datapoints_switch_.switch.html" class="tsd-signature-type">Switch</a></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/ac6f912/src/DataPoints/DataPointFactory.ts#L47">src/DataPoints/DataPointFactory.ts:47</a></li>
+								<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/DataPoints/DataPointFactory.ts#L47">src/DataPoints/DataPointFactory.ts:47</a></li>
 							</ul>
 						</aside>
 					</section>
-					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
 						<a name="datapointfactory.temperature" class="tsd-anchor"></a>
 						<h3>Temperature</h3>
-						<div class="tsd-signature tsd-kind-icon">Temperature<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Temperature</span></div>
+						<div class="tsd-signature tsd-kind-icon">Temperature<span class="tsd-signature-symbol">:</span> <a href="../classes/_datapoints_temperature_.temperature.html" class="tsd-signature-type">Temperature</a></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/ac6f912/src/DataPoints/DataPointFactory.ts#L48">src/DataPoints/DataPointFactory.ts:48</a></li>
+								<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/DataPoints/DataPointFactory.ts#L48">src/DataPoints/DataPointFactory.ts:48</a></li>
 							</ul>
 						</aside>
 					</section>
-					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
 						<a name="datapointfactory.time" class="tsd-anchor"></a>
 						<h3>Time</h3>
-						<div class="tsd-signature tsd-kind-icon">Time<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Time</span></div>
+						<div class="tsd-signature tsd-kind-icon">Time<span class="tsd-signature-symbol">:</span> <a href="../classes/_datapoints_time_.time.html" class="tsd-signature-type">Time</a></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/ac6f912/src/DataPoints/DataPointFactory.ts#L49">src/DataPoints/DataPointFactory.ts:49</a></li>
+								<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/DataPoints/DataPointFactory.ts#L49">src/DataPoints/DataPointFactory.ts:49</a></li>
 							</ul>
 						</aside>
 					</section>
-					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
 						<a name="datapointfactory.trigger" class="tsd-anchor"></a>
 						<h3>Trigger</h3>
-						<div class="tsd-signature tsd-kind-icon">Trigger<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Trigger</span></div>
+						<div class="tsd-signature tsd-kind-icon">Trigger<span class="tsd-signature-symbol">:</span> <a href="../classes/_datapoints_trigger_.trigger.html" class="tsd-signature-type">Trigger</a></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/ac6f912/src/DataPoints/DataPointFactory.ts#L50">src/DataPoints/DataPointFactory.ts:50</a></li>
+								<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/DataPoints/DataPointFactory.ts#L50">src/DataPoints/DataPointFactory.ts:50</a></li>
 							</ul>
 						</aside>
 					</section>
-					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
 						<a name="datapointfactory.updown" class="tsd-anchor"></a>
 						<h3>Updown</h3>
-						<div class="tsd-signature tsd-kind-icon">Updown<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Updown</span></div>
+						<div class="tsd-signature tsd-kind-icon">Updown<span class="tsd-signature-symbol">:</span> <a href="../classes/_datapoints_updown_.updown.html" class="tsd-signature-type">Updown</a></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/ac6f912/src/DataPoints/DataPointFactory.ts#L51">src/DataPoints/DataPointFactory.ts:51</a></li>
+								<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/DataPoints/DataPointFactory.ts#L51">src/DataPoints/DataPointFactory.ts:51</a></li>
 							</ul>
 						</aside>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
-						<a name="datapointfactory.createdatapoint" class="tsd-anchor"></a>
-						<h3>create<wbr>Data<wbr>Point</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
-							<li class="tsd-signature tsd-kind-icon">create<wbr>Data<wbr>Point<span class="tsd-signature-symbol">(</span>ga<span class="tsd-signature-symbol">: </span><a href="../classes/_protocol_knxaddress_.knxaddress.html" class="tsd-signature-type">KNXAddress</a>, typeName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../classes/_datapoints_datapoint_.datapoint.html" class="tsd-signature-type">DataPoint</a></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/ac6f912/src/DataPoints/DataPointFactory.ts#L52">src/DataPoints/DataPointFactory.ts:52</a></li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>ga: <a href="../classes/_protocol_knxaddress_.knxaddress.html" class="tsd-signature-type">KNXAddress</a></h5>
-									</li>
-									<li>
-										<h5>typeName: <span class="tsd-signature-type">string</span></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <a href="../classes/_datapoints_datapoint_.datapoint.html" class="tsd-signature-type">DataPoint</a></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
-						<a name="datapointfactory.getdatapointtype" class="tsd-anchor"></a>
-						<h3>get<wbr>Data<wbr>Point<wbr>Type</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
-							<li class="tsd-signature tsd-kind-icon">get<wbr>Data<wbr>Point<wbr>Type<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, subtype<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/ac6f912/src/DataPoints/DataPointFactory.ts#L61">src/DataPoints/DataPointFactory.ts:61</a></li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>type: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
-									</li>
-									<li>
-										<h5>subtype: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-							</li>
-						</ul>
 					</section>
 				</section>
 			</section>
@@ -360,17 +368,23 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class="current tsd-kind-module">
 						<a href="_datapoints_datapointfactory_.html">&quot;<wbr>Data<wbr>Points/<wbr>Data<wbr>Point<wbr>Factory&quot;</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported">
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-is-not-exported">
 						<a href="_datapoints_datapointfactory_.html#datapointfactoryitem" class="tsd-kind-icon">Data<wbr>Point<wbr>Factory<wbr>Item</a>
 					</li>
-					<li class=" tsd-kind-object-literal tsd-parent-kind-external-module">
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="_datapoints_datapointfactory_.html#createdatapoint" class="tsd-kind-icon">create<wbr>Data<wbr>Point</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="_datapoints_datapointfactory_.html#getdatapointtype" class="tsd-kind-icon">get<wbr>Data<wbr>Point<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-object-literal tsd-parent-kind-module tsd-is-not-exported">
 						<a href="_datapoints_datapointfactory_.html#datapointfactory" class="tsd-kind-icon">Data<wbr>Point<wbr>Factory</a>
 					</li>
 				</ul>
@@ -383,57 +397,19 @@
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
-				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
 				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
 				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
 				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
-				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
-				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
 				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
-				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
-				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
-				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
-				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
-				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
-				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
-				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
-				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
-				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
 			</ul>
 		</div>
 	</div>
@@ -443,6 +419,5 @@
 </div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>

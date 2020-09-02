@@ -4,19 +4,21 @@ import {KNXClient} from './KNXClient';
 import {KNXAddress} from './protocol/KNXAddress';
 import {KNXDataBuffer} from './protocol/KNXDataBuffer';
 import {NPDU} from './protocol/cEMI/NPDU';
+import { KNX_CONSTANTS } from './protocol/KNXConstants';
 
 export enum KNXTunnelSocketEvents {
     disconnected = 'disconnected',
+    discover = 'discover',
     indication = 'indication',
     error = 'error'
 }
 
 export class KNXTunnelSocket extends EventEmitter {
-    static KNXTunnelSocketEvents = KNXTunnelSocketEvents;
-
     get channelID(): number {
         return this._knxClient.channelID;
     }
+    static KNXTunnelSocketEvents = KNXTunnelSocketEvents;
+    static Port = KNX_CONSTANTS.KNX_PORT;
     private _knxClient: KNXClient;
     private _connectionCB: (e?: Error) => void;
     private _disconnectCB: (e?: Error) => void;
@@ -25,12 +27,14 @@ export class KNXTunnelSocket extends EventEmitter {
     private _srcAddress: KNXAddress|null;
     private _host: string;
     private _port: number;
-    constructor(srcAddress: string = null, socketPort?: number) {
+    /**
+     *
+     * @param {string} srcAddress - knx Address ie: 1.1.100
+     */
+    constructor(srcAddress: string = null) {
         super();
         this._knxClient = new KNXClient();
-        if (socketPort != null) {
-            this._knxClient.bindSocketPort(socketPort);
-        }
+        this._processDiscoredHost = this._processDiscoredHost.bind(this);
         this._connectionCB = null;
         this._disconnectCB = null;
         this._monitoringBus = false;
@@ -40,24 +44,32 @@ export class KNXTunnelSocket extends EventEmitter {
         this._init();
     }
 
-    bindSocketPort(port: number): Promise<void> {
-        if (this._knxClient.isConnected() === true) { return Promise.reject('Socket already connected'); }
-        return new Promise((resolve, reject) => {
-            try {
-                this._knxClient.bindSocketPort(port);
-                resolve();
-            } catch (err) {
-                reject(err);
-            }
-        });
+    /**
+     *
+     * @param {number = 3671} port - local port
+     * @param {string = '0.0.0.0} host - local IP
+     */
+    async bindSocketPortAsync(port = KNX_CONSTANTS.KNX_PORT, host= '0.0.0.0'): Promise<void> {
+        if (this._knxClient.isConnected() === true) { throw new Error('Socket already connected'); }
+        await this._knxClient.bindSocketPortAsync(port, host);
     }
 
+    /**
+     *
+     */
     close(): void {
         this._knxClient.close();
     }
 
+    /**
+     *
+     * @param {string} host - destination ip address
+     * @param {number} port - destination port
+     */
     connectAsync(host: string, port: number): Promise<void> {
-        if (this._connected) { return Promise.reject('Already connected'); }
+        if (this._connected) {
+            return Promise.reject(new Error('Already connected'));
+        }
         this._host = host;
         this._port = port;
         return new Promise((resolve, reject) => {
@@ -66,6 +78,7 @@ export class KNXTunnelSocket extends EventEmitter {
                 if (err != null) {
                     reject(err);
                 } else {
+                    this._knxClient.startHeartBeat();
                     resolve();
                 }
             };
@@ -77,6 +90,9 @@ export class KNXTunnelSocket extends EventEmitter {
         });
     }
 
+    /**
+     *
+     */
     disconnectAsync(): Promise<void> {
         return new Promise((resolve, reject) => {
             this._disconnectCB = (err: Error) => {
@@ -91,7 +107,7 @@ export class KNXTunnelSocket extends EventEmitter {
     }
 
     /**
-     * Write data to a knx component
+     * Write data to a KNX component
      * @param {KNXAddress} dstAddress - knx address ie: 1.1.15
      * @param {KNXDataBuffer} data - data to write
      * @returns {Promise}
@@ -108,6 +124,10 @@ export class KNXTunnelSocket extends EventEmitter {
         });
     }
 
+    /**
+     * Read from a KNX component
+     * @param {KNXAddress} dstAddress
+     */
     readAsync(dstAddress: KNXAddress): Promise<Buffer> {
         return new Promise((resolve, reject) => {
             this._knxClient.sendReadRequest(this._srcAddress, dstAddress, (err: Error, data: Buffer) => {
@@ -134,6 +154,21 @@ export class KNXTunnelSocket extends EventEmitter {
     }
 
     /**
+     * Start KNX gateway discovery
+     * @emit discover
+     */
+    startDiscovery(): void {
+        this._knxClient.startDiscovery();
+    }
+
+    /**
+     *
+     */
+    stopDiscovery(): void {
+        this._knxClient.stopDiscovery();
+    }
+
+    /**
      *
      */
     stopBusMonitor(): void {
@@ -145,6 +180,10 @@ export class KNXTunnelSocket extends EventEmitter {
         }
         this._monitoringBus = false;
         this._knxClient.off(KNXTunnelSocketEvents.indication, this._handleBusEvent);
+    }
+
+    private _processDiscoredHost(rinfo: string): void {
+        this.emit(KNXTunnelSocketEvents.discover, rinfo);
     }
 
     private _init(): void {
@@ -165,7 +204,7 @@ export class KNXTunnelSocket extends EventEmitter {
                 this._disconnectCB();
             }
             this.emit(KNXTunnelSocketEvents.disconnected);
-        });
+        }).on(KNXClient.KNXClientEvents.discover, this._processDiscoredHost);
     }
 
     /**

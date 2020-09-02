@@ -1,13 +1,13 @@
 {
     "name": "knx-ip",
-    "version": "0.0.21",
+    "version": "0.1.0",
     "description": "KNXnet/IP protocol",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
     "scripts": {
         "compile": "rimraf lib && tsc -p .",
         "compile:watch": "tsc -w -p .",
-        "gendoc": "rimraf doc && typedoc --out doc src",
+        "gendoc": "rimraf doc && typedoc --out doc --excludeExternals --includeDeclarations --moduleResolution node --tsconfig ./tsconfig.json src",
         "tslint": "tslint --project tslint.json --fix",
         "tslint:nofix": "tslint --project tslint.json",
         "test": "jest  --forceExit  --detectOpenHandles",
@@ -42,7 +42,7 @@
         "ts-node": "^8.4.1",
         "tslint": "^5.20.0",
         "tslint-loader": "^3.5.4",
-        "typedoc": "^0.16.9",
+        "typedoc": "^0.19.0",
         "typescript": "^3.6.4"
     },
     "dependencies": {
