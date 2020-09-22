@@ -26,6 +26,17 @@ const wait = (t=2000) => {
     });
 };
 
+const overload = async (dp) => {
+    for(let i = 1; i < 10000000; i++) {
+        for(let j = 1; j < dp.length; j++) {
+            dp[j].read().catch((e) => {
+                console.log(e);
+            });
+        }
+        await wait(10);
+    }
+}
+
 const handleBusEvent = function(srcAddress, dstAddress, npdu) {
     console.log(`${srcAddress.toString()} -> ${dstAddress.toString()} :`, npdu.dataValue);
 };
@@ -44,22 +55,31 @@ const discoverCB = (ip, port) => {
         const dateAddress = KNXAddress.createFromString("9.1.11", KNXAddress.TYPE_GROUP);
         const dateStatus = new DataPoints.Date(dateAddress);
         const bsoHall = new DataPoints.Percentage(bsoHallAddresss);
+        const allReaders = [];
+        for(let i = 1; i++; i < 16) {
+            allReaders.push(
+                DataPoints.createDataPoint(
+                    KNXAddress.createFromString(`1.2.${i}`, KNXAddress.TYPE_GROUP),
+                    "Switch"
+                )
+            )
+        }
         lampSwitch.bind(knxSocket);
         lampStatus.bind(knxSocket);
         dateStatus.bind(knxSocket);
         bsoHall.bind(knxSocket);
     
-    knxSocket.connectAsync(ip, port)
+        knxSocket.connectAsync(ip, port)
         .then(() => console.log("Connected through channel id ", knxSocket.channelID))
-	.then(() => console.log("Reading date"))
-	.then(() => dateStatus.read())
-    .then(val => console.log("Date: ", val))
-    // .then(() => {
-    //     console.log("Set BSO");
-    //     bsoHall.set({value: 10});
-    // })
+	    .then(() => console.log("Reading date"))
+	    //.then(() => dateStatus.read())
+        .then(val => console.log("Date: ", val))
+        // .then(() => {
+        //     console.log("Set BSO");
+        //     bsoHall.set({value: 10});
+        // })
         // .then(() => console.log("Reading lamp status"))
-        // .then(() => lampStatus.read())
+        .then(() => lampStatus.read())
         // .then(val => console.log("Lamp status:", val))
         // .then(() => console.log("Sending lamp ON"))
         // .then(() => lampSwitch.setOn())
@@ -67,7 +87,8 @@ const discoverCB = (ip, port) => {
         // .then(() => lampStatus.read())
         // .then(val => console.log("Lamp status:", val))
         // .then(() => lampSwitch.setOff())
-        .then(() => wait(100000))
+        //.then(() => wait(100000))
+        .then(() => overload(allReaders))
         // .then(() => lampStatus.read())
         // .then(val => console.log("Lamp status:", val))
         // .then(() => {

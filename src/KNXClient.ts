@@ -163,7 +163,7 @@ export class KNXClient extends EventEmitter {
         host?: string, port?: number): void {
         const key = dstAddress.toString();
         if (this._pendingTunnelAnswer.has(key)) {
-            const err = new Error(`Requested already pending for ${key}`);
+            const err = new Error(`Request already pending for ${key}`);
             if (cb) {
                 cb(err);
             }
@@ -319,6 +319,7 @@ export class KNXClient extends EventEmitter {
             this.emit(KNXClient.KNXClientEvents.error, timeoutError);
         }, 1000 * KNX_CONSTANTS.CONNECT_REQUEST_TIMEOUT);
         this._awaitingResponseType = KNX_CONSTANTS.CONNECT_RESPONSE;
+        this._clientTunnelSeqNumber = 0;
         this._sendConnectRequestMessage(host, port, new TunnelCRI(knxLayer));
     }
 
@@ -328,10 +329,11 @@ export class KNXClient extends EventEmitter {
      * @param {number} port
      * @param {number} channelID
      */
-    getConnectionStatus(host: string, port: number, channelID?: number): void {
+    getConnectionStatus(host: string, port: number, _channelID?: number): void {
         if (this._clientSocket == null) {
             throw new Error('No client socket defined');
         }
+        const channelID = _channelID == null ? this._channelID : _channelID;
         const timeoutError = new Error(`HeartBeat failure with ${host}:${port}`);
         const deadError = new Error(`Connection dead with ${host}:${port}`);
         this._heartbeatTimer = setTimeout(() => {
@@ -340,11 +342,10 @@ export class KNXClient extends EventEmitter {
             this._heartbeatFailures++;
             if (this._heartbeatFailures >= this.max_HeartbeatFailures) {
                 this.emit(KNXClient.KNXClientEvents.error, deadError);
-                this.disconnect(host, port, this._channelID);
+                this.setDisconnected(host, port, channelID);
             }
         }, 1000 * KNX_CONSTANTS.CONNECTIONSTATE_REQUEST_TIMEOUT);
         this._awaitingResponseType = KNX_CONSTANTS.CONNECTIONSTATE_RESPONSE;
-        if (channelID == null) { channelID = this._channelID; }
         this._sendConnectionStateRequestMessage(host, port, channelID);
     }
 
@@ -383,6 +384,13 @@ export class KNXClient extends EventEmitter {
      */
     isConnected(): boolean {
         return this._connectionState === STATE.CONNECTED;
+    }
+
+    private setDisconnected(host: string, port: number, channelID: number): void {
+        this.stopHeartBeat();
+        this._connectionState = STATE.STARTED;
+        this.emit(KNXClient.KNXClientEvents.disconnected, `${host}:${port}#${channelID}`);
+        this._channelID = null;
     }
 
     private _runHeartbeat(): void {
@@ -492,15 +500,15 @@ export class KNXClient extends EventEmitter {
                 }
             } else if (knxHeader.service_type === KNX_CONSTANTS.DISCONNECT_RESPONSE) {
                 if (this._connectionState === STATE.DISCONNECTING) {
-                    this._connectionState = STATE.STARTED;
-                    this._channelID = null;
-                    this.emit(KNXClient.KNXClientEvents.disconnected, `${rinfo.address}:${rinfo.port}`, this._channelID);
+                    this.setDisconnected(rinfo.address, rinfo.port, this._channelID);
+                } else {
+                    this.emit(KNXClientEvents.error, new Error(`Unexpected Disconnect Response.`));
                 }
             } else if (knxHeader.service_type === KNX_CONSTANTS.DISCONNECT_REQUEST) {
                 this._connectionState = STATE.STARTED;
                 const knxDisconnectRequest: KNXDisconnectRequest = knxMessage as KNXDisconnectRequest;
                 this._sendDisconnectResponseMessage(rinfo.address, rinfo.port, knxDisconnectRequest.channelID);
-                this.emit(KNXClient.KNXClientEvents.disconnected, `${rinfo.address}:${rinfo.port}`, knxHeader, knxDisconnectRequest);
+                this.setDisconnected(rinfo.address, rinfo.port, this._channelID);
             } else if (knxHeader.service_type === KNX_CONSTANTS.TUNNELING_REQUEST) {
                 /** @type {KNXTunnelingRequest} */
                 const knxTunnelingRequest: KNXTunnelingRequest = knxMessage as KNXTunnelingRequest;
