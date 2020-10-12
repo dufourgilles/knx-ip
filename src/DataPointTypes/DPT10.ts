@@ -32,6 +32,8 @@ export const DPT10: DPT = {
         }
         const buf = Buffer.alloc(3);
         buf.writeUInt8((value.hours & 0x1F) | (value.day << 5), 0);
+        buf.writeUInt8(value.minutes & 0x3F, 1);
+        buf.writeUInt8(value.seconds & 0x3F, 2);
         return buf;
     }
 };
