@@ -28,14 +28,27 @@ export const DPT11: DPT = {
         return {year, month, day};
     },
     encoder: (value: DPT11Value): Buffer => {
-        if (!(value instanceof Date)) {
+        let year, month, day;
+
+        if (value instanceof Date) {
+          year = value.getFullYear();
+          month = value.getMonth() + 1;
+          day = value.getDay();
+        } else {
+          year = value.year;
+          month = value.month;
+          day = value.day;
+        }
+
+        if (! (year && month && day)) {
             throw new Error(`Unexpected Date format - ${value}`);
         }
+        
         const buf = Buffer.alloc(3);
-        buf.writeUInt8(value.getDay(), 0);
-        buf.writeUInt8(value.getMonth() + 1, 1);
-        const year = value.getFullYear();
+        buf.writeUInt8(day, 0);
+        buf.writeUInt8(month, 1);
         buf.writeUInt8(year - (year > 2000 ? 2000 : 1900), 2);
+
         return buf;
     }
 };
