@@ -43,7 +43,7 @@ export const DPT11: DPT = {
         if (! (year && month && day)) {
             throw new Error(`Unexpected Date format - ${value}`);
         }
-        
+
         const buf = Buffer.alloc(3);
         buf.writeUInt8(day, 0);
         buf.writeUInt8(month, 1);
