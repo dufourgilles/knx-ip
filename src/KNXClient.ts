@@ -505,8 +505,12 @@ export class KNXClient extends EventEmitter {
                     this.emit(KNXClientEvents.error, new Error(`Unexpected Disconnect Response.`));
                 }
             } else if (knxHeader.service_type === KNX_CONSTANTS.DISCONNECT_REQUEST) {
-                this._connectionState = STATE.STARTED;
                 const knxDisconnectRequest: KNXDisconnectRequest = knxMessage as KNXDisconnectRequest;
+                if (knxDisconnectRequest.channelID !== this._channelID) {
+                    // Not for us or old session -> ignore
+                    return;
+                }
+                this._connectionState = STATE.STARTED;
                 this._sendDisconnectResponseMessage(rinfo.address, rinfo.port, knxDisconnectRequest.channelID);
                 this.setDisconnected(rinfo.address, rinfo.port, this._channelID);
             } else if (knxHeader.service_type === KNX_CONSTANTS.TUNNELING_REQUEST) {
@@ -545,6 +549,10 @@ export class KNXClient extends EventEmitter {
                 this.send(knxTunnelAck);
             } else if (knxHeader.service_type === KNX_CONSTANTS.TUNNELING_ACK) {
                 const knxTunnelingAck: KNXTunnelingAck = knxMessage as KNXTunnelingAck;
+                if (knxTunnelingAck.channelID !== this._channelID) {
+                    // Not for us or old session -> ignore
+                    return;
+                }
                 if (this._tunnelReqTimer.has(knxTunnelingAck.seqCounter)) {
                     clearTimeout(this._tunnelReqTimer.get(knxTunnelingAck.seqCounter));
                     this._tunnelReqTimer.delete(knxTunnelingAck.seqCounter);
