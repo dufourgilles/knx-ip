@@ -512,6 +512,10 @@ export class KNXClient extends EventEmitter {
             } else if (knxHeader.service_type === KNX_CONSTANTS.TUNNELING_REQUEST) {
                 /** @type {KNXTunnelingRequest} */
                 const knxTunnelingRequest: KNXTunnelingRequest = knxMessage as KNXTunnelingRequest;
+                if (knxTunnelingRequest.channelID !== this._channelID) {
+                    // Not for us or old session -> ignore
+                    return;
+                }
                 if (knxTunnelingRequest.cEMIMessage.msgCode === CEMIConstants.L_DATA_IND) {
                     /** @type {LDataInd} */
                     const ind = knxTunnelingRequest.cEMIMessage;
