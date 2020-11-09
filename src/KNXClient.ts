@@ -16,6 +16,7 @@ import {KNXPacket} from './protocol/KNXPacket';
 import {KNXDataBuffer} from './protocol/KNXDataBuffer';
 import { KNXAddress } from './protocol/KNXAddress';
 import { TunnelCRI, TunnelTypes } from './protocol/TunnelCRI';
+import { KNXConnectionStateResponse } from './protocol/KNXConnectionStateResponse';
 
 enum STATE {
     STARTED = 0,
@@ -560,8 +561,18 @@ export class KNXClient extends EventEmitter {
             } else {
                 if (knxHeader.service_type === this._awaitingResponseType) {
                     if (this._awaitingResponseType === KNX_CONSTANTS.CONNECTIONSTATE_RESPONSE) {
-                        clearTimeout(this._heartbeatTimer);
-                        this._heartbeatFailures = 0;
+                        const knxConnectionStateResponse = knxMessage as KNXConnectionStateResponse;
+                        if (knxConnectionStateResponse.status !== KNX_CONSTANTS.E_NO_ERROR) {
+                            // There was a connection error. Disconnect.
+                            this.emit(
+                                KNXClient.KNXClientEvents.error,
+                                KNXConnectionStateResponse.statusToString(knxConnectionStateResponse.status)
+                            );
+                            this.setDisconnected(rinfo.address, rinfo.port, this._channelID);
+                        } else {
+                            clearTimeout(this._heartbeatTimer);
+                            this._heartbeatFailures = 0;
+                        }
                     } else {
                         clearTimeout(this._timer);
                     }

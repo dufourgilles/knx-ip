@@ -72,7 +72,7 @@ export class KNXProtocol {
                 knxMessage = KNXTunnelingRequest.createFromBuffer(knxData);
                 break;
             case KNX_CONSTANTS.TUNNELING_ACK:
-                knxMessage = KNXTunnelingAck.createFromBuffer(buffer);
+                knxMessage = KNXTunnelingAck.createFromBuffer(knxData);
                 break;
         }
         return {knxHeader, knxMessage, knxData};
