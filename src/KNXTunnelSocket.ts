@@ -4,7 +4,8 @@ import {KNXClient} from './KNXClient';
 import {KNXAddress} from './protocol/KNXAddress';
 import {KNXDataBuffer} from './protocol/KNXDataBuffer';
 import {NPDU} from './protocol/cEMI/NPDU';
-import { KNX_CONSTANTS } from './protocol/KNXConstants';
+import {KNX_CONSTANTS} from './protocol/KNXConstants';
+import {KNXSocketOptions} from './KNXSocketOptions';
 
 export enum KNXTunnelSocketEvents {
     disconnected = 'disconnected',
@@ -13,33 +14,46 @@ export enum KNXTunnelSocketEvents {
     error = 'error'
 }
 
+const optionsDefaults: KNXSocketOptions = {
+    srcAddress: KNXAddress.createFromString('15.15.200'),
+    connectionKeepAliveTimeout: KNX_CONSTANTS.CONNECTION_ALIVE_TIME
+};
+
 export class KNXTunnelSocket extends EventEmitter {
     get channelID(): number {
         return this._knxClient.channelID;
     }
     static KNXTunnelSocketEvents = KNXTunnelSocketEvents;
     static Port = KNX_CONSTANTS.KNX_PORT;
+    private readonly _options: KNXSocketOptions;
     private _knxClient: KNXClient;
     private _connectionCB: (e?: Error) => void;
     private _disconnectCB: (e?: Error) => void;
     private _monitoringBus: boolean;
     private _connected: boolean;
-    private _srcAddress: KNXAddress|null;
     private _host: string;
     private _port: number;
     /**
      *
-     * @param {string} srcAddress - knx Address ie: 1.1.100
+     * @param {KNXSocketOptions} options - Configuration options
      */
-    constructor(srcAddress: string = null) {
+    constructor(options: Partial<KNXSocketOptions> | string = {}) {
         super();
-        this._knxClient = new KNXClient();
+
+        // Make sure we are backwards compatible. A string address value can be passed as first argument.
+        if (typeof options === 'string') {
+            options = {
+                srcAddress: KNXAddress.createFromString(options)
+            };
+        }
+
+        this._options = Object.assign(optionsDefaults, options);
+        this._knxClient = new KNXClient(this._options);
         this._processDiscoredHost = this._processDiscoredHost.bind(this);
         this._connectionCB = null;
         this._disconnectCB = null;
         this._monitoringBus = false;
         this._connected = false;
-        this._srcAddress = srcAddress == null ? KNXAddress.createFromString('15.15.200') : KNXAddress.createFromString(srcAddress);
         this._handleBusEvent = this._handleBusEvent.bind(this);
         this._init();
     }
@@ -114,7 +128,7 @@ export class KNXTunnelSocket extends EventEmitter {
      */
     writeAsync(dstAddress: KNXAddress, data: KNXDataBuffer): Promise<void> {
         return new Promise((resolve, reject) => {
-            this._knxClient.sendWriteRequest(this._srcAddress, dstAddress, data, (err: Error) => {
+            this._knxClient.sendWriteRequest(this._options.srcAddress, dstAddress, data, (err: Error) => {
                 if (err) {
                     reject(err);
                 } else {
@@ -130,7 +144,7 @@ export class KNXTunnelSocket extends EventEmitter {
      */
     readAsync(dstAddress: KNXAddress): Promise<Buffer> {
         return new Promise((resolve, reject) => {
-            this._knxClient.sendReadRequest(this._srcAddress, dstAddress, (err: Error, data: Buffer) => {
+            this._knxClient.sendReadRequest(this._options.srcAddress, dstAddress, (err: Error, data: Buffer) => {
                 if (err) {
                     reject(err);
                 } else {

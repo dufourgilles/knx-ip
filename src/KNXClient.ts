@@ -17,6 +17,7 @@ import {KNXDataBuffer} from './protocol/KNXDataBuffer';
 import { KNXAddress } from './protocol/KNXAddress';
 import { TunnelCRI, TunnelTypes } from './protocol/TunnelCRI';
 import { KNXConnectionStateResponse } from './protocol/KNXConnectionStateResponse';
+import { KNXSocketOptions } from './KNXSocketOptions';
 
 enum STATE {
     STARTED = 0,
@@ -65,6 +66,7 @@ export class KNXClient extends EventEmitter {
 
     static  KNXClientEvents = KNXClientEvents;
     public max_HeartbeatFailures: Number;
+    private readonly _options: KNXSocketOptions;
     private _host: string;
     private _port: number;
     private _peerHost: string;
@@ -84,8 +86,9 @@ export class KNXClient extends EventEmitter {
     /**
      *
      */
-    constructor() {
+    constructor(options: KNXSocketOptions) {
         super();
+        this._options = options;
         this._host = null;
         this._port = null;
         this._peerHost = null;
@@ -397,9 +400,10 @@ export class KNXClient extends EventEmitter {
     private _runHeartbeat(): void {
         if (this._heartbeatRunning) {
             this.getConnectionStatus(this._peerHost, this._peerPort);
+
             setTimeout(() => {
                 this._runHeartbeat();
-            }, 1000 * KNX_CONSTANTS.CONNECTION_ALIVE_TIME);
+            }, 1000 * this._options.connectionKeepAliveTimeout);
         }
     }
 
