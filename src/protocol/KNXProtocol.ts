@@ -51,7 +51,7 @@ export class KNXProtocol {
                 knxMessage = KNXDescriptionResponse.createFromBuffer(knxData);
                 break;
             case KNX_CONSTANTS.CONNECT_REQUEST:
-                knxMessage = KNXDescriptionResponse.createFromBuffer(knxData);
+                knxMessage = KNXConnectRequest.createFromBuffer(knxData);
                 break;
             case KNX_CONSTANTS.CONNECT_RESPONSE:
                 knxMessage = KNXConnectResponse.createFromBuffer(knxData);
