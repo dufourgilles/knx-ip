@@ -49,6 +49,7 @@ read the status again before switching the lamp off.
 
 const {KNXTunnelSocket, DataPoints, KNXAddress} = require("knx-ip");
 
+// Create tunnel socket with source knx address 1.1.100
 const knxSocket = new KNXTunnelSocket("1.1.100");
 
 knxSocket.on(KNXTunnelSocket.KNXTunnelSocketEvents.error, err => {
@@ -88,11 +89,10 @@ const discoverCB = (ip, port) => {
         // Create a Datapoint of type Switch to read the lamp status
         // This time using the createDataPoint function
         const lampStatus = new DataPoints.Switch(
-            KNXAddress.createFromString("1.2.15", KNXAddress.TYPE_GROUP)"Switch"
+            KNXAddress.createFromString("1.2.15", KNXAddress.TYPE_GROUP)
         );
         const dateStatus = new DataPoints.Date(dateAddress);
         const bsoHall = new DataPoints.Percentage(bsoHallAddresss);
-        // Create tunnel socket with source knx address 1.1.100
         // Bind the datapoints with the socket
         lampSwitch.bind(knxSocket);
         lampStatus.bind(knxSocket);
