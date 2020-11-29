@@ -171,7 +171,8 @@ export class KNXTunnelSocket extends EventEmitter {
      * Start KNX gateway discovery
      * @emit discover
      */
-    startDiscovery(): void {
+    async startDiscovery(host: string, port = KNX_CONSTANTS.KNX_PORT): Promise<void> {
+        await this.bindSocketPortAsync(port, host);
         this._knxClient.startDiscovery();
     }
 

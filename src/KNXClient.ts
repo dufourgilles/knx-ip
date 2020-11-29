@@ -608,6 +608,7 @@ export class KNXClient extends EventEmitter {
     }
 
     private _sendSearchRequestMessage(): void {
+        console.log('_sendSearchRequestMessage', this._host, this._port);
         this._clientSocket.send(
             KNXProtocol.newKNXSearchRequest(new HPAI(this._host, this._port)).toBuffer(),
             KNX_CONSTANTS.KNX_PORT,

@@ -50,16 +50,16 @@ read the status again before switching the lamp off.
 const {KNXTunnelSocket, DataPoints, KNXAddress} = require("knx-ip");
 
 // Create tunnel socket with source knx address 1.1.100
-const knxSocket = new KNXTunnelSocket("1.1.100");
+const knxClient = new KNXTunnelSocket("1.1.100");
 
-knxSocket.on(KNXTunnelSocket.KNXTunnelSocketEvents.error, err => {
+knxClient.on(KNXTunnelSocket.KNXTunnelSocketEvents.error, err => {
     if (err) {
         console.log(err);
     }
 });
 
 // Call discoverCB when a knx gateway has been discovered.
-knxSocket.on(KNXTunnelSocket.KNXTunnelSocketEvents.discover,  info => {
+knxClient.on(KNXTunnelSocket.KNXTunnelSocketEvents.discover,  info => {
     const [ip,port] = info.split(":");
     discoverCB(ip,port);
 });
@@ -94,13 +94,13 @@ const discoverCB = (ip, port) => {
         const dateStatus = new DataPoints.Date(dateAddress);
         const bsoHall = new DataPoints.Percentage(bsoHallAddresss);
         // Bind the datapoints with the socket
-        lampSwitch.bind(knxSocket);
-        lampStatus.bind(knxSocket);
-        dateStatus.bind(knxSocket);
-        bsoHall.bind(knxSocket);
+        lampSwitch.bind(knxClient);
+        lampStatus.bind(knxClient);
+        dateStatus.bind(knxClient);
+        bsoHall.bind(knxClient);
         // Connect to the knx gateway on ip:port
-        knxSocket.connectAsync(ip, port)
-            .then(() => console.log("Connected through channel id ", knxSocket.channelID))
+        knxClient.connectAsync(ip, port)
+            .then(() => console.log("Connected through channel id ", knxClient.channelID))
             .then(() => console.log("Reading lamp status"))
             .then(() => lampStatus.read())
             .then(val => console.log("Lamp status:", val))
@@ -115,8 +115,8 @@ const discoverCB = (ip, port) => {
             .then(val => console.log("Lamp status:", val))
             .then(() => {
                 console.log("Starting bus monitoring");
-                knxSocket.on("indication", handleBusEvent);
-                knxSocket.monitorBus()
+                knxClient.on("indication", handleBusEvent);
+                knxClient.monitorBus()
             })
             .then(() => wait(9000))
             .catch(err => {console.log(err);})
