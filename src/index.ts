@@ -8,4 +8,5 @@ export {NPDU} from './protocol/cEMI/NPDU';
 export {KNXPacket} from './protocol/KNXPacket';
 export {KNXDataBuffer} from './protocol/KNXDataBuffer';
 export * as DataPoints from './DataPoints/index';
-export {DPTS as DataPointType} from './DataPointTypes/DataPointTypeFactory';
+export {DataPointType} from './DataPointTypes/DataPointType';
+export {DPTS as DataPointTypes} from './DataPointTypes/DataPointTypeFactory';

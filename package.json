@@ -1,6 +1,6 @@
 {
     "name": "knx-ip",
-    "version": "0.1.9",
+    "version": "0.1.13",
     "description": "KNXnet/IP protocol",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
@@ -10,7 +10,6 @@
         "compile:watch": "tsc -w -p .",
         "gendoc": "rimraf doc && typedoc --out doc --excludeExternals --includeDeclarations --moduleResolution node --tsconfig ./tsconfig.json src",
 	"jest-coverage-badges": "jest-coverage-badges",
-	"publish": "npm run compile && npm publish",
         "tslint": "tslint --project tslint.json --fix",
         "tslint:nofix": "tslint --project tslint.json",
         "test": "jest  --forceExit  --detectOpenHandles",
