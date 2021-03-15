@@ -23,14 +23,14 @@ export class Switch extends DataPoint {
     /**
      *
      */
-    setOff(): void {
-        this.write(0);
+    setOff(): Promise<void> {
+        return this.write(0);
     }
 
     /**
      *
      */
-    setOn(): void {
-        this.write(1);
+    setOn(): Promise<void> {
+        return this.write(1);
     }
 }

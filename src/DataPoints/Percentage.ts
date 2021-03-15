@@ -31,7 +31,7 @@ export class Percentage extends DataPoint {
         };
     }
 
-    set(param: {value: number}): void {
+    set(param: {value: number}): Promise<void> {
         if ((param == null) || (param.value == null)) {
             throw new Error('Invalid parameter received for set. Expecting {value: number} ');
         }
@@ -39,6 +39,6 @@ export class Percentage extends DataPoint {
         if ((value < MIN) || (value > MAX)) {
             throw new Error(`Invalid value ${value}`);
         }
-        this.write(value);
+        return this.write(value);
     }
 }

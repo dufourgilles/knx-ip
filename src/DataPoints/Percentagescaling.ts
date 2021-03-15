@@ -21,11 +21,11 @@ export class Percentagescaling extends DataPoint {
         };
     }
 
-    set(_value: number): void {
+    set(_value: number): Promise<void> {
         const value = Number(_value);
         if ((value < MIN) || (value > MAX)) {
             throw new Error(`Invalid value ${value}`);
         }
-        this.write(value);
+        return this.write(value);
     }
 }

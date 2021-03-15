@@ -188,7 +188,7 @@ export class KNXClient extends EventEmitter {
         cEMIMessage.control.priority = 3;
         cEMIMessage.control.addressType = 1;
         cEMIMessage.control.hopCount = 6;
-        const seqNum = this._incSeqNumber();
+        const seqNum = this._getSeqNumber();
         const knxTunnelingRequest = KNXProtocol.newKNXTunnelingRequest(
             this._channelID,
             seqNum,
@@ -212,7 +212,7 @@ export class KNXClient extends EventEmitter {
         cb: (e: Error, d?: Buffer) => void = null, host?: string, port?: number): void {
         const key = dstAddress.toString();
         if (this._pendingTunnelAnswer.has(key)) {
-            const err = new Error(`Requested already pending for ${key}`);
+            const err = new Error(`Request already pending for ${key}`);
             if (cb) {
                 cb(err);
             }
@@ -233,7 +233,7 @@ export class KNXClient extends EventEmitter {
         cEMIMessage.control.priority = 3;
         cEMIMessage.control.addressType = 1;
         cEMIMessage.control.hopCount = 6;
-        const seqNum = this._incSeqNumber();
+        const seqNum = this._getSeqNumber();
         const knxTunnelingRequest = KNXProtocol.newKNXTunnelingRequest(
             this._channelID,
             seqNum,
@@ -407,12 +407,16 @@ export class KNXClient extends EventEmitter {
         }
     }
 
-    private _incSeqNumber(): number {
-        const seq = this._clientTunnelSeqNumber++;
+    private _getSeqNumber(): number {
+        return this._clientTunnelSeqNumber;
+    }
+
+    private _incSeqNumber(seq?: number): number {
+        this._clientTunnelSeqNumber = seq ? seq + 1 : this._clientTunnelSeqNumber + 1;
         if (this._clientTunnelSeqNumber > 255) {
             this._clientTunnelSeqNumber = 0;
         }
-        return seq;
+        return this._clientTunnelSeqNumber;
     }
 
     private _handleResponse(knxTunnelingResponse: KNXTunnelingRequest): void {
@@ -507,7 +511,7 @@ export class KNXClient extends EventEmitter {
                 if (this._connectionState === STATE.DISCONNECTING) {
                     this.setDisconnected(rinfo.address, rinfo.port, this._channelID);
                 } else {
-                    this.emit(KNXClientEvents.error, new Error(`Unexpected Disconnect Response.`));
+                    this.emit(KNXClientEvents.error, new Error('Unexpected Disconnect Response.'));
                 }
             } else if (knxHeader.service_type === KNX_CONSTANTS.DISCONNECT_REQUEST) {
                 const knxDisconnectRequest: KNXDisconnectRequest = knxMessage as KNXDisconnectRequest;
@@ -558,6 +562,7 @@ export class KNXClient extends EventEmitter {
                     // Not for us or old session -> ignore
                     return;
                 }
+                this._incSeqNumber(knxTunnelingAck.seqCounter);
                 if (this._tunnelReqTimer.has(knxTunnelingAck.seqCounter)) {
                     clearTimeout(this._tunnelReqTimer.get(knxTunnelingAck.seqCounter));
                     this._tunnelReqTimer.delete(knxTunnelingAck.seqCounter);

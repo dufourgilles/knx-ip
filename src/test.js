@@ -28,7 +28,7 @@ const handleBusEvent = function(srcAddress, dstAddress, npdu) {
     console.log(`${srcAddress.toString()} -> ${dstAddress.toString()} :`, npdu.dataValue);
 };
 
-const discoverCB = (ip, port) => {
+const discoverCB = async (ip, port) => {
     console.log("Connecting to ", ip, port);
     try {
         knxClient.stopDiscovery();
@@ -56,36 +56,37 @@ const discoverCB = (ip, port) => {
         dateStatus.bind(knxClient);
         bsoHall.bind(knxClient);
     
-        knxClient.connectAsync(ip, port)
-        .then(() => console.log("Connected through channel id ", knxClient.channelID))
-	    .then(() => console.log("Reading date"))
-	    //.then(() => dateStatus.read())
-        .then(val => console.log("Date: ", val))
+
+        await knxClient.connectAsync(ip, port)
+        console.log("Connected through channel id ", knxClient.channelID);
+        //console.log("Reading date");
+        //.then(() => dateStatus.read())
+        //.then(val => console.log("Date: ", val))
         // .then(() => {
         //     console.log("Set BSO");
         //     bsoHall.set({value: 10});
         // })
-        .then(() => console.log("Reading lamp status"))
-        .then(() => lampStatus.read())
-        .then(val => console.log("Lamp status:", val))
-        .then(() => console.log("Sending lamp ON"))
-        .then(() => lampSwitch.setOn())
-        .then(() => wait())
-        .then(() => lampStatus.read())
-        .then(val => console.log("Lamp status:", val))
-        .then(() => lampSwitch.setOff())
+        console.log("Reading lamp status");
+        let val = await lampStatus.read();
+        console.log("Lamp status:", val);
+        console.log("Sending lamp ON");
+        await lampSwitch.setOn();
+        await  wait();
+        val = await lampStatus.read();
+        console.log("Lamp status:", val);
+        await lampSwitch.setOff();
         //.then(() => wait(100000))
         //.then(() => overload(allReaders))
-        .then(() => lampStatus.read())
-        .then(val => console.log("Lamp status:", val))
-        .then(() => {
-            console.log("Starting bus monitoring");
-            knxClient.on("indication", handleBusEvent);
-            knxClient.monitorBus()
-        })
+        val = await lampStatus.read();
+        console.log("Lamp status:", val)
+        // .then(() => {
+        //     console.log("Starting bus monitoring");
+        //     knxClient.on("indication", handleBusEvent);
+        //     knxClient.monitorBus()
+        // })
         // .then(() => wait(9000))
-        .catch(err => {console.log(err);})
-        .then(() => process.exit(0));
+
+        process.exit(0);
     }
     catch(e) {
         console.log(e);
@@ -93,6 +94,6 @@ const discoverCB = (ip, port) => {
 };
 
 // start auto discovery on interface with ip 192.168.1.99
-Promise.resolve().then(() => knxClient.startDiscovery("192.168.1.99")).catch((e) => {
+Promise.resolve().then(() => knxClient.startDiscovery("192.168.1.2")).catch((e) => {
     console.log(e);
 });
