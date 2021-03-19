@@ -1,4 +1,6 @@
 'use strict';
+import { BufferLengthError } from '../errors/BufferLengthError';
+import { InvalidValueError } from '../errors/InvalidValueError';
 import {DPT} from './definitions';
 
 export interface DPT3Value {
@@ -24,7 +26,7 @@ export const DPT3: DPT = {
     },
     decoder: (buffer: Buffer): DPT3Value => {
         if (buffer.length !== 1) {
-            throw new Error(`Invalid buffer length ${buffer.length} for DPT3.  Expected 1.`);
+            throw new BufferLengthError(`Invalid buffer length ${buffer.length} for DPT3.  Expected 1.`);
         }
         const val = buffer.readUInt8(0);
         return {
@@ -35,7 +37,7 @@ export const DPT3: DPT = {
     },
     encoder: (value: DPT3Value) => {
         if (value == null || value.stepCode == null ||  (value.isUP == null && value.isIncrease == null)) {
-            throw new Error(`Invalid value ${value} for DPT3.  Should be object with keys: stepCode and isUP or isIncrease`);
+            throw new InvalidValueError(`Invalid value ${value} for DPT3.  Should be object with keys: stepCode and isUP or isIncrease`);
         }
         const buf = Buffer.alloc(1);
         buf.writeUInt8((value.stepCode & 0x07) | (value.isUP == null ? value.isIncrease << 3 : value.isUP << 3), 0);

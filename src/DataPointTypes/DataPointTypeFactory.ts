@@ -1,23 +1,23 @@
 
-import DPTAlarm from '../DataPointTypes/DPTAlarm';
-import DPTAngle from '../DataPointTypes/DPTAngle';
-import DPTBinary from '../DataPointTypes/DPTBinary';
-import DPTDate from '../DataPointTypes/DPTDate';
-import DPTDimmingcontrol from '../DataPointTypes/DPTDimmingcontrol';
-import DPTEnable from '../DataPointTypes/DPTEnable';
-import DPTLux from '../DataPointTypes/DPTLux';
-import DPTPercentage from '../DataPointTypes/DPTPercentage';
-import DPTPercentagescaling from '../DataPointTypes/DPTPercentagescaling';
-import DPTScene from '../DataPointTypes/DPTScene';
-import DPTScenecontrol from '../DataPointTypes/DPTScenecontrol';
-import DPTSpeed from '../DataPointTypes/DPTSpeed';
-import DPTStartstop from '../DataPointTypes/DPTStartstop';
-import DPTStep from '../DataPointTypes/DPTStep';
-import DPTSwitch from '../DataPointTypes/DPTSwitch';
-import DPTTemperature from '../DataPointTypes/DPTTemperature';
-import DPTTime from '../DataPointTypes/DPTTime';
-import DPTTrigger from '../DataPointTypes/DPTTrigger';
-import DPTUpdown from '../DataPointTypes/DPTUpdown';
+import {DPTAlarm} from '../DataPointTypes/DPTAlarm';
+import {DPTAngle} from '../DataPointTypes/DPTAngle';
+import {DPTBinary} from '../DataPointTypes/DPTBinary';
+import {DPTDate} from '../DataPointTypes/DPTDate';
+import {DPTDimmingcontrol} from '../DataPointTypes/DPTDimmingcontrol';
+import {DPTEnable} from '../DataPointTypes/DPTEnable';
+import {DPTLux} from '../DataPointTypes/DPTLux';
+import {DPTPercentage} from '../DataPointTypes/DPTPercentage';
+import {DPTPercentagescaling} from '../DataPointTypes/DPTPercentagescaling';
+import {DPTScene} from '../DataPointTypes/DPTScene';
+import {DPTScenecontrol} from '../DataPointTypes/DPTScenecontrol';
+import {DPTSpeed} from '../DataPointTypes/DPTSpeed';
+import {DPTStartstop} from '../DataPointTypes/DPTStartstop';
+import {DPTStep} from '../DataPointTypes/DPTStep';
+import {DPTSwitch} from '../DataPointTypes/DPTSwitch';
+import {DPTTemperature} from '../DataPointTypes/DPTTemperature';
+import {DPTTime} from '../DataPointTypes/DPTTime';
+import {DPTTrigger} from '../DataPointTypes/DPTTrigger';
+import {DPTUpdown} from '../DataPointTypes/DPTUpdown';
 import { DataPointType } from './DataPointType';
 
 export const DPTS: {[index: string]: DataPointType} = {

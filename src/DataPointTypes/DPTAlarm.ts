@@ -2,7 +2,7 @@
 
 import {DataPointType} from './DataPointType';
 
-export = class DPTAlarm extends DataPointType {
+export class DPTAlarm extends DataPointType {
     constructor() {
         super(
             DataPointType.TYPES.DPT1.id,
@@ -11,4 +11,4 @@ export = class DPTAlarm extends DataPointType {
             DataPointType.TYPES.DPT1.decoder
         );
     }
-};
+}

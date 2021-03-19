@@ -1,3 +1,5 @@
+import { BufferLengthError } from '../errors/BufferLengthError';
+import { InvalidValueError } from '../errors/InvalidValueError';
 import {DPT} from './definitions';
 
 export interface DPT10Value {
@@ -17,7 +19,7 @@ export const DPT10: DPT = {
     },
     decoder: (buffer: Buffer): DPT10Value => {
         if (buffer.length !== 3) {
-            throw new Error(`Invalid buffer length ${buffer.length} for DPT10.  Expected 3.`);
+            throw new BufferLengthError(`Invalid buffer length ${buffer.length} for DPT10.  Expected 3.`);
         }
         const val = buffer.readUInt8(0);
         const day = (val >> 5) & 0x07;
@@ -28,7 +30,7 @@ export const DPT10: DPT = {
     },
     encoder: (value: DPT10Value): Buffer => {
         if (value == null || value.day == null || value.hours == null || value.minutes == null || value.seconds == null) {
-            throw new Error(`Invalid value ${value} for DPT10.  Should be object with keys day, hours, minutes and seconds`);
+            throw new InvalidValueError(`Invalid value ${value} for DPT10.  Should be object with keys day, hours, minutes and seconds`);
         }
         const buf = Buffer.alloc(3);
         buf.writeUInt8((value.hours & 0x1F) | (value.day << 5), 0);

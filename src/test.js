@@ -33,7 +33,7 @@ const discoverCB = async (ip, port) => {
     try {
         knxClient.stopDiscovery();
         const lampSwitchAddress =  KNXAddress.createFromString("1.1.15", KNXAddress.TYPE_GROUP);
-        const bsoHallAddresss =  KNXAddress.createFromString("2.6.4", KNXAddress.TYPE_GROUP);
+        const bsoLivingAddresss =  KNXAddress.createFromString("2.1.5", KNXAddress.TYPE_GROUP);
         const lampSwitch = DataPoints.createDataPoint(lampSwitchAddress, "Switch");
         const lampStatus = DataPoints.createDataPoint(
             KNXAddress.createFromString("1.2.15", KNXAddress.TYPE_GROUP),
@@ -41,7 +41,8 @@ const discoverCB = async (ip, port) => {
             );
         const dateAddress = KNXAddress.createFromString("9.1.11", KNXAddress.TYPE_GROUP);
         const dateStatus = new DataPoints.Date(dateAddress);
-        const bsoHall = new DataPoints.Percentage(bsoHallAddresss);
+        //const bsoLiving = new DataPoints.Percentage(bsoLivingAddresss);
+        const bsoSwitch = new DataPoints.Switch(bsoLivingAddresss);
         // const allReaders = [];
         // for(let i = 1; i < 16; i++) {
         //     allReaders.push(
@@ -54,8 +55,8 @@ const discoverCB = async (ip, port) => {
         lampSwitch.bind(knxClient);
         lampStatus.bind(knxClient);
         dateStatus.bind(knxClient);
-        bsoHall.bind(knxClient);
-    
+        //bsoLiving.bind(knxClient);
+        bsoSwitch.bind(knxClient);
 
         await knxClient.connectAsync(ip, port)
         console.log("Connected through channel id ", knxClient.channelID);
@@ -66,6 +67,12 @@ const discoverCB = async (ip, port) => {
         //     console.log("Set BSO");
         //     bsoHall.set({value: 10});
         // })
+        count = 0;
+        while(count < 5) {
+            console.log("Set BSO 0", count);
+            await bsoSwitch.setOff();
+            count++;
+        }
         console.log("Reading lamp status");
         let val = await lampStatus.read();
         console.log("Lamp status:", val);

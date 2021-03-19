@@ -1,4 +1,5 @@
 'use strict';
+import { NotImplementedError } from '../errors/NotImplementedError';
 import {DPT} from './definitions';
 
 /**
@@ -48,9 +49,9 @@ export const DPT2: DPT = {
         'invertcontrol': '012'
     },
     decoder: (buffer: Buffer): string|number => {
-        throw new Error('Not yet implemented');
+        throw new NotImplementedError('Not yet implemented');
     },
     encoder: (value: string| number): Buffer => {
-        throw new Error('Not yet implemented');
+        throw new NotImplementedError('Not yet implemented');
     }
 };

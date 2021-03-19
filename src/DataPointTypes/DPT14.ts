@@ -1,3 +1,4 @@
+import { BufferLengthError } from '../errors/BufferLengthError';
 import {DPT} from './definitions';
 
 // Datapoint Types “4-Octet Float Value”
@@ -79,7 +80,7 @@ export const DPT14: DPT = {
     },
     decoder: (buffer: Buffer): number => {
         if (buffer.length !== 4) {
-            throw new Error(`Invalid buffer length ${buffer.length} for DPT14.  Expected 4.`);
+            throw new BufferLengthError(`Invalid buffer length ${buffer.length} for DPT14.  Expected 4.`);
         }
         const val = buffer.readFloatBE(0);
         return val;

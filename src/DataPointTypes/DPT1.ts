@@ -1,4 +1,6 @@
 'use strict';
+import { BufferLengthError } from '../errors/BufferLengthError';
+import { InvalidValueError } from '../errors/InvalidValueError';
 import {DPT} from './definitions';
 /**
  * @typedef {Object} SUBDPT1
@@ -79,17 +81,17 @@ export const DPT1: DPT = {
     },
     decoder: (buffer: Buffer): string|number => {
         if (buffer.length !== 1) {
-            throw new Error(`Invalid buffer length ${buffer.length}/${buffer} for DPT1.  Expected 1.`);
+            throw new BufferLengthError(`Invalid buffer length ${buffer.length}/${buffer} for DPT1.  Expected 1.`);
         }
         const val = buffer.readUInt8(0);
         if (val !== 0 && val !== 1) {
-            throw new Error(`Invalid binary value ${val} for DPT1.  Expected 1 or 0`);
+            throw new InvalidValueError(`Invalid binary value ${val} for DPT1.  Expected 1 or 0`);
         }
         return val;
     },
     encoder: (value: string| number): Buffer => {
         if (value !== 0 && value !== 1) {
-            throw new Error(`Invalid value ${value} for a DPT1.  Should be 0 or 1.`);
+            throw new InvalidValueError(`Invalid value ${value} for a DPT1.  Should be 0 or 1.`);
         }
         const buf = Buffer.alloc(1);
         buf.writeUInt8(value, 0);

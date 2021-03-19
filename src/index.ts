@@ -10,3 +10,4 @@ export {KNXDataBuffer} from './protocol/KNXDataBuffer';
 export * as DataPoints from './DataPoints/index';
 export {DataPointType} from './DataPointTypes/DataPointType';
 export {DPTS as DataPointTypes} from './DataPointTypes/DataPointTypeFactory';
+export * as KNXErrors from './errors';

@@ -1,3 +1,5 @@
+import { BufferLengthError } from '../errors/BufferLengthError';
+import { InvalidValueError } from '../errors/InvalidValueError';
 import {DPT} from './definitions';
 /**
  * @typedef {Object} SUBDPT5
@@ -29,14 +31,14 @@ export const DPT5: DPT = {
     },
     decoder: (buffer: Buffer): number => {
         if (buffer.length !== 1) {
-            throw new Error(`Invalid buffer length ${buffer.length} for DPT5.  Expected 1.`);
+            throw new BufferLengthError(`Invalid buffer length ${buffer.length} for DPT5.  Expected 1.`);
         }
         const val = buffer.readUInt8(0);
         return val;
     },
     encoder: (value: number): Buffer => {
         if (value < 0 || value > 0xFF) {
-            throw new Error(`Invalid value ${value} for DPT5.`);
+            throw new InvalidValueError(`Invalid value ${value} for DPT5.`);
         }
         const buf = Buffer.alloc(1);
         buf.writeUInt8(value, 0);

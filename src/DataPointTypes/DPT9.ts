@@ -1,3 +1,4 @@
+import { BufferLengthError } from '../errors/BufferLengthError';
 import {DPT} from './definitions';
 
 // kudos to http://croquetweak.blogspot.gr/2014/08/deconstructing-floats-frexp-and-ldexp.html
@@ -93,7 +94,7 @@ export const DPT9: DPT = {
     },
     decoder: (buffer: Buffer): number => {
         if (buffer.length !== 2) {
-            throw new Error(`Invalid buffer length ${buffer.length} for DPT9.  Expected 2.`);
+            throw new BufferLengthError(`Invalid buffer length ${buffer.length} for DPT9.  Expected 2.`);
         }
         const val = buffer.readUInt8(0);
         const sign = val >> 7;

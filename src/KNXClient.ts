@@ -18,6 +18,7 @@ import { KNXAddress } from './protocol/KNXAddress';
 import { TunnelCRI, TunnelTypes } from './protocol/TunnelCRI';
 import { KNXConnectionStateResponse } from './protocol/KNXConnectionStateResponse';
 import { KNXSocketOptions } from './KNXSocketOptions';
+import { DuplicateRequestError, RequestTimeoutError } from './errors';
 
 enum STATE {
     STARTED = 0,
@@ -167,7 +168,7 @@ export class KNXClient extends EventEmitter {
         host?: string, port?: number): void {
         const key = dstAddress.toString();
         if (this._pendingTunnelAnswer.has(key)) {
-            const err = new Error(`Request already pending for ${key}`);
+            const err = new DuplicateRequestError(`Request already pending for ${key}`);
             if (cb) {
                 cb(err);
             }
@@ -212,7 +213,7 @@ export class KNXClient extends EventEmitter {
         cb: (e: Error, d?: Buffer) => void = null, host?: string, port?: number): void {
         const key = dstAddress.toString();
         if (this._pendingTunnelAnswer.has(key)) {
-            const err = new Error(`Request already pending for ${key}`);
+            const err = new DuplicateRequestError(`Request already pending for ${key}`);
             if (cb) {
                 cb(err);
             }
@@ -445,7 +446,7 @@ export class KNXClient extends EventEmitter {
     }
 
     private _setTimerAndCallback(knxTunnelingRequest: KNXTunnelingRequest, cb: (e: Error) => void): void {
-        const timeoutErr = new Error(`Request ${knxTunnelingRequest.seqCounter} timed out`);
+        const timeoutErr = new RequestTimeoutError(`Request ${knxTunnelingRequest.seqCounter} timed out`);
         const key = this._keyFromCEMIMessage(knxTunnelingRequest.cEMIMessage);
         this._pendingTunnelAnswer.set(
             key,
@@ -566,6 +567,11 @@ export class KNXClient extends EventEmitter {
                 if (this._tunnelReqTimer.has(knxTunnelingAck.seqCounter)) {
                     clearTimeout(this._tunnelReqTimer.get(knxTunnelingAck.seqCounter));
                     this._tunnelReqTimer.delete(knxTunnelingAck.seqCounter);
+                } else {
+                    this.emit(
+                        KNXClient.KNXClientEvents.error,
+                        `Unexpected Tunnel Ack ${knxTunnelingAck.seqCounter}`
+                    );
                 }
             } else {
                 if (knxHeader.service_type === this._awaitingResponseType) {
