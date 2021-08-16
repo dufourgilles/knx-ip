@@ -138,3 +138,19 @@ Starting bus monitoring
 1.1.16 -> 9.1.5 : <Buffer 42 d2 7c c8>
 1.1.16 -> 9.1.6 : <Buffer 41 c0 bd 5d>
 ```
+
+### Generic Datapoint
+
+If you do not find your Datapoint type in the list, you can use a generic Datapoint.
+Data will need to be encoded/decoded to/from a KNXDataBuffer before you can call write/read functions.
+
+```javascript
+const {KNXTunnelSocket, DataPoints, KNXAddress} = require("knx-ip");
+const knxClient = new KNXTunnelSocket("1.1.100");
+const genericDatapoint = new DataPoints.DataPoint(KNXAddress.createFromString("1.1.15", KNXAddress.TYPE_GROUP));
+genericDatapoint.bind(knxClient);
+
+await knxClient.connectAsync(ip, port);
+const knxDataBuffer = MyDataEncoder.encode(myValue);
+await genericDatapoint.write(knxDataBuffer);
+```

@@ -16,7 +16,7 @@ export class DataPoint {
     protected _knxTunnelSocket: KNXTunnelSocket;
     protected _value: any;
     protected _actions: DPTActions;
-    constructor(private _ga: KNXAddress, private _type: DataPointType) {
+    constructor(protected _ga: KNXAddress, protected _type: DataPointType|null = null) {
         this._knxTunnelSocket = null;
         this._value = UNKOWN_VALUE;
     }
@@ -33,7 +33,7 @@ export class DataPoint {
         return this._value;
     }
 
-    get type(): DataPointType {
+    get type(): DataPointType|null {
         return this._type;
     }
 
@@ -46,21 +46,27 @@ export class DataPoint {
             throw new Error('Datapoint not binded');
         }
         const buf: Buffer = await this._knxTunnelSocket.readAsync(this._ga);
-        this._value = this._type.decode(buf);
-        return this._value;
+        if (this._type) {
+            this._value = this._type.decode(buf);
+            return this._value;
+        }
+        return buf;
     }
 
     /**
      * Set datapoint value - only for writeable datapoint
-     * @param {number|DPT10Value|DPT3Value|Date|DPT18Value} val
+     * @param {string|number|DPT10Value|DPT3Value|Date|DPT18Value|KNXDataBuffer} val
      * @returns {Promise}
      */
-    async write(val: string|number|DPT10Value|DPT3Value|Date|DPT18Value|null = null): Promise<void> {
+    async write(val: string|number|DPT10Value|DPT3Value|Date|DPT18Value|KNXDataBuffer|null = null): Promise<void> {
         if (this._knxTunnelSocket == null) {
             throw new Error('Datapoint not binded');
         }
+        if (this._type == null && !(val instanceof KNXDataBuffer)) {
+            throw new Error('Datapoint type not specified. Expecting KNXDataBuffer value');
+        }
         const value = val == null ? this._value : val;
-        const buf =  new KNXDataBuffer(this._type.encode(value), this);
+        const buf =  this._type ? new KNXDataBuffer(this._type.encode(value), this) : <KNXDataBuffer>val;
         await this._knxTunnelSocket.writeAsync(this._ga, buf);
     }
 }
