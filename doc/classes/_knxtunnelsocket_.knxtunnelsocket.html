@@ -93,15 +93,14 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_knxtunnelsocket_.knxtunnelsocket.html#_connected" class="tsd-kind-icon">_connected</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_knxtunnelsocket_.knxtunnelsocket.html#_connectioncb" class="tsd-kind-icon">_connectionCB</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_knxtunnelsocket_.knxtunnelsocket.html#_connectionstate" class="tsd-kind-icon">_connection<wbr>State</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_knxtunnelsocket_.knxtunnelsocket.html#_disconnectcb" class="tsd-kind-icon">_disconnectCB</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_knxtunnelsocket_.knxtunnelsocket.html#_discoveryrunning" class="tsd-kind-icon">_discovery<wbr>Running</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_knxtunnelsocket_.knxtunnelsocket.html#_host" class="tsd-kind-icon">_host</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_knxtunnelsocket_.knxtunnelsocket.html#_knxclient" class="tsd-kind-icon">_knx<wbr>Client</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_knxtunnelsocket_.knxtunnelsocket.html#_monitoringbus" class="tsd-kind-icon">_monitoring<wbr>Bus</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_knxtunnelsocket_.knxtunnelsocket.html#_options" class="tsd-kind-icon">_options</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_knxtunnelsocket_.knxtunnelsocket.html#_port" class="tsd-kind-icon">_port</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_knxtunnelsocket_.knxtunnelsocket.html#_srcaddress" class="tsd-kind-icon">_src<wbr>Address</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="_knxtunnelsocket_.knxtunnelsocket.html#knxtunnelsocketevents" class="tsd-kind-icon">KNXTunnel<wbr>Socket<wbr>Events</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="_knxtunnelsocket_.knxtunnelsocket.html#port" class="tsd-kind-icon">Port</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="_knxtunnelsocket_.knxtunnelsocket.html#defaultmaxlisteners" class="tsd-kind-icon">default<wbr>Max<wbr>Listeners</a></li>
@@ -121,11 +120,13 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_knxtunnelsocket_.knxtunnelsocket.html#_processdiscoredhost" class="tsd-kind-icon">_process<wbr>Discored<wbr>Host</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_knxtunnelsocket_.knxtunnelsocket.html#addlistener" class="tsd-kind-icon">add<wbr>Listener</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_knxtunnelsocket_.knxtunnelsocket.html#bindsocketportasync" class="tsd-kind-icon">bind<wbr>Socket<wbr>Port<wbr>Async</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_knxtunnelsocket_.knxtunnelsocket.html#checkconnectionstate" class="tsd-kind-icon">check<wbr>Connection<wbr>State</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_knxtunnelsocket_.knxtunnelsocket.html#close" class="tsd-kind-icon">close</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_knxtunnelsocket_.knxtunnelsocket.html#connectasync" class="tsd-kind-icon">connect<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_knxtunnelsocket_.knxtunnelsocket.html#disconnectasync" class="tsd-kind-icon">disconnect<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_knxtunnelsocket_.knxtunnelsocket.html#emit" class="tsd-kind-icon">emit</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_knxtunnelsocket_.knxtunnelsocket.html#eventnames" class="tsd-kind-icon">event<wbr>Names</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_knxtunnelsocket_.knxtunnelsocket.html#getinterfaceipaddress" class="tsd-kind-icon">get<wbr>InterfaceIPAddress</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_knxtunnelsocket_.knxtunnelsocket.html#getmaxlisteners" class="tsd-kind-icon">get<wbr>Max<wbr>Listeners</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_knxtunnelsocket_.knxtunnelsocket.html#listenercount" class="tsd-kind-icon">listener<wbr>Count</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_knxtunnelsocket_.knxtunnelsocket.html#listeners" class="tsd-kind-icon">listeners</a></li>
@@ -156,13 +157,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new KNXTunnel<wbr>Socket<span class="tsd-signature-symbol">(</span>srcAddress<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_knxtunnelsocket_.knxtunnelsocket.html" class="tsd-signature-type">KNXTunnelSocket</a></li>
+						<li class="tsd-signature tsd-kind-icon">new KNXTunnel<wbr>Socket<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_knxsocketoptions_.knxsocketoptions.html" class="tsd-signature-type">KNXSocketOptions</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_knxtunnelsocket_.knxtunnelsocket.html" class="tsd-signature-type">KNXTunnelSocket</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXTunnelSocket.ts#L30">src/KNXTunnelSocket.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXTunnelSocket.ts#L42">src/KNXTunnelSocket.ts:42</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -170,10 +171,10 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> srcAddress: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = null</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> options: <span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_knxsocketoptions_.knxsocketoptions.html" class="tsd-signature-type">KNXSocketOptions</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = {}</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
-											<p>knx Address ie: 1.1.100</p>
+											<p>Configuration options</p>
 										</div>
 									</div>
 								</li>
@@ -186,22 +187,12 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_connected" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _connected</h3>
-					<div class="tsd-signature tsd-kind-icon">_connected<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXTunnelSocket.ts#L27">src/KNXTunnelSocket.ts:27</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="_connectioncb" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _connectionCB</h3>
-					<div class="tsd-signature tsd-kind-icon">_connectionCB<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></div>
+					<div class="tsd-signature tsd-kind-icon">_connectionCB<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">?: </span><a href="_errors_bufferlengtherror_.bufferlengtherror.html#error" class="tsd-signature-type">Error</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXTunnelSocket.ts#L24">src/KNXTunnelSocket.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXTunnelSocket.ts#L37">src/KNXTunnelSocket.ts:37</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -209,14 +200,14 @@
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-signature">
 								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">?: </span><a href="_errors_bufferlengtherror_.bufferlengtherror.html#error" class="tsd-signature-type">Error</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
 										<h4 class="tsd-parameters-title">Parameters</h4>
 										<ul class="tsd-parameters">
 											<li>
-												<h5><span class="tsd-flag ts-flagOptional">Optional</span> e: <span class="tsd-signature-type">Error</span></h5>
+												<h5><span class="tsd-flag ts-flagOptional">Optional</span> e: <a href="_errors_bufferlengtherror_.bufferlengtherror.html#error" class="tsd-signature-type">Error</a></h5>
 											</li>
 										</ul>
 										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -225,14 +216,24 @@
 							</li>
 						</ul>
 					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="_connectionstate" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _connection<wbr>State</h3>
+					<div class="tsd-signature tsd-kind-icon">_connection<wbr>State<span class="tsd-signature-symbol">:</span> <a href="../enums/_knxtunnelsocket_.connectionstate.html" class="tsd-signature-type">ConnectionState</a><span class="tsd-signature-symbol"> = ConnectionState.disconnected</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXTunnelSocket.ts#L40">src/KNXTunnelSocket.ts:40</a></li>
+						</ul>
+					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="_disconnectcb" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _disconnectCB</h3>
-					<div class="tsd-signature tsd-kind-icon">_disconnectCB<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></div>
+					<div class="tsd-signature tsd-kind-icon">_disconnectCB<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">?: </span><a href="_errors_bufferlengtherror_.bufferlengtherror.html#error" class="tsd-signature-type">Error</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXTunnelSocket.ts#L25">src/KNXTunnelSocket.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXTunnelSocket.ts#L38">src/KNXTunnelSocket.ts:38</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -240,14 +241,14 @@
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-signature">
 								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">?: </span><a href="_errors_bufferlengtherror_.bufferlengtherror.html#error" class="tsd-signature-type">Error</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
 										<h4 class="tsd-parameters-title">Parameters</h4>
 										<ul class="tsd-parameters">
 											<li>
-												<h5><span class="tsd-flag ts-flagOptional">Optional</span> e: <span class="tsd-signature-type">Error</span></h5>
+												<h5><span class="tsd-flag ts-flagOptional">Optional</span> e: <a href="_errors_bufferlengtherror_.bufferlengtherror.html#error" class="tsd-signature-type">Error</a></h5>
 											</li>
 										</ul>
 										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -256,16 +257,6 @@
 							</li>
 						</ul>
 					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_discoveryrunning" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _discovery<wbr>Running</h3>
-					<div class="tsd-signature tsd-kind-icon">_discovery<wbr>Running<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXTunnelSocket.ts#L22">src/KNXTunnelSocket.ts:22</a></li>
-						</ul>
-					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="_host" class="tsd-anchor"></a>
@@ -273,7 +264,7 @@
 					<div class="tsd-signature tsd-kind-icon">_host<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXTunnelSocket.ts#L29">src/KNXTunnelSocket.ts:29</a></li>
+							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXTunnelSocket.ts#L41">src/KNXTunnelSocket.ts:41</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -283,7 +274,7 @@
 					<div class="tsd-signature tsd-kind-icon">_knx<wbr>Client<span class="tsd-signature-symbol">:</span> <a href="_knxclient_.knxclient.html" class="tsd-signature-type">KNXClient</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXTunnelSocket.ts#L23">src/KNXTunnelSocket.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXTunnelSocket.ts#L36">src/KNXTunnelSocket.ts:36</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -293,7 +284,17 @@
 					<div class="tsd-signature tsd-kind-icon">_monitoring<wbr>Bus<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXTunnelSocket.ts#L26">src/KNXTunnelSocket.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXTunnelSocket.ts#L39">src/KNXTunnelSocket.ts:39</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="_options" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> _options</h3>
+					<div class="tsd-signature tsd-kind-icon">_options<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_knxsocketoptions_.knxsocketoptions.html" class="tsd-signature-type">KNXSocketOptions</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXTunnelSocket.ts#L35">src/KNXTunnelSocket.ts:35</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -303,17 +304,7 @@
 					<div class="tsd-signature tsd-kind-icon">_port<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXTunnelSocket.ts#L30">src/KNXTunnelSocket.ts:30</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_srcaddress" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _src<wbr>Address</h3>
-					<div class="tsd-signature tsd-kind-icon">_src<wbr>Address<span class="tsd-signature-symbol">:</span> <a href="_protocol_knxaddress_.knxaddress.html" class="tsd-signature-type">KNXAddress</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXTunnelSocket.ts#L28">src/KNXTunnelSocket.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXTunnelSocket.ts#L42">src/KNXTunnelSocket.ts:42</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -323,7 +314,7 @@
 					<div class="tsd-signature tsd-kind-icon">KNXTunnel<wbr>Socket<wbr>Events<span class="tsd-signature-symbol">:</span> <a href="../enums/_knxtunnelsocket_.knxtunnelsocketevents.html" class="tsd-signature-type">KNXTunnelSocketEvents</a><span class="tsd-signature-symbol"> = KNXTunnelSocketEvents</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXTunnelSocket.ts#L17">src/KNXTunnelSocket.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXTunnelSocket.ts#L33">src/KNXTunnelSocket.ts:33</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -333,7 +324,7 @@
 					<div class="tsd-signature tsd-kind-icon">Port<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = KNX_CONSTANTS.KNX_PORT</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXTunnelSocket.ts#L18">src/KNXTunnelSocket.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXTunnelSocket.ts#L34">src/KNXTunnelSocket.ts:34</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -361,7 +352,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXTunnelSocket.ts#L19">src/KNXTunnelSocket.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXTunnelSocket.ts#L30">src/KNXTunnelSocket.ts:30</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -381,7 +372,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXTunnelSocket.ts#L221">src/KNXTunnelSocket.ts:221</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXTunnelSocket.ts#L274">src/KNXTunnelSocket.ts:274</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -417,7 +408,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXTunnelSocket.ts#L193">src/KNXTunnelSocket.ts:193</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXTunnelSocket.ts#L246">src/KNXTunnelSocket.ts:246</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -434,7 +425,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXTunnelSocket.ts#L111">src/KNXTunnelSocket.ts:111</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXTunnelSocket.ts#L242">src/KNXTunnelSocket.ts:242</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -503,7 +494,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXTunnelSocket.ts#L54">src/KNXTunnelSocket.ts:54</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXTunnelSocket.ts#L72">src/KNXTunnelSocket.ts:72</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -527,6 +518,23 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="checkconnectionstate" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> check<wbr>Connection<wbr>State</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">check<wbr>Connection<wbr>State<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXTunnelSocket.ts#L133">src/KNXTunnelSocket.ts:133</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="close" class="tsd-anchor"></a>
 					<h3>close</h3>
@@ -537,7 +545,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXTunnelSocket.ts#L62">src/KNXTunnelSocket.ts:62</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXTunnelSocket.ts#L80">src/KNXTunnelSocket.ts:80</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -554,7 +562,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXTunnelSocket.ts#L71">src/KNXTunnelSocket.ts:71</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXTunnelSocket.ts#L89">src/KNXTunnelSocket.ts:89</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -588,7 +596,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXTunnelSocket.ts#L98">src/KNXTunnelSocket.ts:98</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXTunnelSocket.ts#L119">src/KNXTunnelSocket.ts:119</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -639,6 +647,29 @@
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="getinterfaceipaddress" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> get<wbr>InterfaceIPAddress</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>InterfaceIPAddress<span class="tsd-signature-symbol">(</span>ifname<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXTunnelSocket.ts#L192">src/KNXTunnelSocket.ts:192</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>ifname: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -721,7 +752,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXTunnelSocket.ts#L153">src/KNXTunnelSocket.ts:153</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXTunnelSocket.ts#L183">src/KNXTunnelSocket.ts:183</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -999,7 +1030,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXTunnelSocket.ts#L137">src/KNXTunnelSocket.ts:137</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXTunnelSocket.ts#L166">src/KNXTunnelSocket.ts:166</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1119,13 +1150,13 @@
 					<a name="startdiscovery" class="tsd-anchor"></a>
 					<h3>start<wbr>Discovery</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">start<wbr>Discovery<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">start<wbr>Discovery<span class="tsd-signature-symbol">(</span>ifaceName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, port<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXTunnelSocket.ts#L166">src/KNXTunnelSocket.ts:166</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXTunnelSocket.ts#L213">src/KNXTunnelSocket.ts:213</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1138,7 +1169,16 @@
 									</dd>
 								</dl>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>ifaceName: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>port: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -1152,7 +1192,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXTunnelSocket.ts#L182">src/KNXTunnelSocket.ts:182</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXTunnelSocket.ts#L231">src/KNXTunnelSocket.ts:231</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -1169,7 +1209,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXTunnelSocket.ts#L175">src/KNXTunnelSocket.ts:175</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXTunnelSocket.ts#L224">src/KNXTunnelSocket.ts:224</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -1186,7 +1226,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXTunnelSocket.ts#L121">src/KNXTunnelSocket.ts:121</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXTunnelSocket.ts#L149">src/KNXTunnelSocket.ts:149</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1262,6 +1302,9 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-enum tsd-parent-kind-module tsd-is-not-exported">
+						<a href="../enums/_knxtunnelsocket_.connectionstate.html" class="tsd-kind-icon">Connection<wbr>State</a>
+					</li>
 					<li class=" tsd-kind-enum tsd-parent-kind-module">
 						<a href="../enums/_knxtunnelsocket_.knxtunnelsocketevents.html" class="tsd-kind-icon">KNXTunnel<wbr>Socket<wbr>Events</a>
 					</li>
@@ -1274,16 +1317,13 @@
 								<a href="_knxtunnelsocket_.knxtunnelsocket.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="_knxtunnelsocket_.knxtunnelsocket.html#_connected" class="tsd-kind-icon">_connected</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="_knxtunnelsocket_.knxtunnelsocket.html#_connectioncb" class="tsd-kind-icon">_connectionCB</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="_knxtunnelsocket_.knxtunnelsocket.html#_disconnectcb" class="tsd-kind-icon">_disconnectCB</a>
+								<a href="_knxtunnelsocket_.knxtunnelsocket.html#_connectionstate" class="tsd-kind-icon">_connection<wbr>State</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="_knxtunnelsocket_.knxtunnelsocket.html#_discoveryrunning" class="tsd-kind-icon">_discovery<wbr>Running</a>
+								<a href="_knxtunnelsocket_.knxtunnelsocket.html#_disconnectcb" class="tsd-kind-icon">_disconnectCB</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="_knxtunnelsocket_.knxtunnelsocket.html#_host" class="tsd-kind-icon">_host</a>
@@ -1295,10 +1335,10 @@
 								<a href="_knxtunnelsocket_.knxtunnelsocket.html#_monitoringbus" class="tsd-kind-icon">_monitoring<wbr>Bus</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="_knxtunnelsocket_.knxtunnelsocket.html#_port" class="tsd-kind-icon">_port</a>
+								<a href="_knxtunnelsocket_.knxtunnelsocket.html#_options" class="tsd-kind-icon">_options</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="_knxtunnelsocket_.knxtunnelsocket.html#_srcaddress" class="tsd-kind-icon">_src<wbr>Address</a>
+								<a href="_knxtunnelsocket_.knxtunnelsocket.html#_port" class="tsd-kind-icon">_port</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
 								<a href="_knxtunnelsocket_.knxtunnelsocket.html#knxtunnelsocketevents" class="tsd-kind-icon">KNXTunnel<wbr>Socket<wbr>Events</a>
@@ -1327,6 +1367,9 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_knxtunnelsocket_.knxtunnelsocket.html#bindsocketportasync" class="tsd-kind-icon">bind<wbr>Socket<wbr>Port<wbr>Async</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="_knxtunnelsocket_.knxtunnelsocket.html#checkconnectionstate" class="tsd-kind-icon">check<wbr>Connection<wbr>State</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_knxtunnelsocket_.knxtunnelsocket.html#close" class="tsd-kind-icon">close</a>
 							</li>
@@ -1341,6 +1384,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
 								<a href="_knxtunnelsocket_.knxtunnelsocket.html#eventnames" class="tsd-kind-icon">event<wbr>Names</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="_knxtunnelsocket_.knxtunnelsocket.html#getinterfaceipaddress" class="tsd-kind-icon">get<wbr>InterfaceIPAddress</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
 								<a href="_knxtunnelsocket_.knxtunnelsocket.html#getmaxlisteners" class="tsd-kind-icon">get<wbr>Max<wbr>Listeners</a>
@@ -1403,6 +1449,9 @@
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-object-literal tsd-parent-kind-module tsd-is-not-exported">
+						<a href="../modules/_knxtunnelsocket_.html#optionsdefaults" class="tsd-kind-icon">options<wbr>Defaults</a>
+					</li>
 				</ul>
 			</nav>
 		</div>

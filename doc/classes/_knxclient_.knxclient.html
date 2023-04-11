@@ -80,6 +80,12 @@
 					</li>
 				</ul>
 			</section>
+			<section class="tsd-panel">
+				<h3>Implements</h3>
+				<ul class="tsd-hierarchy">
+					<li><a href="../interfaces/_iknxclient_.iknxclient.html" class="tsd-signature-type">IKNXClient</a></li>
+				</ul>
+			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
@@ -103,6 +109,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_knxclient_.knxclient.html#_heartbeatrunning" class="tsd-kind-icon">_heartbeat<wbr>Running</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_knxclient_.knxclient.html#_heartbeattimer" class="tsd-kind-icon">_heartbeat<wbr>Timer</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_knxclient_.knxclient.html#_host" class="tsd-kind-icon">_host</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_knxclient_.knxclient.html#_options" class="tsd-kind-icon">_options</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_knxclient_.knxclient.html#_peerhost" class="tsd-kind-icon">_peer<wbr>Host</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_knxclient_.knxclient.html#_peerport" class="tsd-kind-icon">_peer<wbr>Port</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_knxclient_.knxclient.html#_pendingtunnelanswer" class="tsd-kind-icon">_pending<wbr>Tunnel<wbr>Answer</a></li>
@@ -123,6 +130,7 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_knxclient_.knxclient.html#_getseqnumber" class="tsd-kind-icon">_get<wbr>Seq<wbr>Number</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_knxclient_.knxclient.html#_handleresponse" class="tsd-kind-icon">_handle<wbr>Response</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_knxclient_.knxclient.html#_incseqnumber" class="tsd-kind-icon">_inc<wbr>Seq<wbr>Number</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_knxclient_.knxclient.html#_keyfromcemimessage" class="tsd-kind-icon">_key<wbr>FromCEMIMessage</a></li>
@@ -160,6 +168,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_knxclient_.knxclient.html#send" class="tsd-kind-icon">send</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_knxclient_.knxclient.html#sendreadrequest" class="tsd-kind-icon">send<wbr>Read<wbr>Request</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_knxclient_.knxclient.html#sendwriterequest" class="tsd-kind-icon">send<wbr>Write<wbr>Request</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_knxclient_.knxclient.html#setdisconnected" class="tsd-kind-icon">set<wbr>Disconnected</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_knxclient_.knxclient.html#setmaxlisteners" class="tsd-kind-icon">set<wbr>Max<wbr>Listeners</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_knxclient_.knxclient.html#startdiscovery" class="tsd-kind-icon">start<wbr>Discovery</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_knxclient_.knxclient.html#startheartbeat" class="tsd-kind-icon">start<wbr>Heart<wbr>Beat</a></li>
@@ -177,15 +186,21 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new KNXClient<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_knxclient_.knxclient.html" class="tsd-signature-type">KNXClient</a></li>
+						<li class="tsd-signature tsd-kind-icon">new KNXClient<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><a href="../interfaces/_knxsocketoptions_.knxsocketoptions.html" class="tsd-signature-type">KNXSocketOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_knxclient_.knxclient.html" class="tsd-signature-type">KNXClient</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L82">src/KNXClient.ts:82</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L83">src/KNXClient.ts:83</a></li>
 								</ul>
 							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>options: <a href="../interfaces/_knxsocketoptions_.knxsocketoptions.html" class="tsd-signature-type">KNXSocketOptions</a></h5>
+								</li>
+							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_knxclient_.knxclient.html" class="tsd-signature-type">KNXClient</a></h4>
 						</li>
 					</ul>
@@ -199,7 +214,7 @@
 					<div class="tsd-signature tsd-kind-icon">_awaiting<wbr>Response<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L75">src/KNXClient.ts:75</a></li>
+							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L77">src/KNXClient.ts:77</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -209,7 +224,7 @@
 					<div class="tsd-signature tsd-kind-icon">_channelID<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L78">src/KNXClient.ts:78</a></li>
+							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L80">src/KNXClient.ts:80</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -219,7 +234,7 @@
 					<div class="tsd-signature tsd-kind-icon">_client<wbr>Socket<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Socket</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L76">src/KNXClient.ts:76</a></li>
+							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L78">src/KNXClient.ts:78</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -229,7 +244,7 @@
 					<div class="tsd-signature tsd-kind-icon">_client<wbr>Tunnel<wbr>Seq<wbr>Number<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L77">src/KNXClient.ts:77</a></li>
+							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L79">src/KNXClient.ts:79</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -239,7 +254,7 @@
 					<div class="tsd-signature tsd-kind-icon">_connection<wbr>State<span class="tsd-signature-symbol">:</span> <a href="../enums/_knxclient_.state.html" class="tsd-signature-type">STATE</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L79">src/KNXClient.ts:79</a></li>
+							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L81">src/KNXClient.ts:81</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -249,7 +264,7 @@
 					<div class="tsd-signature tsd-kind-icon">_discovery_<wbr>timer<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Timeout</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L74">src/KNXClient.ts:74</a></li>
+							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L76">src/KNXClient.ts:76</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -259,7 +274,7 @@
 					<div class="tsd-signature tsd-kind-icon">_heartbeat<wbr>Failures<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L72">src/KNXClient.ts:72</a></li>
+							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L74">src/KNXClient.ts:74</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -269,7 +284,7 @@
 					<div class="tsd-signature tsd-kind-icon">_heartbeat<wbr>Running<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L73">src/KNXClient.ts:73</a></li>
+							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L75">src/KNXClient.ts:75</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -279,7 +294,7 @@
 					<div class="tsd-signature tsd-kind-icon">_heartbeat<wbr>Timer<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Timeout</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L71">src/KNXClient.ts:71</a></li>
+							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L73">src/KNXClient.ts:73</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -289,7 +304,17 @@
 					<div class="tsd-signature tsd-kind-icon">_host<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L66">src/KNXClient.ts:66</a></li>
+							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L68">src/KNXClient.ts:68</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="_options" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> _options</h3>
+					<div class="tsd-signature tsd-kind-icon">_options<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_knxsocketoptions_.knxsocketoptions.html" class="tsd-signature-type">KNXSocketOptions</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L67">src/KNXClient.ts:67</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -299,7 +324,7 @@
 					<div class="tsd-signature tsd-kind-icon">_peer<wbr>Host<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L68">src/KNXClient.ts:68</a></li>
+							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L70">src/KNXClient.ts:70</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -309,7 +334,7 @@
 					<div class="tsd-signature tsd-kind-icon">_peer<wbr>Port<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L69">src/KNXClient.ts:69</a></li>
+							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L71">src/KNXClient.ts:71</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -319,7 +344,7 @@
 					<div class="tsd-signature tsd-kind-icon">_pending<wbr>Tunnel<wbr>Answer<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><a href="../interfaces/_knxclient_.pendinganswer.html" class="tsd-signature-type">PendingAnswer</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L81">src/KNXClient.ts:81</a></li>
+							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L83">src/KNXClient.ts:83</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -329,7 +354,7 @@
 					<div class="tsd-signature tsd-kind-icon">_port<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L67">src/KNXClient.ts:67</a></li>
+							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L69">src/KNXClient.ts:69</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -339,7 +364,7 @@
 					<div class="tsd-signature tsd-kind-icon">_timer<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Timeout</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L70">src/KNXClient.ts:70</a></li>
+							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L72">src/KNXClient.ts:72</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -349,17 +374,17 @@
 					<div class="tsd-signature tsd-kind-icon">_tunnel<wbr>Req<wbr>Timer<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Timeout</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L80">src/KNXClient.ts:80</a></li>
+							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L82">src/KNXClient.ts:82</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="max_heartbeatfailures" class="tsd-anchor"></a>
 					<h3>max_<wbr><wbr>Heartbeat<wbr>Failures</h3>
-					<div class="tsd-signature tsd-kind-icon">max_<wbr><wbr>Heartbeat<wbr>Failures<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Number</span></div>
+					<div class="tsd-signature tsd-kind-icon">max_<wbr><wbr>Heartbeat<wbr>Failures<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L82">src/KNXClient.ts:82</a></li>
+							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L66">src/KNXClient.ts:66</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -369,7 +394,7 @@
 					<div class="tsd-signature tsd-kind-icon">KNXClient<wbr>Events<span class="tsd-signature-symbol">:</span> <a href="../enums/_knxclient_.knxclientevents.html" class="tsd-signature-type">KNXClientEvents</a><span class="tsd-signature-symbol"> = KNXClientEvents</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L61">src/KNXClient.ts:61</a></li>
+							<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L65">src/KNXClient.ts:65</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -397,7 +422,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L63">src/KNXClient.ts:63</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L61">src/KNXClient.ts:61</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -408,6 +433,23 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="_getseqnumber" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _get<wbr>Seq<wbr>Number</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">_get<wbr>Seq<wbr>Number<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L408">src/KNXClient.ts:408</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
 					<a name="_handleresponse" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _handle<wbr>Response</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
@@ -417,7 +459,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L406">src/KNXClient.ts:406</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L420">src/KNXClient.ts:420</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -434,15 +476,21 @@
 					<a name="_incseqnumber" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _inc<wbr>Seq<wbr>Number</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">_inc<wbr>Seq<wbr>Number<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+						<li class="tsd-signature tsd-kind-icon">_inc<wbr>Seq<wbr>Number<span class="tsd-signature-symbol">(</span>seq<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L397">src/KNXClient.ts:397</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L412">src/KNXClient.ts:412</a></li>
 								</ul>
 							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> seq: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
 						</li>
 					</ul>
@@ -457,7 +505,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L427">src/KNXClient.ts:427</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L441">src/KNXClient.ts:441</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -480,7 +528,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L460">src/KNXClient.ts:460</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L474">src/KNXClient.ts:474</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -506,7 +554,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L259">src/KNXClient.ts:259</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L398">src/KNXClient.ts:398</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -523,7 +571,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L586">src/KNXClient.ts:586</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L627">src/KNXClient.ts:627</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -552,7 +600,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L598">src/KNXClient.ts:598</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L639">src/KNXClient.ts:639</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -581,7 +629,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L568">src/KNXClient.ts:568</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L609">src/KNXClient.ts:609</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -607,7 +655,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L607">src/KNXClient.ts:607</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L648">src/KNXClient.ts:648</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -636,7 +684,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L617">src/KNXClient.ts:617</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L658">src/KNXClient.ts:658</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -668,7 +716,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L577">src/KNXClient.ts:577</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L618">src/KNXClient.ts:618</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -679,13 +727,13 @@
 					<a name="_settimerandcallback" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _set<wbr>Timer<wbr>And<wbr>Callback</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">_set<wbr>Timer<wbr>And<wbr>Callback<span class="tsd-signature-symbol">(</span>knxTunnelingRequest<span class="tsd-signature-symbol">: </span><a href="_protocol_knxtunnelingrequest_.knxtunnelingrequest.html" class="tsd-signature-type">KNXTunnelingRequest</a>, cb<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">_set<wbr>Timer<wbr>And<wbr>Callback<span class="tsd-signature-symbol">(</span>knxTunnelingRequest<span class="tsd-signature-symbol">: </span><a href="_protocol_knxtunnelingrequest_.knxtunnelingrequest.html" class="tsd-signature-type">KNXTunnelingRequest</a>, cb<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><a href="_errors_bufferlengtherror_.bufferlengtherror.html#error" class="tsd-signature-type">Error</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L431">src/KNXClient.ts:431</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L445">src/KNXClient.ts:445</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -694,18 +742,18 @@
 									<h5>knxTunnelingRequest: <a href="_protocol_knxtunnelingrequest_.knxtunnelingrequest.html" class="tsd-signature-type">KNXTunnelingRequest</a></h5>
 								</li>
 								<li>
-									<h5>cb: <span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h5>
+									<h5>cb: <span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><a href="_errors_bufferlengtherror_.bufferlengtherror.html#error" class="tsd-signature-type">Error</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h5>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-signature">
 											<ul class="tsd-signatures tsd-kind-type-literal">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><a href="_errors_bufferlengtherror_.bufferlengtherror.html#error" class="tsd-signature-type">Error</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
 												<li class="tsd-description">
 													<h4 class="tsd-parameters-title">Parameters</h4>
 													<ul class="tsd-parameters">
 														<li>
-															<h5>e: <span class="tsd-signature-type">Error</span></h5>
+															<h5>e: <a href="_errors_bufferlengtherror_.bufferlengtherror.html#error" class="tsd-signature-type">Error</a></h5>
 														</li>
 													</ul>
 													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -775,7 +823,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L114">src/KNXClient.ts:114</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L116">src/KNXClient.ts:116</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -804,8 +852,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_iknxclient_.iknxclient.html">IKNXClient</a>.<a href="../interfaces/_iknxclient_.iknxclient.html#close">close</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L383">src/KNXClient.ts:383</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L377">src/KNXClient.ts:377</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -821,8 +870,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_iknxclient_.iknxclient.html">IKNXClient</a>.<a href="../interfaces/_iknxclient_.iknxclient.html#disconnect">disconnect</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L366">src/KNXClient.ts:366</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L360">src/KNXClient.ts:360</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -896,13 +946,14 @@
 					<a name="getconnectionstatus" class="tsd-anchor"></a>
 					<h3>get<wbr>Connection<wbr>Status</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Connection<wbr>Status<span class="tsd-signature-symbol">(</span>host<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, port<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, channelID<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Connection<wbr>Status<span class="tsd-signature-symbol">(</span>host<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, port<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, _channelID<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_iknxclient_.iknxclient.html">IKNXClient</a>.<a href="../interfaces/_iknxclient_.iknxclient.html#getconnectionstatus">getConnectionStatus</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L340">src/KNXClient.ts:340</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L334">src/KNXClient.ts:334</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -916,9 +967,7 @@
 									<h5>port: <span class="tsd-signature-type">number</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> channelID: <span class="tsd-signature-type">number</span></h5>
-									<div class="tsd-comment tsd-typography">
-									</div>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> _channelID: <span class="tsd-signature-type">number</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -934,8 +983,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_iknxclient_.iknxclient.html">IKNXClient</a>.<a href="../interfaces/_iknxclient_.iknxclient.html#getdescription">getDescription</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L304">src/KNXClient.ts:304</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L297">src/KNXClient.ts:297</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -983,8 +1033,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_iknxclient_.iknxclient.html">IKNXClient</a>.<a href="../interfaces/_iknxclient_.iknxclient.html#isconnected">isConnected</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L393">src/KNXClient.ts:393</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L387">src/KNXClient.ts:387</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1002,8 +1053,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_iknxclient_.iknxclient.html">IKNXClient</a>.<a href="../interfaces/_iknxclient_.iknxclient.html#isdiscoveryrunning">isDiscoveryRunning</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L271">src/KNXClient.ts:271</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L264">src/KNXClient.ts:264</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1209,8 +1261,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_iknxclient_.iknxclient.html">IKNXClient</a>.<a href="../interfaces/_iknxclient_.iknxclient.html#opentunnelconnection">openTunnelConnection</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L321">src/KNXClient.ts:321</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L314">src/KNXClient.ts:314</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1431,7 +1484,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L135">src/KNXClient.ts:135</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L137">src/KNXClient.ts:137</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1458,13 +1511,13 @@
 					<a name="sendreadrequest" class="tsd-anchor"></a>
 					<h3>send<wbr>Read<wbr>Request</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">send<wbr>Read<wbr>Request<span class="tsd-signature-symbol">(</span>srcAddress<span class="tsd-signature-symbol">: </span><a href="_protocol_knxaddress_.knxaddress.html" class="tsd-signature-type">KNXAddress</a>, dstAddress<span class="tsd-signature-symbol">: </span><a href="_protocol_knxaddress_.knxaddress.html" class="tsd-signature-type">KNXAddress</a>, cb<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span>, d<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span>, host<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, port<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">send<wbr>Read<wbr>Request<span class="tsd-signature-symbol">(</span>srcAddress<span class="tsd-signature-symbol">: </span><a href="_protocol_knxaddress_.knxaddress.html" class="tsd-signature-type">KNXAddress</a>, dstAddress<span class="tsd-signature-symbol">: </span><a href="_protocol_knxaddress_.knxaddress.html" class="tsd-signature-type">KNXAddress</a>, cb<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><a href="_errors_bufferlengtherror_.bufferlengtherror.html#error" class="tsd-signature-type">Error</a>, d<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span>, host<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, port<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L205">src/KNXClient.ts:205</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L207">src/KNXClient.ts:207</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1478,18 +1531,18 @@
 									<h5>dstAddress: <a href="_protocol_knxaddress_.knxaddress.html" class="tsd-signature-type">KNXAddress</a></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> cb: <span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span>, d<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> = null</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> cb: <span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><a href="_errors_bufferlengtherror_.bufferlengtherror.html#error" class="tsd-signature-type">Error</a>, d<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> = null</span></h5>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-signature">
 											<ul class="tsd-signatures tsd-kind-type-literal">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span>, d<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><a href="_errors_bufferlengtherror_.bufferlengtherror.html#error" class="tsd-signature-type">Error</a>, d<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
 												<li class="tsd-description">
 													<h4 class="tsd-parameters-title">Parameters</h4>
 													<ul class="tsd-parameters">
 														<li>
-															<h5>e: <span class="tsd-signature-type">Error</span></h5>
+															<h5>e: <a href="_errors_bufferlengtherror_.bufferlengtherror.html#error" class="tsd-signature-type">Error</a></h5>
 														</li>
 														<li>
 															<h5><span class="tsd-flag ts-flagOptional">Optional</span> d: <span class="tsd-signature-type">Buffer</span></h5>
@@ -1518,13 +1571,13 @@
 					<a name="sendwriterequest" class="tsd-anchor"></a>
 					<h3>send<wbr>Write<wbr>Request</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">send<wbr>Write<wbr>Request<span class="tsd-signature-symbol">(</span>srcAddress<span class="tsd-signature-symbol">: </span><a href="_protocol_knxaddress_.knxaddress.html" class="tsd-signature-type">KNXAddress</a>, dstAddress<span class="tsd-signature-symbol">: </span><a href="_protocol_knxaddress_.knxaddress.html" class="tsd-signature-type">KNXAddress</a>, data<span class="tsd-signature-symbol">: </span><a href="_protocol_knxdatabuffer_.knxdatabuffer.html" class="tsd-signature-type">KNXDataBuffer</a>, cb<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span>, host<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, port<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">send<wbr>Write<wbr>Request<span class="tsd-signature-symbol">(</span>srcAddress<span class="tsd-signature-symbol">: </span><a href="_protocol_knxaddress_.knxaddress.html" class="tsd-signature-type">KNXAddress</a>, dstAddress<span class="tsd-signature-symbol">: </span><a href="_protocol_knxaddress_.knxaddress.html" class="tsd-signature-type">KNXAddress</a>, data<span class="tsd-signature-symbol">: </span><a href="_protocol_knxdatabuffer_.knxdatabuffer.html" class="tsd-signature-type">KNXDataBuffer</a>, cb<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><a href="_errors_bufferlengtherror_.bufferlengtherror.html#error" class="tsd-signature-type">Error</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span>, host<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, port<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L158">src/KNXClient.ts:158</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L160">src/KNXClient.ts:160</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1541,18 +1594,18 @@
 									<h5>data: <a href="_protocol_knxdatabuffer_.knxdatabuffer.html" class="tsd-signature-type">KNXDataBuffer</a></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> cb: <span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> = null</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> cb: <span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><a href="_errors_bufferlengtherror_.bufferlengtherror.html#error" class="tsd-signature-type">Error</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> = null</span></h5>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-signature">
 											<ul class="tsd-signatures tsd-kind-type-literal">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><a href="_errors_bufferlengtherror_.bufferlengtherror.html#error" class="tsd-signature-type">Error</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
 												<li class="tsd-description">
 													<h4 class="tsd-parameters-title">Parameters</h4>
 													<ul class="tsd-parameters">
 														<li>
-															<h5>e: <span class="tsd-signature-type">Error</span></h5>
+															<h5>e: <a href="_errors_bufferlengtherror_.bufferlengtherror.html#error" class="tsd-signature-type">Error</a></h5>
 														</li>
 													</ul>
 													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -1568,6 +1621,35 @@
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> port: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
 									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="setdisconnected" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> set<wbr>Disconnected</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Disconnected<span class="tsd-signature-symbol">(</span>host<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, port<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, channelID<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L391">src/KNXClient.ts:391</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>host: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>port: <span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li>
+									<h5>channelID: <span class="tsd-signature-type">number</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -1608,8 +1690,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_iknxclient_.iknxclient.html">IKNXClient</a>.<a href="../interfaces/_iknxclient_.iknxclient.html#startdiscovery">startDiscovery</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L278">src/KNXClient.ts:278</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L271">src/KNXClient.ts:271</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1630,8 +1713,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_iknxclient_.iknxclient.html">IKNXClient</a>.<a href="../interfaces/_iknxclient_.iknxclient.html#startheartbeat">startHeartBeat</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L245">src/KNXClient.ts:245</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L247">src/KNXClient.ts:247</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1652,8 +1736,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_iknxclient_.iknxclient.html">IKNXClient</a>.<a href="../interfaces/_iknxclient_.iknxclient.html#stopdiscovery">stopDiscovery</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L291">src/KNXClient.ts:291</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L284">src/KNXClient.ts:284</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -1669,8 +1754,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_iknxclient_.iknxclient.html">IKNXClient</a>.<a href="../interfaces/_iknxclient_.iknxclient.html#stopheartbeat">stopHeartBeat</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/615b665/src/KNXClient.ts#L254">src/KNXClient.ts:254</a></li>
+									<li>Defined in <a href="https://github.com/dufourgilles/knx-ip/blob/cf19723/src/KNXClient.ts#L256">src/KNXClient.ts:256</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1737,9 +1823,6 @@
 					<li class=" tsd-kind-enum tsd-parent-kind-module tsd-is-not-exported">
 						<a href="../enums/_knxclient_.state.html" class="tsd-kind-icon">STATE</a>
 					</li>
-					<li class=" tsd-kind-enum tsd-parent-kind-module tsd-is-not-exported">
-						<a href="../enums/_knxclient_.tunnelstate.html" class="tsd-kind-icon">TUNNELSTATE</a>
-					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-module">
@@ -1779,6 +1862,9 @@
 								<a href="_knxclient_.knxclient.html#_host" class="tsd-kind-icon">_host</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="_knxclient_.knxclient.html#_options" class="tsd-kind-icon">_options</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="_knxclient_.knxclient.html#_peerhost" class="tsd-kind-icon">_peer<wbr>Host</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
@@ -1807,6 +1893,9 @@
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
 								<a href="_knxclient_.knxclient.html#channelid" class="tsd-kind-icon">channelID</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="_knxclient_.knxclient.html#_getseqnumber" class="tsd-kind-icon">_get<wbr>Seq<wbr>Number</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
 								<a href="_knxclient_.knxclient.html#_handleresponse" class="tsd-kind-icon">_handle<wbr>Response</a>
@@ -1918,6 +2007,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_knxclient_.knxclient.html#sendwriterequest" class="tsd-kind-icon">send<wbr>Write<wbr>Request</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="_knxclient_.knxclient.html#setdisconnected" class="tsd-kind-icon">set<wbr>Disconnected</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
 								<a href="_knxclient_.knxclient.html#setmaxlisteners" class="tsd-kind-icon">set<wbr>Max<wbr>Listeners</a>

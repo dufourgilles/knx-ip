@@ -101,6 +101,6 @@ const discoverCB = async (ip, port) => {
 };
 
 // start auto discovery on interface with ip 192.168.1.99
-Promise.resolve().then(() => knxClient.startDiscovery("192.168.1.2")).catch((e) => {
+Promise.resolve().then(() => knxClient.startDiscovery("br0")).catch((e) => {
     console.log(e);
 });

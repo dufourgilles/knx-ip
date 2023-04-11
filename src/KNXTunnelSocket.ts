@@ -6,12 +6,19 @@ import {KNXDataBuffer} from './protocol/KNXDataBuffer';
 import {NPDU} from './protocol/cEMI/NPDU';
 import {KNX_CONSTANTS} from './protocol/KNXConstants';
 import {KNXSocketOptions} from './KNXSocketOptions';
+import {networkInterfaces } from 'os';
 
 export enum KNXTunnelSocketEvents {
     disconnected = 'disconnected',
     discover = 'discover',
     indication = 'indication',
     error = 'error'
+}
+
+enum ConnectionState {
+    disconnected,
+    connecting,
+    connected
 }
 
 const optionsDefaults: KNXSocketOptions = {
@@ -30,7 +37,7 @@ export class KNXTunnelSocket extends EventEmitter {
     private _connectionCB: (e?: Error) => void;
     private _disconnectCB: (e?: Error) => void;
     private _monitoringBus: boolean;
-    private _connected: boolean;
+    private _connectionState: ConnectionState = ConnectionState.disconnected;
     private _host: string;
     private _port: number;
     /**
@@ -53,7 +60,6 @@ export class KNXTunnelSocket extends EventEmitter {
         this._connectionCB = null;
         this._disconnectCB = null;
         this._monitoringBus = false;
-        this._connected = false;
         this._handleBusEvent = this._handleBusEvent.bind(this);
         this._init();
     }
@@ -80,18 +86,21 @@ export class KNXTunnelSocket extends EventEmitter {
      * @param {string} host - destination ip address
      * @param {number} port - destination port
      */
-    connectAsync(host: string, port: number): Promise<void> {
-        if (this._connected) {
-            return Promise.reject(new Error('Already connected'));
+    async connectAsync(host: string, port: number): Promise<void> {
+        if (this._connectionState !== ConnectionState.disconnected) {
+            throw new Error('Already connected');
         }
+        this._connectionState = ConnectionState.connecting;
         this._host = host;
         this._port = port;
         return new Promise((resolve, reject) => {
             this._connectionCB = err => {
                 this._connectionCB = null;
                 if (err != null) {
+                    this._connectionState = ConnectionState.disconnected;
                     reject(err);
                 } else {
+                    this._connectionState = ConnectionState.connected;
                     this._knxClient.startHeartBeat();
                     resolve();
                 }
@@ -116,6 +125,7 @@ export class KNXTunnelSocket extends EventEmitter {
                 }
                 resolve();
             };
+            this._connectionState = ConnectionState.disconnected;
             this._knxClient.disconnect(this._host, this._port);
         });
     }
@@ -126,7 +136,8 @@ export class KNXTunnelSocket extends EventEmitter {
      * @param {KNXDataBuffer} data - data to write
      * @returns {Promise}
      */
-    writeAsync(dstAddress: KNXAddress, data: KNXDataBuffer): Promise<void> {
+    async writeAsync(dstAddress: KNXAddress, data: KNXDataBuffer): Promise<void> {
+        this.checkConnectionState();
         return new Promise((resolve, reject) => {
             this._knxClient.sendWriteRequest(this._options.srcAddress, dstAddress, data, (err: Error) => {
                 if (err) {
@@ -143,6 +154,7 @@ export class KNXTunnelSocket extends EventEmitter {
      * @param {KNXAddress} dstAddress
      */
     readAsync(dstAddress: KNXAddress): Promise<Buffer> {
+        this.checkConnectionState();
         return new Promise((resolve, reject) => {
             this._knxClient.sendReadRequest(this._options.srcAddress, dstAddress, (err: Error, data: Buffer) => {
                 if (err) {
@@ -169,10 +181,16 @@ export class KNXTunnelSocket extends EventEmitter {
 
     /**
      * Start KNX gateway discovery
+     *
+     * @param {ip | interface name} host
+     * @param {number} port
      * @emit discover
      */
-    async startDiscovery(host: string, port = KNX_CONSTANTS.KNX_PORT): Promise<void> {
-        await this.bindSocketPortAsync(port, host);
+    async startDiscovery(ifaceName: string, port: number): Promise<void>;
+    async startDiscovery(ip: string, port = KNX_CONSTANTS.KNX_PORT): Promise<void> {
+        const ipv4Match = ip.match(/^\d+\.\d+\.\d+\.\d+$/);
+        const hostAddress = ipv4Match ? ip : this.getInterfaceIPAddress(ip);
+        await this.bindSocketPortAsync(port, hostAddress);
         this._knxClient.startDiscovery();
     }
 
@@ -197,6 +215,30 @@ export class KNXTunnelSocket extends EventEmitter {
         this._knxClient.off(KNXTunnelSocketEvents.indication, this._handleBusEvent);
     }
 
+    private checkConnectionState(): void {
+        if (this._connectionState !== ConnectionState.connected) {
+            if (this._connectionState === ConnectionState.connecting) {
+                throw new Error('You must wait for connection to be established.');
+            } else {
+                throw new Error('Not connected.');
+            }
+        }
+    }
+
+    private getInterfaceIPAddress(ifname: string): string {
+        const ifaces = networkInterfaces();
+        const iface = ifaces[ifname];
+        if (iface == null) {
+            throw new Error(`Unknown interface ${ifname}`);
+        }
+        for (const address of iface) {
+            if (address.family === 'IPv4') {
+                return address.address;
+            }
+        }
+        throw new Error(`No IPV4 address on interface ${ifname}`);
+    }
+
     private _processDiscoredHost(rinfo: string): void {
         this.emit(KNXTunnelSocketEvents.discover, rinfo);
     }
@@ -214,7 +256,7 @@ export class KNXTunnelSocket extends EventEmitter {
                 this._disconnectCB(err);
             }
         }).on(KNXClient.KNXClientEvents.disconnected, () => {
-            this._connected = false;
+            this._connectionState = ConnectionState.disconnected;
             if (this._disconnectCB != null) {
                 this._disconnectCB();
             }

@@ -104,16 +104,17 @@
 
 <span class="hljs-keyword">const</span> {KNXTunnelSocket, DataPoints, KNXAddress} = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;knx-ip&quot;</span>);
 
-<span class="hljs-keyword">const</span> knxSocket = <span class="hljs-keyword">new</span> KNXTunnelSocket(<span class="hljs-string">&quot;1.1.100&quot;</span>);
+<span class="hljs-comment">// Create tunnel socket with source knx address 1.1.100</span>
+<span class="hljs-keyword">const</span> knxClient = <span class="hljs-keyword">new</span> KNXTunnelSocket(<span class="hljs-string">&quot;1.1.100&quot;</span>);
 
-knxSocket.on(KNXTunnelSocket.KNXTunnelSocketEvents.error, <span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
+knxClient.on(KNXTunnelSocket.KNXTunnelSocketEvents.error, <span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
     <span class="hljs-keyword">if</span> (err) {
         <span class="hljs-built_in">console</span>.log(err);
     }
 });
 
 <span class="hljs-comment">// Call discoverCB when a knx gateway has been discovered.</span>
-knxSocket.on(KNXTunnelSocket.KNXTunnelSocketEvents.discover,  <span class="hljs-function"><span class="hljs-params">info</span> =&gt;</span> {
+knxClient.on(KNXTunnelSocket.KNXTunnelSocketEvents.discover,  <span class="hljs-function"><span class="hljs-params">info</span> =&gt;</span> {
     <span class="hljs-keyword">const</span> [ip,port] = info.split(<span class="hljs-string">&quot;:&quot;</span>);
     discoverCB(ip,port);
 });
@@ -143,19 +144,18 @@ knxClient.startDiscovery(<span class="hljs-string">&quot;192.168.1.99&quot;</spa
         <span class="hljs-comment">// Create a Datapoint of type Switch to read the lamp status</span>
         <span class="hljs-comment">// This time using the createDataPoint function</span>
         <span class="hljs-keyword">const</span> lampStatus = <span class="hljs-keyword">new</span> DataPoints.Switch(
-            KNXAddress.createFromString(<span class="hljs-string">&quot;1.2.15&quot;</span>, KNXAddress.TYPE_GROUP)<span class="hljs-string">&quot;Switch&quot;</span>
+            KNXAddress.createFromString(<span class="hljs-string">&quot;1.2.15&quot;</span>, KNXAddress.TYPE_GROUP)
         );
         <span class="hljs-keyword">const</span> dateStatus = <span class="hljs-keyword">new</span> DataPoints.Date(dateAddress);
         <span class="hljs-keyword">const</span> bsoHall = <span class="hljs-keyword">new</span> DataPoints.Percentage(bsoHallAddresss);
-        <span class="hljs-comment">// Create tunnel socket with source knx address 1.1.100</span>
         <span class="hljs-comment">// Bind the datapoints with the socket</span>
-        lampSwitch.bind(knxSocket);
-        lampStatus.bind(knxSocket);
-        dateStatus.bind(knxSocket);
-        bsoHall.bind(knxSocket);
+        lampSwitch.bind(knxClient);
+        lampStatus.bind(knxClient);
+        dateStatus.bind(knxClient);
+        bsoHall.bind(knxClient);
         <span class="hljs-comment">// Connect to the knx gateway on ip:port</span>
-        knxSocket.connectAsync(ip, port)
-            .then(<span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Connected through channel id &quot;</span>, knxSocket.channelID))
+        knxClient.connectAsync(ip, port)
+            .then(<span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Connected through channel id &quot;</span>, knxClient.channelID))
             .then(<span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Reading lamp status&quot;</span>))
             .then(<span class="hljs-function">() =&gt;</span> lampStatus.read())
             .then(<span class="hljs-function"><span class="hljs-params">val</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Lamp status:&quot;</span>, val))
@@ -170,8 +170,8 @@ knxClient.startDiscovery(<span class="hljs-string">&quot;192.168.1.99&quot;</spa
             .then(<span class="hljs-function"><span class="hljs-params">val</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Lamp status:&quot;</span>, val))
             .then(<span class="hljs-function">() =&gt;</span> {
                 <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Starting bus monitoring&quot;</span>);
-                knxSocket.on(<span class="hljs-string">&quot;indication&quot;</span>, handleBusEvent);
-                knxSocket.monitorBus()
+                knxClient.on(<span class="hljs-string">&quot;indication&quot;</span>, handleBusEvent);
+                knxClient.monitorBus()
             })
             .then(<span class="hljs-function">() =&gt;</span> wait(<span class="hljs-number">9000</span>))
             .catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {<span class="hljs-built_in">console</span>.log(err);})
@@ -189,6 +189,19 @@ Starting bus monitoring
 1.1.16 -&gt; 9.1.2 : &lt;Buffer 00 64&gt;
 1.1.16 -&gt; 9.1.5 : &lt;Buffer 42 d2 7c c8&gt;
 1.1.16 -&gt; 9.1.6 : &lt;Buffer 41 c0 bd 5d&gt;</code></pre>
+				<a href="#generic-datapoint" id="generic-datapoint" style="color: inherit; text-decoration: none;">
+					<h3>Generic Datapoint</h3>
+				</a>
+				<p>If you do not find your Datapoint type in the list, you can use a generic Datapoint.
+				Data will need to be encoded/decoded to/from a KNXDataBuffer before you can call write/read functions.</p>
+				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> {KNXTunnelSocket, DataPoints, KNXAddress} = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;knx-ip&quot;</span>);
+<span class="hljs-keyword">const</span> knxClient = <span class="hljs-keyword">new</span> KNXTunnelSocket(<span class="hljs-string">&quot;1.1.100&quot;</span>);
+<span class="hljs-keyword">const</span> genericDatapoint = <span class="hljs-keyword">new</span> DataPoints.DataPoint(KNXAddress.createFromString(<span class="hljs-string">&quot;1.1.15&quot;</span>, KNXAddress.TYPE_GROUP));
+genericDatapoint.bind(knxClient);
+
+<span class="hljs-keyword">await</span> knxClient.connectAsync(ip, port);
+<span class="hljs-keyword">const</span> knxDataBuffer = MyDataEncoder.encode(myValue);
+<span class="hljs-keyword">await</span> genericDatapoint.write(knxDataBuffer);</code></pre>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -360,10 +373,37 @@ Starting bus monitoring
 						<a href="modules/_datapoints_index_.html">&quot;<wbr>Data<wbr>Points/index&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="modules/_iknxclient_.html">&quot;IKNXClient&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="modules/_knxclient_.html">&quot;KNXClient&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="modules/_knxsocketoptions_.html">&quot;KNXSocket<wbr>Options&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="modules/_knxtunnelsocket_.html">&quot;KNXTunnel<wbr>Socket&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_errors_bufferlengtherror_.html">&quot;errors/<wbr>Buffer<wbr>Length<wbr>Error&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_errors_dateformaterror_.html">&quot;errors/<wbr>Date<wbr>Format<wbr>Error&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_errors_duplicaterequesterror_.html">&quot;errors/<wbr>Duplicate<wbr>Request<wbr>Error&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_errors_invalidvalueerror_.html">&quot;errors/<wbr>Invalid<wbr>Value<wbr>Error&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_errors_notimplementederror_.html">&quot;errors/<wbr>Not<wbr>Implemented<wbr>Error&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_errors_requesttimeouterror_.html">&quot;errors/<wbr>Request<wbr>Timeout<wbr>Error&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_errors_index_.html">&quot;errors/index&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/_index_.html">&quot;index&quot;</a>

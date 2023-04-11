@@ -28,7 +28,7 @@
         "max-line-length": [
             true,
             {
-                "limit": 150,
+                "limit": 500,
                 "ignore-pattern": "^import |^export {(.*?)} |@Inject.* | this.loggingService.*"
             }
         ],

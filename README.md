@@ -40,13 +40,13 @@ Once connected, you can read() the status of readable knx components and set the
 writeable component.
 
 In the example below, we attempt to discover the knx gateway using the KNXClient.startDiscovery function.
+Use the ip address or the interface name of the local machine on which you run the discovery.
+If you have multiple interfaces, make sure to use the one that is connected to your knx gateway.
 Once the gateway is identified, we setup a tunnel using the knxSocket.connect() method.
 We then read the status (on or off) of a lamp with knx address 1.2.15 and then switch the lamp on,
 read the status again before switching the lamp off.
 
 ```javascript
-
-
 const {KNXTunnelSocket, DataPoints, KNXAddress} = require("knx-ip");
 
 // Create tunnel socket with source knx address 1.1.100
@@ -65,7 +65,7 @@ knxClient.on(KNXTunnelSocket.KNXTunnelSocketEvents.discover,  info => {
 });
 
 // start auto discovery on interface with ip 192.168.1.99
-knxClient.startDiscovery("192.168.1.99");
+knxClient.startDiscovery("eth0"); // or use knxClient.startDiscovery("192.168.1.99");
 
 const wait = (t=3000) => {
     return new Promise(resolve => {

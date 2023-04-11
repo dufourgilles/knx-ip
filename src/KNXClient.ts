@@ -19,6 +19,7 @@ import { TunnelCRI, TunnelTypes } from './protocol/TunnelCRI';
 import { KNXConnectionStateResponse } from './protocol/KNXConnectionStateResponse';
 import { KNXSocketOptions } from './KNXSocketOptions';
 import { DuplicateRequestError, RequestTimeoutError } from './errors';
+import { IKNXClient } from './IKNXClient';
 
 enum STATE {
     STARTED = 0,
@@ -40,10 +41,6 @@ interface SocketInfo {
     size: number;
 }
 
-enum TUNNELSTATE {
-    READY = 0
-}
-
 const SocketEvents = {
     error: 'error',
     message: 'message'
@@ -59,14 +56,14 @@ enum KNXClientEvents {
     response = 'response'
 }
 
-export class KNXClient extends EventEmitter {
+export class KNXClient extends EventEmitter implements IKNXClient {
 
     get channelID(): number {
         return this._channelID;
     }
 
     static  KNXClientEvents = KNXClientEvents;
-    public max_HeartbeatFailures: Number;
+    public max_HeartbeatFailures: number;
     private readonly _options: KNXSocketOptions;
     private _host: string;
     private _port: number;
@@ -619,7 +616,6 @@ export class KNXClient extends EventEmitter {
     }
 
     private _sendSearchRequestMessage(): void {
-        console.log('_sendSearchRequestMessage', this._host, this._port);
         this._clientSocket.send(
             KNXProtocol.newKNXSearchRequest(new HPAI(this._host, this._port)).toBuffer(),
             KNX_CONSTANTS.KNX_PORT,

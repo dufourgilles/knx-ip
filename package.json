@@ -1,15 +1,18 @@
 {
     "name": "knx-ip",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "description": "KNXnet/IP protocol",
+    "files": [
+        "lib"
+    ],
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
     "scripts": {
-	"build": "npm run compile && npm run tslint:nofix && npm run test:coverage",
+        "build": "npm run compile && npm run tslint:nofix && npm run test:coverage",
         "compile": "rimraf lib && tsc -p .",
         "compile:watch": "tsc -w -p .",
         "gendoc": "rimraf doc && typedoc --out doc --excludeExternals --includeDeclarations --moduleResolution node --tsconfig ./tsconfig.json src",
-	"jest-coverage-badges": "jest-coverage-badges",
+        "jest-coverage-badges": "jest-coverage-badges",
         "tslint": "tslint --project tslint.json --fix",
         "tslint:nofix": "tslint --project tslint.json",
         "test": "jest  --forceExit  --detectOpenHandles",
@@ -28,6 +31,7 @@
     "devDependencies": {
         "@types/jest": "^24.0.19",
         "@types/node": "^12.12.27",
+        "@types/sinon": "^10.0.13",
         "@types/yargs": "^15.0.2",
         "ghooks": "2.0.4",
         "jest": "^24.9.0",
@@ -37,7 +41,7 @@
         "jest-jenkins-reporter": "^1.0.2",
         "jest-junit-reporter": "^1.1.0",
         "rimraf": "3.0.0",
-        "sinon": "^7.4.1",
+        "sinon": "^15.0.3",
         "ts-jest": "^24.1.0",
         "ts-node": "^8.4.1",
         "tslint": "^5.20.0",
