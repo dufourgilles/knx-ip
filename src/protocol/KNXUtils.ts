@@ -9,30 +9,17 @@ export const splitIP = (ip: string, name: string = 'ip'): RegExpMatchArray => {
     return m;
 };
 
-export const validateKNXAddress = (address: string|number, isGroup: boolean = false): number => {
-    if (typeof(address) === 'string') {
-        const digits = address.split(/[./]/);
-        if (digits.length < 2 || digits.length > 3) {
-            throw new Error(`Invalid address format: ${address}`);
-        }
-        let count = 0;
+export const validateKNXAddress = (address: string | number, isGroup: boolean = false): number => {
+    if (typeof (address) === 'string') {
+        const subGroups = address.split(/[./]/);
+        const bitSizes = (subGroups.length === 2) ? [5, 11] : isGroup ? [5, 3, 8] : [4, 4, 8];
         let newAddress = 0;
-        for (let i = digits.length - 1; i >= 0; i--, count++) {
-            const digit = Number(digits[i]);
-            if (isNaN(digit) || (count > 1 && digit > 15) || (count === 0 && digit > 255)) {
+        for (let i = 0; i < subGroups.length; i++) {
+            const digit = Number(subGroups[i]);
+            if (isNaN(digit) || digit >= (1 << bitSizes[i])) {
                 throw new Error(`Invalid digit at pos ${i} inside address: ${address}`);
             }
-            if (count === 0) {
-                newAddress = digit;
-            } else if (count === 1) {
-                newAddress = newAddress + (digit << 8);
-            } else {
-                if (isGroup) {
-                    newAddress = newAddress + (digit << 11);
-                } else {
-                    newAddress = newAddress + (digit << 12);
-                }
-            }
+            newAddress = (newAddress << bitSizes[i]) | digit;
         }
         return newAddress;
     } else {
